@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://localhost:3000/index.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+</head>
+<body>
+	<div class="title">
+		<img src="http://localhost:3000/images/3.jpg" alt="title" width="100%" height="70%">
+	</div>
+	<nav class="top-menu">
+  		<ul class="menu-main">
+    		<li class="left-item"><a href="">Головна</a></li>
+   			<li class="left-item"><a href="">Умови оренди</a></li>
+    		<li class="left-item"><a href="">Замовити</a></li>
+    		<li class="right-item"><a href="">Додаткові функції</a></li>
+		    <li class="right-item"><a href="">Контакти</a></li>
+		    <li class="right-item"><a href="">Реєстрація</a></li>
+		    <li class="right-item"><a href="">Вхід в кабінет</a></li>
+		</ul>
+  		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
+	</nav>
+	<div id="goods">
+
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$('document').ready(function(){
+			loadGoods();
+		});
+
+		function loadGoods(){
+			let data;
+			//download products to page
+			$.getJSON('http://localhost:3000/goods.json', function(data){
+				//console.log(data);
+				let out = '';
+				for(let key in data){
+					out+='<div class="single-goods">';
+					out+='<h3>'+data[key]['name']+'</h3>';
+					out+='<p>Price: '+data[key]['cost']+'</p>';
+					out+='<img src="'+data[key]['image']+'">';
+					out+='<button>Орендувати</button>';
+					out+='</div>';
+				}
+				$('#goods').html(out);
+			});
+		}
+	</script>
+</body>
+</html>
