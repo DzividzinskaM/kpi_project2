@@ -19,22 +19,28 @@
             showCart();  //show products at page
             
             function showCart(){
-                let out = '';
-                for(let key in cart){
-                    out += '<button class="delete" data-art="'+key+'">x</button>';
-                    out += '<img src="'+goods[key].image +'" width="48">';
-                    out += goods[key].name;
-                    out += '<button class="minus" data-art="'+key+'">-</button>';
-                    out += cart[key];
-                    out += '<button class="plus" data-art="'+key+'">+</button>';
-                    out += cart[key]*goods[key].cost;
-                    out += '<br>';
+                if($.isEmptyObject(cart)) {
+                    let out='Корзина порожня. Додайте товар в корзину <a href="/..">Головна сторінка</a>' ;
+                    $('#my-cart').html(out);
                 }
+                else {
+                    let out = '';
+                    for(let key in cart){
+                        out += '<button class="delete" data-art="'+key+'">x</button>';
+                        out += '<img src="'+goods[key].image +'" width="48">';
+                        out += goods[key].name;
+                        out += '<button class="minus" data-art="'+key+'">-</button>';
+                        out += cart[key];
+                        out += '<button class="plus" data-art="'+key+'">+</button>';
+                        out += cart[key]*goods[key].cost;
+                        out += '<br>';
+                    }
 
-                $('#my-cart').html(out);
-                $('.plus').on('click', plusGoods);
-                $('.minus').on('click', minusGoods);
-                $('.delete').on('click', deleteGoods);
+                    $('#my-cart').html(out);
+                    $('.plus').on('click', plusGoods);
+                    $('.minus').on('click', minusGoods);
+                    $('.delete').on('click', deleteGoods);
+                } 
             }
 
             function plusGoods(){
