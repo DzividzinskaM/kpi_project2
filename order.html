@@ -11,17 +11,19 @@
 			let client;
 			pib = obj.PIB.value;
 			contact = obj.contact.value;
-			if(pib === "" || contact === "") alert("Ведіть ПІБ та номер телефону або пошту");
+			if(pib === "" || contact === "" || obj.size1.value === "" || obj.size2.value === "" || obj.size3.value === "" || obj.description.value || obj.post.value) {alert("Заповніть усі необхідні поля")}
+				else{
+			
 			let now = new Date();
 			let date = new Date(obj.date.value);
 			now.setDate(now.getDate() + 10);
-			if(now.getTime() > date.getTime() || pib === "" || contact === "") {alert("Введена не коректна дата");}
+			if(now.getTime() > date.getTime()) {alert("Введена не коректна дата");}
 			else 
 			{
 				newOrder ="Розмір:" + obj.size.value +" ; Параметри: "+ obj.size1.value+"/"+ obj.size2.value+"/"+ obj.size3.value+" ; Матеріали:"+ obj.materials.value+" ; Опис: " + obj.description.value +" ; На " + obj.date.value;
 				alert("Ваше замовлення: "+newOrder + ". Відправлено на обробку");
 			}
-			
+			}
 		}
 	</script>
 </head>
@@ -50,9 +52,13 @@
 			</p>
 			<input type="text" name="PIB" value="">
 			<p>
-			Номер телефону або пошта:
+			Номер телефону:
 			</p>
-			<input type="text" name="contact" value="">
+			<input type="number" name="contact" value="">
+			<p>
+			Пошта:
+			</p>
+			<input type="text" name="post" value="">
 			<p>
 			Розмір:
 			</p>
@@ -63,11 +69,11 @@
 			<p>
 			Парамети(обхват грудної клітки, талії, таза):
 			</p>
-			<input type="text" name="size1" >
-			<input type="text" name="size2" >
-			<input type="text" name="size3" >
+			<input type="number" name="size1" >
+			<input type="number" name="size2" >
+			<input type="number" name="size3" >
 			<p>
-			Матеріали:
+			Матеріали (не обов'язково):
 			</p>
 			<input type="text" name="materials">
 			<p>
@@ -76,7 +82,7 @@
 			<input type="date" name="date">
 			<form enctype="multipart/form-data">
 			<p>
-			Помістіть файл з картинкою(за наявності):
+			Помістіть файл з картинкою(не обов'язково):
 			</p>
 			<input type="file" name="picture" value="Тиснути сюди!">
 			</form>
