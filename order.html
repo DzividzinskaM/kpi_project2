@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://localhost:3000/order.css">
+</head>
+  <body background="public/images/5.jpg">
+	<div class="title">
+		<img src="http://localhost:3000/images/3.jpg" alt="title" width="100%" height="70%">
+	</div>
+	<nav class="top-menu">
+  		<ul class="menu-main">
+    		<li class="left-item"><a href="">Головна</a></li>
+   			<li class="left-item"><a href="">Умови оренди</a></li>
+    		<li class="left-item"><a href="">Замовити</a></li>
+    		<li class="right-item"><a href="">Додаткові функції</a></li>
+		    <li class="right-item"><a href="">Контакти</a></li>
+		    <li class="right-item"><a href="">Реєстрація</a></li>
+		    <li class="right-item"><a href="">Вхід в кабінет</a></li>
+		</ul>
+  		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
+	</nav>
+	<div style="align-items:center">
+		<div id="order">
+		<div >
+			<p>
+			Розмір:
+			</p>
+			<select>
+  				<option>Дитячий</option>
+  				<option>Дорослий</option>
+			</select>
+		</div>
+		<div >
+			<p>
+			Розмір:
+			</p>
+			<input type="text" name="size">
+		</div>
+
+		<div >
+			<p>
+			Матеріали:
+			</p>
+			<input type="text" name="materials">
+		</div>
+		<div >
+			<p>
+			На яке число(Не меньше як за 10 днів):
+			</p>
+			<input type="date" name="date">
+		</div>
+		<div >
+			<p>
+			Опишіть ваше замовлення:
+			</p>
+			<textarea name="description" cols="75" rows="6"></textarea>
+		</div>
+		<input type="button" name="ToOrder" value="Замовити">
+		</div>
+	</div >
+	</body>
+</html>
