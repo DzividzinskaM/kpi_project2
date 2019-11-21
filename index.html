@@ -23,6 +23,7 @@
 		</ul>
   		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
 	</nav>
+	<div id="mini-cart"></div>
 	<div id="goods">
 
 	</div>
@@ -32,6 +33,8 @@
 
 		$('document').ready(function(){
 			loadGoods();
+			checkCart();
+			showMiniCart();
 		});
 
 		function loadGoods(){
@@ -62,8 +65,27 @@
 			else{
 				cart[articul] = 1;
 			}
-			console.log(cart);
+			localStorage.setItem('cart', JSON.stringify(cart));
+			//console.log(cart);
+			showMiniCart();
 		}
+
+		function checkCart(){
+			//check cart in localStorage
+			if (localStorage.getItem('cart') != null){
+				cart = JSON.parse (localStorage.getItem('cart'));
+			}
+		}
+
+		function showMiniCart(){
+			//show products in mini cart
+			let out = '';
+			for(let i in cart){
+				out += i + ' --- ' + cart[i] + '<br>';
+			}
+			$('#mini-cart').html(out);
+		}
+
 	</script>
 
 </body>
