@@ -5,6 +5,12 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://localhost:3000/order.css">
+	<script type="text/javascript">
+		function sen() {
+			let newOrder;
+			newOrder = 
+		}
+	</script>
 </head>
   <body background="public/images/5.jpg">
 	<div class="title">
@@ -13,8 +19,8 @@
 	<nav class="top-menu">
   		<ul class="menu-main">
     		<li class="left-item"><a href="">Головна</a></li>
-   			<li class="left-item"><a href="">Умови оренди</a></li>
-    		<li class="left-item"><a href="">Замовити</a></li>
+   			<li class="left-item"><a href="conditions.html">Умови оренди</a></li>
+    		<li class="left-item"><a href="order.html">Замовити</a></li>
     		<li class="right-item"><a href="">Додаткові функції</a></li>
 		    <li class="right-item"><a href="">Контакти</a></li>
 		    <li class="right-item"><a href="">Реєстрація</a></li>
@@ -25,10 +31,11 @@
 	<div style="align-items:center">
 		<div id="order">
 		<div >
+			<h3 align="center">Заповніть форму замовлення</h3>
 			<p>
 			Розмір:
 			</p>
-			<select>
+			<select >
   				<option>Дитячий</option>
   				<option>Дорослий</option>
 			</select>
@@ -58,7 +65,7 @@
 			</p>
 			<textarea name="description" cols="75" rows="6"></textarea>
 		</div>
-		<input type="button" name="ToOrder" value="Замовити">
+		<input type="button" name="ToOrder" value="Замовити" onclick="sendform()">
 		</div>
 	</div >
 	</body>
