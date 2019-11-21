@@ -1,5 +1,5 @@
 body {
-    background-color: #F3EDFB;
+    background: #d1a7d5;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Arimo');
@@ -89,6 +89,7 @@ body {
   width: 70%;
   margin-left: 15%;
   padding-top: 3%;
+  opacity: 0.8;
 }
 p {
   margin-left: 5%;

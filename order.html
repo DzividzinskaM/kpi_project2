@@ -6,13 +6,26 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://localhost:3000/order.css">
 	<script type="text/javascript">
-		function sen() {
+		function sendform(obj) {
 			let newOrder;
-			newOrder = 
+			let client;
+			pib = obj.PIB.value;
+			contact = obj.contact.value;
+			if(pib === "" || contact === "") alert("Ведіть ПІБ та номер телефону або пошту");
+			let now = new Date();
+			let date = new Date(obj.date.value);
+			now.setDate(now.getDate() + 10);
+			if(now.getTime() > date.getTime() || pib === "" || contact === "") {alert("Введена не коректна дата");}
+			else 
+			{
+				newOrder ="Розмір:" + obj.size.value +" ; Параметри: "+ obj.size1.value+"/"+ obj.size2.value+"/"+ obj.size3.value+" ; Матеріали:"+ obj.materials.value+" ; Опис: " + obj.description.value +" ; На " + obj.date.value;
+				alert("Ваше замовлення: "+newOrder + ". Відправлено на обробку");
+			}
+			
 		}
 	</script>
 </head>
-  <body background="public/images/5.jpg">
+  <body >
 	<div class="title">
 		<img src="http://localhost:3000/images/3.jpg" alt="title" width="100%" height="70%">
 	</div>
@@ -29,44 +42,52 @@
   		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
 	</nav>
 	<div style="align-items:center">
+		<form name="form" action="">
 		<div id="order">
-		<div >
 			<h3 align="center">Заповніть форму замовлення</h3>
 			<p>
-			Розмір:
+			ПІБ:
 			</p>
-			<select >
-  				<option>Дитячий</option>
-  				<option>Дорослий</option>
-			</select>
-		</div>
-		<div >
+			<input type="text" name="PIB" value="">
+			<p>
+			Номер телефону або пошта:
+			</p>
+			<input type="text" name="contact" value="">
 			<p>
 			Розмір:
 			</p>
-			<input type="text" name="size">
-		</div>
-
-		<div >
+			<select name="size">
+  				<option value="Дитячий">Дитячий</option>
+  				<option value="Дорослий">Дорослий</option>
+			</select>
+			<p>
+			Парамети(обхват грудної клітки, талії, таза):
+			</p>
+			<input type="text" name="size1" >
+			<input type="text" name="size2" >
+			<input type="text" name="size3" >
 			<p>
 			Матеріали:
 			</p>
 			<input type="text" name="materials">
-		</div>
-		<div >
 			<p>
-			На яке число(Не меньше як за 10 днів):
+			На яке число(Не менше як за 10 днів):
 			</p>
 			<input type="date" name="date">
-		</div>
-		<div >
+			<form enctype="multipart/form-data">
+			<p>
+			Помістіть файл з картинкою(за наявності):
+			</p>
+			<input type="file" name="picture" value="Тиснути сюди!">
+			</form>
 			<p>
 			Опишіть ваше замовлення:
 			</p>
 			<textarea name="description" cols="75" rows="6"></textarea>
+			<div>
+		<input type="button" name="ToOrder" value="Замовити" onclick="sendform(form)"></div>
 		</div>
-		<input type="button" name="ToOrder" value="Замовити" onclick="sendform()">
-		</div>
+	</form>
 	</div >
 	</body>
 </html>
