@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cart</title>
+</head>
+<body>
+    <div id="my-cart"></div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        let cart = {}; 
+
+        $.getJSON('goods.json', function(data){
+            let goods = data;   //all products in arr
+            //console.log(data);
+            checkCart();
+            //console.log(cart);
+            showCart();  //show products at page
+            
+            function showCart(){
+                let out = '';
+                for(let key in cart){
+                    out += '<button class="delete">x</button>';
+                    out += '<img src="'+goods[key].image +'" width="48">';
+                    out += goods[key].name;
+                    out += '<button class="minus">-</button>';
+                    out += cart[key];
+                    out += '<button class="plus">+</button>';
+                    out += cart[key]*goods[key].cost;
+                    out += '<br>';
+                }
+
+                $('#my-cart').html(out);
+
+            }
+        });
+
+        function checkCart(){
+			//check cart in localStorage
+			if (localStorage.getItem('cart') != null){
+				cart = JSON.parse (localStorage.getItem('cart'));
+			}
+        }
+        
+
+
+</script>
+</body>
+</html>
