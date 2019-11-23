@@ -125,6 +125,7 @@
         $.getJSON('orders.json', function(data){
             
             let orders=data;
+            let numberOrders=1;
             let flagForNextStep = false;
 
             if (localStorage.getItem('orders') != null){
@@ -159,13 +160,14 @@
             }
 
            function addDate(){ 
+                    let currentOrder = {};
                     let firstDay=dayInYear($('.fromDate').val());
                     let lastDay=dayInYear($('.toDate').val());
                     console.log(cart);
                     let out = '';
                     let flag=false;
                     let currentDay=new Date($('.fromDate').val());
-                    for(let i=Number(lastDay)-Number(firstDay); i>0; i--){
+                    for(let i=Number(lastDay)-Number(firstDay)+1; i!=0; i--){
                         for(let key in cart){
                             out = currentDay.toLocaleDateString() + '__' +key;
                             for(let keyInOrders in orders){
@@ -177,23 +179,27 @@
                         }
                     }
                     if(!flag){
-                        for(let i=Number(lastDay)-Number(firstDay); i>0; i--){
+                        for(let i=Number(lastDay)-Number(firstDay)+1; i!=0; i--){
                         for(let key in cart){
                             out = currentDay.toLocaleDateString() + '__' +key;
                             orders[out]=cart[key];
+                            currentOrder[out]=cart[key];
                             //console.log(out);   
                         }
                         currentDay.setDate(currentDay.getDate()+1); 
-                        console.log(currentDay);
                     }
-                    localStorage.setItem('orders', JSON.stringify(orders)); 
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                    alert("Дата вибрана успішно"); 
                     //saveOrdersToLS();
                     console.log(orders);
                     flagForNextStep = true;
+
+                    localStorage.setItem("currentOrder", JSON.stringify(currentOrder));
                     }
                     else{
                         alert("Немає вільних костюмів на обрану дату");
                     }
+                    currentOrder.delete;
                 }
 
                 function checkNextStep (){
