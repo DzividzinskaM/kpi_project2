@@ -23,25 +23,105 @@
 		</ul>
   		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
     </nav>
+
+    <div>
+        <table id="goods-in-order" border="1" width="70%" cellspacing="0">
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script>
+        let cart = {};
         let currentOrder = {};
         checkCurrentOrder();
-        showOrder();
+        checkCart();
+      //  showOrder();
+
+        $.getJSON('goods.json', function(data){
 
 
-        function showOrder(){
-            let out = '';;
-            for(let key in currentOrder){
-                let date=getDateOrder(key);
-                let id = getIdOrder(key);
-                console.log(date);
-                console.log(id);
+            let goods = data; 
+                $.getJSON('orderingForm.json', function(data){
+                
+                
+                showOrder();
+
+                function showOrder(){
+                let out = '';
+                let sum = 0;
+                
+                let arrId = {};
+
+                for(let key in currentOrder){
+
+                    let date=getDateOrder(key);
+                    let id = getIdOrder(key);
+                    let startDate=getStartDate(date);
+                    let finishDate=getFinishDate(date);
+                    flag=false;
+                    for(let k in arrId){
+                        if(arrId[k]==id){
+                            flag=true;
+                        }
+                    }
+                    
+                    if(!flag){
+                        out += '<tr>';
+                        out += '<td><img src="'+goods[id].image +'" width="48"></td>';
+                        out += '<td>' + goods[id].name + '</td>';
+                        out += '<td>'+startDate+'-'+finishDate+'</td>'
+                        out += '<td>' + cart[id]*goods[id].cost + '</td>';
+                        out += '</tr>';
+                        sum +=Number(cart[id]*goods[id].cost);
+                        arrId[key]=id;
+                    }
+
+                    //console.log(date);
+                    //console.log(id);
+                }
+                out += '<tr><td>Загальна сума:</td>';
+                out += '<td>'+sum+'</td></tr>';
+                
+                $('#goods-in-order').html(out);
+
             }
-        }
 
+            function getStartDate(value){
+                    let arrDate=value.split('.');
+                    let min=new Date(arrDate[2], arrDate[1]-1, arrDate[0]);
+                    for(let key in currentOrder){
+                    arrDate=(getDateOrder(key)).split('.')
+                    let date=new Date(arrDate[2], arrDate[1]-1, arrDate[0]);
+                    if(date<min){
+                        min=date;
+                    }
+                }
+                return (min.toLocaleDateString());
+            }
+
+            function getFinishDate(value){
+                    let arrDate=value.split('.');
+                    let max=new Date(arrDate[2], arrDate[1]-1, arrDate[0]);
+                    for(let key in currentOrder){
+                    arrDate=(getDateOrder(key)).split('.')
+                    let date=new Date(arrDate[2], arrDate[1]-1, arrDate[0]);
+                    if(date>max){
+                        max=date;
+                    }
+                }
+                return (max.toLocaleDateString());
+            }
+
+
+            });
+        });
+        
+
+        
         function getDateOrder(value){
             let arr = value.split('__');
             return arr[0];
@@ -60,6 +140,12 @@
                 alert("Замовлення немає, перевірте інформацію на попередньому кроці");
             }
 		}
+
+        function checkCart(){
+			if (localStorage.getItem('cart') != null){
+				cart = JSON.parse (localStorage.getItem('cart'));
+			}
+        }
 
     </script>
 </body>
