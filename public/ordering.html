@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Shop</title>
+	<link rel="stylesheet" href="http://localhost:3000/ordering.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+</head>
+<body>
+	<div class="title">
+		<img src="http://localhost:3000/images/3.jpg" alt="title" width="100%" height="70%">
+	</div>
+	<nav class="top-menu">
+  		<ul class="menu-main">
+    		<li class="left-item"><a href="http://localhost:3000/registration.html">Головна</a></li>
+   			<li class="left-item"><a href="">Умови оренди</a></li>
+    		<li class="left-item"><a href="">Замовити</a></li>
+    		<li class="right-item"><a href="http://localhost:3000/cart.html">Корзина</a></li>
+		    <li class="right-item"><a href="">Контакти</a></li>
+		    <li class="right-item"><a href="">Реєстрація</a></li>
+		    <li class="right-item"><a href="">Вхід в кабінет</a></li>
+		</ul>
+  		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
+    </nav>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        let currentOrder = {};
+        checkCurrentOrder();
+        showOrder();
+
+
+        function showOrder(){
+            let out = '';;
+            for(let key in currentOrder){
+                let date=getDateOrder(key);
+                let id = getIdOrder(key);
+                console.log(date);
+                console.log(id);
+            }
+        }
+
+        function getDateOrder(value){
+            let arr = value.split('__');
+            return arr[0];
+        }
+
+        function getIdOrder(value){
+           let arr=value.split("__");
+           return arr[1];
+        }
+        function checkCurrentOrder(){
+			//check order in localStorage
+			if (localStorage.getItem('currentOrder') != null){
+				currentOrder = JSON.parse (localStorage.getItem('currentOrder'));
+			}
+            else{
+                alert("Замовлення немає, перевірте інформацію на попередньому кроці");
+            }
+		}
+
+    </script>
+</body>
