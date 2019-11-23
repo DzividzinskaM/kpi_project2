@@ -2,12 +2,39 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Cart</title>
+    <title>Cart</title>
+    <link rel="stylesheet" href="http://localhost:3000/cart.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
 </head>
 <body>
-    <div id="my-cart"></div>
-    
+        <div class="title">
+                <img src="http://localhost:3000/images/3.jpg" alt="title" width="100%" height="70%">
+            </div>
+            <nav class="top-menu">
+                  <ul class="menu-main">
+                    <li class="left-item"><a href="http://localhost:3000/registration.html">Головна</a></li>
+                       <li class="left-item"><a href="">Умови оренди</a></li>
+                    <li class="left-item"><a href="">Замовити</a></li>
+                    <li class="right-item"><a href="http://localhost:3000/cart.html">Корзина</a></li>
+                    <li class="right-item"><a href="">Контакти</a></li>
+                    <li class="right-item"><a href="">Реєстрація</a></li>
+                    <li class="right-item"><a href="">Вхід в кабінет</a></li>
+                </ul>
+                  <a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
+            </nav>
+    <div class="d_cart">
+        <table border="2" cellspacing="0" width=80% id="my-cart">
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div id="forChooseDate"></div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <script>
         let cart = {}; 
 
@@ -26,16 +53,19 @@
                 else {
                     let out = '';
                     for(let key in cart){
-                        out += '<button class="delete" data-art="'+key+'">x</button>';
-                        out += '<img src="'+goods[key].image +'" width="48">';
-                        out += goods[key].name;
-                        out += '<button class="minus" data-art="'+key+'">-</button>';
-                        out += cart[key];
-                        out += '<button class="plus" data-art="'+key+'">+</button>';
-                        out += cart[key]*goods[key].cost;
-                        out += '<br>';
+                        out += '<tr>'
+                        out += '<td><button class="delete" data-art="'+key+'">x</button></td>';
+                        out += '<td><img src="'+goods[key].image +'" width="48"></td>';
+                        out += '<td>' + goods[key].name + '</td>';
+                        out += '<td><button class="minus" data-art="'+key+'">-</button></td>';
+                        out += '<td>' + cart[key] + '</td>';
+                        out += '<td><button class="plus" data-art="'+key+'">+</button></td>';
+                        out += '<td>' + cart[key]*goods[key].cost + '</td>';
+                        //out += '<br>';
+                        out += '</tr>';
                     }
-
+                   
+                
                     $('#my-cart').html(out);
                     $('.plus').on('click', plusGoods);
                     $('.minus').on('click', minusGoods);
@@ -45,8 +75,12 @@
 
             function plusGoods(){
                 let articul = $(this).attr('data-art');
-                cart[articul]++;
-                saveCartToLS();
+                if(cart[articul]==goods[articul]["number"])
+                    alert("Вибачте, але більшої кількості товару немає на складі");
+                else{
+                    cart[articul]++;
+                    saveCartToLS();
+                }
                 showCart();
             }
 
@@ -69,6 +103,8 @@
                 showCart();
             }
 
+      
+
         });
 
         function checkCart(){
@@ -83,7 +119,116 @@
             localStorage.setItem('cart', JSON.stringify(cart));
         }
 
-
 </script>
+
+<script>
+        $.getJSON('orders.json', function(data){
+            
+            let orders=data;
+            let flagForNextStep = false;
+
+            if (localStorage.getItem('orders') != null){
+				orders = JSON.parse (localStorage.getItem('orders'));
+			}   
+            let out = ' Від(включно): <input type="date" class="fromDate"><br>';
+            out += ' До(включно): <input type="date" class="toDate"><br>';
+            out += '<button class="buttonChoose">Вибрати</button><br>'
+            out += '<button class="nextStep"><a href="http://localhost:3000/ordering.html">Оформити замовлення</a></button>'
+
+            $('#forChooseDate').html(out);
+            $('.buttonChoose').on('click', checkChooseDate);
+            $('.nextStep').on('click', checkNextStep);
+
+            function checkChooseDate(){
+
+                //console.log($('.fromDate').val());
+               // console.log($('.toDate').val());
+               //checkOrders();   
+
+                if(($('.fromDate').val())=='' || ($('.toDate').val())=='')
+                    alert("Дата не вказана");
+
+                let fisrtDay=dayInYear($('.fromDate').val());
+                let lastDay=dayInYear($('.toDate').val());
+                let now=new Date();
+                let nowInYear=+dayInYear(now);
+                if(Number(lastDay)-Number(fisrtDay)<0 || Number(fisrtDay)<=Number(nowInYear) || Number(lastDay)<=Number(nowInYear))
+                    alert("Дата вказана невірно. Перевірте, будь-ласка введену інформацію");
+
+                addDate();
+            }
+
+           function addDate(){ 
+                    let firstDay=dayInYear($('.fromDate').val());
+                    let lastDay=dayInYear($('.toDate').val());
+                    console.log(cart);
+                    let out = '';
+                    let flag=false;
+                    let currentDay=new Date($('.fromDate').val());
+                    for(let i=Number(lastDay)-Number(firstDay); i>0; i--){
+                        for(let key in cart){
+                            out = currentDay.toLocaleDateString() + '__' +key;
+                            for(let keyInOrders in orders){
+                                if(out == keyInOrders){
+                                    flag=true;
+                                    console.log("true")
+                                }
+                            }
+                        }
+                    }
+                    if(!flag){
+                        for(let i=Number(lastDay)-Number(firstDay); i>0; i--){
+                        for(let key in cart){
+                            out = currentDay.toLocaleDateString() + '__' +key;
+                            orders[out]=cart[key];
+                            //console.log(out);   
+                        }
+                        currentDay.setDate(currentDay.getDate()+1); 
+                        console.log(currentDay);
+                    }
+                    localStorage.setItem('orders', JSON.stringify(orders)); 
+                    //saveOrdersToLS();
+                    console.log(orders);
+                    flagForNextStep = true;
+                    }
+                    else{
+                        alert("Немає вільних костюмів на обрану дату");
+                    }
+                }
+
+                function checkNextStep (){
+                    if(!flagForNextStep)
+                        alert("Виберіть дату замовлення, будь ласка!");
+                }
+                 
+           });
+        //});
+
+        function dayInYear(nowDate){
+            var now = new Date(nowDate);
+            var start = new Date(now.getFullYear(), 0, 0);
+            var diff = now - start;
+            var oneDay = 1000 * 60 * 60 * 24;
+            var day = Math.floor(diff / oneDay);   
+            return day; 
+        }
+
+        function checkCart(){
+			if (localStorage.getItem('cart') != null){
+				cart = JSON.parse (localStorage.getItem('cart'));
+			}
+        }
+
+        function saveOrdersToLS(){
+            //save cart in locale storage
+            localStorage.setItem('orders', JSON.stringify(orders));
+        }
+
+        function checkOrders(){
+			if (localStorage.getItem('orders') != null){
+				orders = JSON.parse (localStorage.getItem('orders'));
+			}
+        }
+    </script>
 </body>
 </html>
