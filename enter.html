@@ -6,9 +6,56 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://localhost:3000/order.css">
 	<script type="text/javascript">
-		function sen() {
-			let newOrder;
-			newOrder = 
+
+		var rules = {
+			required: function(el){
+				if(el.value != '') return true;
+				else return false;
+			},
+			phone: function(el){
+ 				return true;
+			},
+			mail: function(el) {
+				var reg = /^\w{1,}@\w{1,}\.\w{1,}$/;
+				return reg.test(el.value);
+			}
+		}
+		function validator(obj) {
+			var errors = [];
+			var elements = obj.elements;
+			for( i = 0;i< elements.length;i++)
+			{
+				if(elements[i].tagName != 'BUTTON')
+				{
+					var rulelist = elements[i].dataset.rule;
+					rulelist = rulelist.split(' ');
+					for (var j = 0; j<rulelist.length ; j++) {
+						if(rulelist[j] in rules){
+							if(!rules[rulelist[j]](elements[i])){
+								errors.push(rulelist[j]+' : '+elements[i].value);
+							}
+						}
+					}
+				}
+			}
+			if(errors.length > 0){
+				alert('Невірно заповнена форма! Будь-ласка перевірте поля!'+errors);
+				return false;
+			}
+			return true;
+		}
+
+		function sendform(obj) {
+			if(validator(obj)){
+				var password = obj.password.value;
+				if(obj.post.value != '') {
+					var mail = obj.post.value;
+				}
+				if(obj.phone.value != '') {
+					var mail = obj.phone.value;
+				}
+			}
+
 		}
 	</script>
 </head>
@@ -24,30 +71,37 @@
     		<li class="right-item"><a href="">Додаткові функції</a></li>
 		    <li class="right-item"><a href="">Контакти</a></li>
 		    <li class="right-item"><a href="">Реєстрація</a></li>
-		    <li class="right-item"><a href="">Вхід в кабінет</a></li>
+		    <li class="right-item"><a href="enter.html">Вхід в кабінет</a></li>
 		</ul>
   		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
 	</nav>
-	<div style="align-items:center">
-		<form id="enter">
-			<div >
+	<div>
+	<div id="enter" style="align-items:center">
+		<form id="enterform">
 			<h3 align="center">Для входу введіть</h3>
-			Номер телефону:
+				<p style="text-align: center; margin-left: 0px;">
+					Номер телефону:
+				</p>
+			<div style="text-align: center; margin-left: 0px;">
+				<input style="margin-left: 0px;" type="text" name="contact" value="" data-rule="phone">
+			</div>
+			<p style="text-align: center; margin-left: 0px;">
+				Пошта:
 			</p>
-			<input type="number" name="contact" value="">
-			<h4 align="center"></h4>
-			<p>
-			Пошта:
+			<div style="text-align: center; margin-left: 0px;">
+				<input style="margin-left: 0px;" type="text" name="post" value="" data-rule="mail">
+			</div>
+			<p style="text-align: center; margin-left: 0px;">
+				Пароль:
 			</p>
-			<input type="text" name="post" value="">
-			<p>
-			<p>
-			Пароль:
-			</p>
-			<input type="text" name="PIB" value="">
-			<p>
+			<div style="text-align: center; margin-left: 0px;">
+				<input style="margin-left: 0px;" type="text" name="password" value="" data-rule="required">
+			</div>
+			<div style="margin-top: 20px;text-align: center; margin-left: 0px;">
+			<input class="menu-main" style="text-align: center; margin-left: 0px; width: 70px;" type="button" name="ToOrder" value="Вхід" onclick="sendform(enterform)" data-rule="">
 			</div>
 		</form>
+	</div>
 	</div>
 	</body>
 </html>
