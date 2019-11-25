@@ -31,8 +31,82 @@
             </tbody>
         </table>
     </div>
+
+    <div id="userForm">
+    </div>
+
+    <div id="formForNotExistUser">
+    </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        $.getJSON('orderingForm.json', function(data){
+            let orders = data;
+            let out = '';
+            out += '<select name="userForm" id="statusUser">';
+            out += '<option name="undefined">Виберіть ваш статус</option>'
+            out += '<option value="userExist">Зареєстрований користувач</option>';
+            out += ' <option value="userNotExist">Не зареєстрований користувач</option></select>'
+            $('#userForm').html(out);
+            $('#statusUser').change(checkUserStatus);
+
+            function checkUserStatus(){
+                let status=$(this).val();
+                console.log(status);
+                if(status=="undefined")
+                    alert("Будь ласка, виберіть ваш статус");
+                else if(status=="userNotExist"){
+                    let str = '';
+                    str += 'ПІБ: <input type="text" name="name" class="name"><br>';
+                    str += 'Номер телефону: <input type="text" name="phoneNumber" class="phoneNumber"><br>';
+                    str += 'Електронна пошта: <input type="email" name="mail" class="mail"><br>'
+                    str += 'Спосіб оплати: <br><p><input type="radio" name="payment" value="to" class="payment">Оплата до отримання товару</p>';
+                    str += '<p><input type="radio" name="payment" value="after">Після отримання товару</p><br>';
+                    str += '<button id="confirm">Оформити</button><br>';
+
+                    $('#formForNotExistUser').html(str);
+                    $('#confirm').on('click', createOrder);
+
+                }
+                else{
+                    let str = '';
+                    str += 'Логін: <input type="text" name="login"><br>';
+                    str += 'Пароль: <input type="password" name="password">';
+
+                    $('#formForNotExistUser').html(str);
+                }
+            }
+            
+
+            function createOrder() {
+                let num = new Date();
+                num = num.getMilliseconds();
+                orders["number"] = num;
+                orders["name"] = $('.name').val();
+                orders["phoneNumber"] = $('.phoneNumber').val();
+                orders["mail"] = $('.mail').val();
+                orders["payment"] = $('.payment').val();
+                let products = '';
+                let current_order = {};
+                if (localStorage.getItem('currentOrder') != null){
+				    currentOrder = JSON.parse (localStorage.getItem('currentOrder'));
+			    }
+                for(let key in currentOrder){
+                    products += key;
+                    products += '#';
+                    products += currentOrder[key];
+                    products += '*';
+                }
+                orders["products"] = products;
+                
+                let ordersName = "order#" + num;
+                localStorage.setItem(ordersName, JSON.stringify(orders));
+
+                console.log(orders);
+            }
+        });
+    </script>
 
     <script>
         let cart = {};
