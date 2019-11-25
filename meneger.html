@@ -3,9 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="http://localhost:3000/index.css">
+	<link rel="stylesheet" href="http://localhost:3000/order.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-
+	<script type="text/javascript">
+		function sendform(obj) {
+			var elems = obj.elements;
+			var arr = [];
+			for(var i=0;i<elems.length;i++){
+				arr[i]=elems[i].value;
+				arr[i] = arr[i].split(',');
+			}
+			
+		}
+	</script>
 </head>
 <body>
 	<div class="title">
@@ -25,10 +35,26 @@
 	</nav>
 	<div style="background: #d1a7d5;">
 		<div style="width: 80%; margin-left: 10%;background: #F3EDFB; height: 700px;text-align: center;">
-			<h3 style="padding-top: 40px;">Вітаємо вас!</h3>
-			<div>
+			<h3 style="padding-top: 40px;">Вітаємо вас, менеджер!</h3>
+			<form  name="form0"style=" margin-left: 15%;margin-top: 50px;">
+				<div>
+					<div style="display: flex;margin-top: 5px;">
+					 <p class="AddAtribn">Назва товару:</p><input class="AddAtrib" type="text" name="name">
+					 </div>
+
+					 <div style="display: flex;margin-top: 5px;">
+					 <p class="AddAtribn">Ціна:</p><input class="AddAtrib" type="text" name="cost">
+					 </div>
+
+					 <div style="display: flex; margin-top: 5px;">
+					 <p class="AddAtribn">Зображення:</p><input class="AddAtrib" type="text" name="image">
+					 </div>
+				</div>
 				
-			</div>
+			</form>
+			<div>
+					<a class="buttons" href="#!" onclick="sendform(form0)" data-rule="">Внести товари</a>
+				</div>
 		</div>
 	</div>
 </body>
