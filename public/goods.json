@@ -2,31 +2,37 @@
   "1" : {
     "name" : "Костюм Весна",
     "cost" : 120,
-    "image" : "http://localhost:3000/images/1cost.jpg"
+    "image" : "http://localhost:3000/images/1cost.jpg", 
+    "number" : "3"
   },
   "2" : {
     "name" : "Костюм Фея",
     "cost" : 160,
-    "image" : "http://localhost:3000/images/2cost.jpeg"
+    "image" : "http://localhost:3000/images/2cost.jpeg", 
+    "number" : "4"
   },
   "3" : {
     "name" : "Кoстюм Фея",
     "cost" : 220,
-    "image" : "http://localhost:3000/images/3cost.jpg"
+    "image" : "http://localhost:3000/images/3cost.jpg", 
+    "number" : "3"
   },
   "4" : {
     "name" : "Костюм Помідор",
     "cost" : 250,
-    "image" : "http://localhost:3000/images/4cost.jpg"
+    "image" : "http://localhost:3000/images/4cost.jpg", 
+    "number" : "3"
   },
   "5" : {
     "name" : "Костюм Грибочок",
     "cost" : 280,
-    "image" : "http://localhost:3000/images/5cost.jpg"
+    "image" : "http://localhost:3000/images/5cost.jpg", 
+    "number" : "5"
   },
   "6" : {
     "name" : "Костюм Ельф",
     "cost" : 320,
-    "image" : "http://localhost:3000/images/6cost.jpg"
+    "image" : "http://localhost:3000/images/6cost.jpg", 
+    "number" : "6"
   }
 }

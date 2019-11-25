@@ -19,7 +19,7 @@
     		<li class="right-item"><a href="http://localhost:3000/cart.html">Корзина</a></li>
 		    <li class="right-item"><a href="">Контакти</a></li>
 		    <li class="right-item"><a href="http://localhost:3000/registration.html">Реєстрація</a></li>
-		    <li class="right-item"><a href="">Вхід в кабінет</a></li>
+		    <li class="right-item"><a href="http://localhost:3000/enterence.html">Вхід в кабінет</a></li>
 		</ul>
   		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
     </nav>
@@ -36,6 +36,7 @@
     </div>
 
     <div id="formForNotExistUser">
+       
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -59,10 +60,10 @@
                 else if(status=="userNotExist"){
                     let str = '';
                     str += 'ПІБ: <input type="text" name="name" class="name"><br>';
-                    str += 'Номер телефону: <input type="text" name="phoneNumber" class="phoneNumber"><br>';
+                    str += 'Номер телефону: <td><input type="text" name="phoneNumber" class="phoneNumber"><br>';
                     str += 'Електронна пошта: <input type="email" name="mail" class="mail"><br>'
                     str += 'Спосіб оплати: <br><p><input type="radio" name="payment" value="to" class="payment">Оплата до отримання товару</p>';
-                    str += '<p><input type="radio" name="payment" value="after">Після отримання товару</p><br>';
+                    str += '<p><input type="radio" name="payment" value="after" checked>Після отримання товару</p><br>';    
                     str += '<button id="confirm">Оформити</button><br>';
 
                     $('#formForNotExistUser').html(str);
@@ -71,39 +72,77 @@
                 }
                 else{
                     let str = '';
-                    str += 'Логін: <input type="text" name="login"><br>';
-                    str += 'Пароль: <input type="password" name="password">';
+                    str += 'Логін: <input type="text" name="login" class="login"><br>';
+                    str += 'Пароль: <input type="password" name="password" class="password">';
+                    str += '<button class="enter">Вхід</button>'
 
                     $('#formForNotExistUser').html(str);
+                    $('.enter').on('click', existUser);
                 }
             }
+
+            function existUser(){
+                    let LPDB = {};
+                    checkData();
+                    let login = $('.login').val();
+                    let password = $('.password').val();
+                    LPDB = JSON.parse (localStorage.getItem('LPDB'));
+                    if(LPDB[login]!==password){
+                        alert("Неправильний логін або пароль");
+                    }
+                    else{
+                        alert("Замовлення прийнято");
+                        $('.login').val('');
+                        $('.password').val('');
+                    }
+                }
             
+            
+            function checkData() {
+            let login = $('.login').val();
+            let password = $('.password').val();
+            if(login=='' || password == ''){
+                alert("Не всі поля заповнені!")
+                return false;
+            }
+        }
+
 
             function createOrder() {
                 let num = new Date();
                 num = num.getMilliseconds();
-                orders["number"] = num;
-                orders["name"] = $('.name').val();
-                orders["phoneNumber"] = $('.phoneNumber').val();
-                orders["mail"] = $('.mail').val();
-                orders["payment"] = $('.payment').val();
-                let products = '';
-                let current_order = {};
-                if (localStorage.getItem('currentOrder') != null){
-				    currentOrder = JSON.parse (localStorage.getItem('currentOrder'));
-			    }
-                for(let key in currentOrder){
-                    products += key;
-                    products += '#';
-                    products += currentOrder[key];
-                    products += '*';
+                let name =  $('.name').val();
+                let phone = $('.phoneNumber').val();
+                let mail = $('.mail').val();
+                let payment =  $('.payment').val();
+                if(name == "" || phone == "" || mail == "" || payment == ""){
+                    alert("Не всі поля заповнені")
                 }
-                orders["products"] = products;
-                
-                let ordersName = "order#" + num;
-                localStorage.setItem(ordersName, JSON.stringify(orders));
+                else{
+                    orders["number"] = num;
+                    orders["name"] = $('.name').val();
+                    orders["phoneNumber"] = $('.phoneNumber').val();
+                    orders["mail"] = $('.mail').val();
+                    orders["payment"] = $('.payment').val();
+                    let products = '';
+                    let current_order = {};
+                    if (localStorage.getItem('currentOrder') != null){
+                        currentOrder = JSON.parse (localStorage.getItem('currentOrder'));
+                    }
+                    for(let key in currentOrder){
+                        products += key;
+                        products += '#';
+                        products += currentOrder[key];
+                        products += '*';
+                    }
+                    orders["products"] = products;
+                    
+                    let ordersName = "order#" + num;
+                    localStorage.setItem(ordersName, JSON.stringify(orders));
 
-                console.log(orders);
+                    console.log(orders);
+                    alert("Замовлення прийнято");
+                }   
             }
         });
     </script>
