@@ -62,3 +62,38 @@ body {
 @media (max-width: 630px) {
 .menu-main li {display: block;}
 }
+
+h1 {
+  font-size: 48px;  
+  font-style: inherit;  
+}
+
+
+.registrationForm {
+  
+  height: 50%;
+  width: 30%;
+  text-align: center;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+  font-size: 20px;
+  color: purple;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.registrationForm td {
+  padding: 2%;
+}
+
+#submit {
+  display: block;
+  margin: 20px auto;
+  background-color: purple;
+  color: whitesmoke;
+  border-color: purple;
+  height: 40px;
+  font-size: 18px;
+}

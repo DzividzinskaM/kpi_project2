@@ -62,3 +62,54 @@ body {
 @media (max-width: 630px) {
 .menu-main li {display: block;}
 }
+
+#goods-in-order {
+  background-color: #f6e8fc;
+  border: 3px solid #e8c9f5;
+  text-align: center;
+  position: relative;
+  margin-top: 30px;
+  margin-left: auto;
+  font-size: 18px;
+  color: purple;
+  right: 10px;
+  height: 100%;
+  width: 49%;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  background-color: purple;
+  color: whitesmoke;
+  border-color: purple;
+}
+
+#formForExist {
+  position: absolute;
+  bottom: 150px;
+  width: 5%;
+  left: 50px;
+  color: purple;
+  font-weight: bold;
+}
+
+#formForNotExistUser {
+  position: absolute;
+  top: 450px;
+  width: 10%;
+  margin: 0.5%;
+  left: 50px;
+  color: purple;
+  font-weight: bold;
+}
+
+#statusUser {
+  position: absolute;
+  bottom: 300px;
+  width: 30%;
+  left: 50px;
+  color: purple;
+  font-weight: bold;
+  height: 8%;
+}
