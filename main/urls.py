@@ -2,6 +2,7 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
+    path('', views.main, name='index'),
     path('rent', views.rent, name='conditions'),
-    path('', views.main, name='index')
+    path('order', views.order, name='order')
 ]

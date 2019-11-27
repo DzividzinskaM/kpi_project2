@@ -2,31 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="569bad09-5ffa-4ed4-b7a7-747f9cad1587" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/static/css/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/css/order.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/img/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/img/1cost.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/img/2cost.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/img/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/img/3cost.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/img/4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/img/4cost.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/img/5cost.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/img/6cost.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/static/img/backgroundphoto.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/templates/conditions.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templates/order.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kpi_prj2_front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../kpi_prj2_front/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kpi_project2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kpi_project2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kpi_project2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kpi_project2/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kpi_project2/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/kpi_project2/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +35,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/main/static/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main/templates" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -65,8 +46,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\projects\kpi_project2\main\static\css" />
       <recent name="C:\projects\kpi_project2\main\templates" />
+      <recent name="C:\projects\kpi_project2\main\static\css" />
       <recent name="C:\projects\kpi_project2\main\static\img" />
     </key>
   </component>
@@ -119,7 +100,7 @@
       <updated>1574862617722</updated>
       <workItem from="1574862618899" duration="185000" />
       <workItem from="1574862805808" duration="295000" />
-      <workItem from="1574864084913" duration="9107000" />
+      <workItem from="1574864084913" duration="10190000" />
     </task>
     <servers />
   </component>
