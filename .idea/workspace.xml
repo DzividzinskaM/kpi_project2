@@ -2,10 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="569bad09-5ffa-4ed4-b7a7-747f9cad1587" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/main/static/css/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/css/order.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/img/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/img/1cost.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/img/2cost.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/img/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/img/3cost.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/img/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/img/4cost.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/img/5cost.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/img/6cost.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/img/backgroundphoto.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templates/conditions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kpi_prj2_front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../kpi_prj2_front/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kpi_project2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kpi_project2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kpi_project2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kpi_project2/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kpi_project2/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/kpi_project2/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,19 +34,41 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1UCZcamajPksjffKnmK1tVXSRkA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main/static/css" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\kpi_project2\main\static\css" />
+      <recent name="C:\projects\kpi_project2\main\templates" />
+      <recent name="C:\projects\kpi_project2\main\static\img" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -76,7 +119,7 @@
       <updated>1574862617722</updated>
       <workItem from="1574862618899" duration="185000" />
       <workItem from="1574862805808" duration="295000" />
-      <workItem from="1574864084913" duration="1743000" />
+      <workItem from="1574864084913" duration="9107000" />
     </task>
     <servers />
   </component>
@@ -95,5 +138,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/kpi_project2/urls.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
