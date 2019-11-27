@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
   <title>Document</title>
-  <link rel="stylesheet" href="http://localhost:3000/registration.css">
+  <link rel="stylesheet" href="http://localhost:3000/enterence.css">
 </head>
 <body>
   <div class="title">
@@ -12,8 +12,8 @@
 	<nav class="top-menu">
   		<ul class="menu-main">
     		<li class="left-item"><a href="http://localhost:3000/index.html">Головна</a></li>
-   			<li class="left-item"><a href="">Умови оренди</a></li>
-    		<li class="left-item"><a href="">Замовити</a></li>
+            <li class="left-item"><a href="http://localhost:3000/conditions.html">Умови оренди</a></li>
+            <li class="left-item"><a href="http://localhost:3000/order.html">Замовити</a></li>
     		<li class="right-item"><a href="http://localhost:3000/cart.html">Корзина</a></li>
 		    <li class="right-item"><a href="">Контакти</a></li>
 		    <li class="right-item"><a href="http://localhost:3000/registration.html">Реєстрація</a></li>
@@ -24,14 +24,21 @@
 
    
 
-    <div>
-        <table>
+    <div class="autoTable">
+        <table  placeholder="0" cellspacing="0" class="table"> 
             <tbody>
                 <tr>
                     <td>Логін</td>
-                    <td><input type="text" name="login" class="login"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="login" class="login" id="login"></td>
+                </tr>   
+                <tr>
                     <td>Пароль</td>
-                    <td><input type="password" name="password" class="password"></td>
+                </tr>
+                    
+                <tr>
+                    <td><input type="password" name="password" class="password" id="password"></td>
                 </tr>
             </tbody>
         </table>

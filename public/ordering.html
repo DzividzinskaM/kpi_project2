@@ -13,13 +13,13 @@
 	</div>
 	<nav class="top-menu">
   		<ul class="menu-main">
-    		<li class="left-item"><a href="http://localhost:3000/index.html">Головна</a></li>
-   			<li class="left-item"><a href="">Умови оренди</a></li>
-    		<li class="left-item"><a href="">Замовити</a></li>
-    		<li class="right-item"><a href="http://localhost:3000/cart.html">Корзина</a></li>
-		    <li class="right-item"><a href="">Контакти</a></li>
-		    <li class="right-item"><a href="http://localhost:3000/registration.html">Реєстрація</a></li>
-		    <li class="right-item"><a href="http://localhost:3000/enterence.html">Вхід в кабінет</a></li>
+            <li class="left-item"><a href="http://localhost:3000/index.html">Головна</a></li>
+            <li class="left-item"><a href="http://localhost:3000/conditions.html">Умови оренди</a></li>
+            <li class="left-item"><a href="http://localhost:3000/order.html">Замовити</a></li>
+            <li class="right-item"><a href="http://localhost:3000/cart.html">Корзина</a></li>
+            <li class="right-item"><a href="">Контакти</a></li>
+            <li class="right-item"><a href="http://localhost:3000/registration.html">Реєстрація</a></li>
+            <li class="right-item"><a href="http://localhost:3000/enterence.html">Вхід в кабінет</a></li>
 		</ul>
   		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
     </nav>
@@ -38,6 +38,8 @@
     <div id="formForNotExistUser">
        
     </div>
+
+    <div id="formForExist"></div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -60,7 +62,7 @@
                 else if(status=="userNotExist"){
                     let str = '';
                     str += 'ПІБ: <input type="text" name="name" class="name"><br>';
-                    str += 'Номер телефону: <td><input type="text" name="phoneNumber" class="phoneNumber"><br>';
+                    str += 'Номер телефону: <input type="text" name="phoneNumber" class="phoneNumber"><br>';
                     str += 'Електронна пошта: <input type="email" name="mail" class="mail"><br>'
                     str += 'Спосіб оплати: <br><p><input type="radio" name="payment" value="to" class="payment">Оплата до отримання товару</p>';
                     str += '<p><input type="radio" name="payment" value="after" checked>Після отримання товару</p><br>';    
@@ -76,7 +78,7 @@
                     str += 'Пароль: <input type="password" name="password" class="password">';
                     str += '<button class="enter">Вхід</button>'
 
-                    $('#formForNotExistUser').html(str);
+                    $('#formForExist').html(str);
                     $('.enter').on('click', existUser);
                 }
             }
@@ -86,6 +88,8 @@
                     checkData();
                     let login = $('.login').val();
                     let password = $('.password').val();
+                    console.log(login);
+                    console.log(password);
                     LPDB = JSON.parse (localStorage.getItem('LPDB'));
                     if(LPDB[login]!==password){
                         alert("Неправильний логін або пароль");
