@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cssload %}{% static 'css/cart.css' %}{% endblock %}
+{% block body %}
+    <div class="d_cart">
+        <table cellspacing="0" placeholder="0" id="my-cart">
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div id="forChooseDate"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        let cart = {};
+
+        $.getJSON('goods.json', function (data) {
+            let goods = data;   //all products in arr
+            //console.log(data);
+            checkCart();
+            //console.log(cart);
+            showCart();  //show products at page
+
+            function showCart() {
+                if ($.isEmptyObject(cart)) {
+                    let out = 'Корзина порожня. Додайте товар в корзину <a href="/..">Головна сторінка</a>';
+                    $('#my-cart').html(out);
+                } else {
+                    let out = '';
+                    for (let key in cart) {
+                        out += '<tr>';
+                        out += '<td><button class="delete" data-art="' + key + '">x</button></td>';
+                        out += '<td><img src="' + goods[key].image + '" width="48"></td>';
+                        out += '<td>' + goods[key].name + '</td>';
+                        out += '<td><button class="minus" data-art="' + key + '">-</button></td>';
+                        out += '<td>' + cart[key] + '</td>';
+                        out += '<td><button class="plus" data-art="' + key + '">+</button></td>';
+                        out += '<td>' + cart[key] * goods[key].cost + '</td>';
+                        //out += '<br>';
+                        out += '</tr>';
+                    }
+
+
+                    $('#my-cart').html(out);
+                    $('.plus').on('click', plusGoods);
+                    $('.minus').on('click', minusGoods);
+                    $('.delete').on('click', deleteGoods);
+                }
+            }
+
+            function plusGoods() {
+                let articul = $(this).attr('data-art');
+                if (cart[articul] == goods[articul]["number"])
+                    alert("Вибачте, але більшої кількості товару немає на складі");
+                else {
+                    cart[articul]++;
+                    saveCartToLS();
+                }
+                showCart();
+            }
+
+            function minusGoods() {
+                let articul = $(this).attr('data-art');
+                if (cart[articul] > 1) {
+                    cart[articul]--;
+                } else {
+                    delete cart[articul];
+                }
+                saveCartToLS();
+                showCart();
+            }
+
+            function deleteGoods() {
+                let articul = $(this).attr('data-art');
+                delete cart[articul];
+                saveCartToLS();
+                showCart();
+            }
+
+
+        });
+
+        function checkCart() {
+            if (localStorage.getItem('cart') != null) {
+                cart = JSON.parse(localStorage.getItem('cart'));
+            }
+        }
+
+
+        function saveCartToLS() {
+            //save cart in locale storage
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+    </script>
+
+    <script>
+        $.getJSON('orders.json', function (data) {
+
+            let orders = data;
+            let numberOrders = 1;
+            let flagForNextStep = false;
+
+            if (localStorage.getItem('orders') != null) {
+                orders = JSON.parse(localStorage.getItem('orders'));
+            }
+            let out = ' Від(включно): <input type="date" class="fromDate"><br>';
+            out += ' До(включно): <input type="date" class="toDate"><br>';
+            out += '<a href="http://localhost:3000/ordering.html"><button class="buttonChoose">Вибрати</button></a><br>'
+            //out += '<button class="nextStep"><a href="http://localhost:3000/ordering.html">Оформити замовлення</a></button>'
+
+            $('#forChooseDate').html(out);
+            $('.buttonChoose').on('click', checkChooseDate);
+            $('.buttonChoose').on('click', checkNextStep);
+
+            function checkChooseDate() {
+
+                //console.log($('.fromDate').val());
+                // console.log($('.toDate').val());
+                //checkOrders();
+
+                if (($('.fromDate').val()) == '' || ($('.toDate').val()) == '')
+                    alert("Дата не вказана");
+
+                let fisrtDay = dayInYear($('.fromDate').val());
+                let lastDay = dayInYear($('.toDate').val());
+                let now = new Date();
+                let nowInYear = +dayInYear(now);
+                if (Number(lastDay) - Number(fisrtDay) < 0 || Number(fisrtDay) <= Number(nowInYear) || Number(lastDay) <= Number(nowInYear))
+                    alert("Дата вказана невірно. Перевірте, будь-ласка введену інформацію");
+
+                addDate();
+            }
+
+            function addDate() {
+                let currentOrder = {};
+                let firstDay = dayInYear($('.fromDate').val());
+                let lastDay = dayInYear($('.toDate').val());
+                console.log(cart);
+                let out = '';
+                let flag = false;
+                let currentDay = new Date($('.fromDate').val());
+                for (let i = Number(lastDay) - Number(firstDay) + 1; i != 0; i--) {
+                    for (let key in cart) {
+                        out = currentDay.toLocaleDateString() + '__' + key;
+                        for (let keyInOrders in orders) {
+                            if (out == keyInOrders) {
+                                flag = true;
+                                console.log("true")
+                            }
+                        }
+                    }
+                }
+                if (!flag) {
+                    for (let i = Number(lastDay) - Number(firstDay) + 1; i != 0; i--) {
+                        for (let key in cart) {
+                            out = currentDay.toLocaleDateString() + '__' + key;
+                            orders[out] = cart[key];
+                            currentOrder[out] = cart[key];
+                            //console.log(out);   
+                        }
+                        currentDay.setDate(currentDay.getDate() + 1);
+                    }
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                    alert("Дата вибрана успішно");
+                    //saveOrdersToLS();
+                    console.log(orders);
+                    flagForNextStep = true;
+
+                    localStorage.setItem("currentOrder", JSON.stringify(currentOrder));
+                } else {
+                    alert("Немає вільних костюмів на обрану дату");
+                }
+                currentOrder.delete;
+            }
+
+            function checkNextStep() {
+                if (!flagForNextStep)
+                    alert("Виберіть дату замовлення, будь ласка!");
+            }
+
+        });
+
+        //});
+
+        function dayInYear(nowDate) {
+            var now = new Date(nowDate);
+            var start = new Date(now.getFullYear(), 0, 0);
+            var diff = now - start;
+            var oneDay = 1000 * 60 * 60 * 24;
+            var day = Math.floor(diff / oneDay);
+            return day;
+        }
+
+        function checkCart() {
+            if (localStorage.getItem('cart') != null) {
+                cart = JSON.parse(localStorage.getItem('cart'));
+            }
+        }
+
+        function saveOrdersToLS() {
+            //save cart in locale storage
+            localStorage.setItem('orders', JSON.stringify(orders));
+        }
+
+        function checkOrders() {
+            if (localStorage.getItem('orders') != null) {
+                orders = JSON.parse(localStorage.getItem('orders'));
+            }
+        }
+    </script>
+{% endblock %}

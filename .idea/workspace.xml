@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="569bad09-5ffa-4ed4-b7a7-747f9cad1587" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/templates/order.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/css/cart.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/static/css/registration.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templates/cart.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/templates/registration.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kpi_prj2_front/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../kpi_prj2_front/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kpi_prj2_front/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../kpi_prj2_front/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
@@ -35,7 +41,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/main/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main/static/css" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -46,8 +52,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\projects\kpi_project2\main\templates" />
       <recent name="C:\projects\kpi_project2\main\static\css" />
+      <recent name="C:\projects\kpi_project2\main\templates" />
       <recent name="C:\projects\kpi_project2\main\static\img" />
     </key>
   </component>
@@ -100,7 +106,7 @@
       <updated>1574862617722</updated>
       <workItem from="1574862618899" duration="185000" />
       <workItem from="1574862805808" duration="295000" />
-      <workItem from="1574864084913" duration="10190000" />
+      <workItem from="1574864084913" duration="12662000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cssload %}{% static 'css/registration.css' %}{% endblock %}
+{% block body %}
+    <div class="registrationForm">
+        <h1>Реєстрація</h1>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>ПІБ</td>
+                <td><input type="text" name="name" class="name"></td>
+            </tr>
+            <tr>
+                <td>Логін:</td>
+                <td class="col2"><input type="text" name="login" class="login"></td>
+            </tr>
+            <tr>
+                <td>Пароль:</td>
+                <td class="col2"><input type="password" name="password" class="password"></td>
+            </tr>
+            <tr>
+                <td>Повторіть пароль:</td>
+                <td class="col2"><input type="password" name="repeatPassword" class="repeatPassword"></td>
+            </tr>
+            <tr>
+                <td>Номер телефону:</td>
+                <td class="col2"><input type="text" name="phoneNumber" class="phoneNumber"></td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td class="col2"><input type="text" name="mail" class="mail"></td>
+            </tr>
+            </tbody>
+        </table>
+        <button id="submit">Зареєструватися</button>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        let flag = true;
+        $('#submit').on('click', checkData);
+        $('#submit').on('click', checkPassword);
+
+        function checkData() {
+            let name = $('.name').val();
+            let login = $('.login').val();
+            let password = $('.password').val();
+            let repeatPassword = $('.repeatPassword').val();
+            let phoneNumber = $('.phoneNumber').val();
+            let mail = $('.mail').val();
+            if (name == '' || login == '' || password == '' || repeatPassword == ''
+                || phoneNumber == '' || mail == '') {
+                alert("Не всі поля заповнені");
+                flag = false;
+            }
+
+            if (login.length < 3 || login.length > 20) {
+                flag = false;
+                alert("Логін може містити від 3 до 20 символів")
+            }
+
+            if (password.length < 3 || password.length > 20) {
+                flag = false;
+                alert("Пароль може містити від 3 до 20 символів")
+            }
+        }
+
+        function checkPassword() {
+            let password = $('.password').val();
+            let repeatPassword = $('.repeatPassword').val();
+            if (password !== repeatPassword) {
+                alert("Паролі не співпадають");
+                flag = false;
+            }
+        }
+
+        $.getJSON('http://localhost:3000/registration.json', function (data) {
+            let LPDB = {};
+            form = data;
+            if (flag == true) {
+                $('#submit').on('click', writeData);
+            }
+
+            function writeData() {
+                form["name"] = $('.name').val();
+                form["login"] = $('.login').val();
+                form["password"] = $('.password').val();
+                form["phoneNumber"] = $('.phoneNumber').val();
+                form["mail"] = $('.mail').val();
+
+
+                LPDB[($('.login').val())] = $('.password').val();
+                let nameLS = form["login"];
+
+                localStorage.setItem(nameLS, JSON.stringify(form));
+                localStorage.setItem("LPDB", JSON.stringify(LPDB));
+                alert("Реєстрація виконано успішно!")
+            }
+
+        });
+    </script>
+{% endblock %}

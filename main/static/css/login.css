@@ -1,0 +1,106 @@
+body {
+    background-color: #F3EDFB;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+.top-menu {
+  position: relative;
+  background: #B57FCA;
+}
+.menu-main {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu-main:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.left-item {float: left;}
+.right-item {float: right;}
+.navbar-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.menu-main a {
+  text-decoration: none;
+  display: block;
+  line-height: 70px;
+  padding: 0 20px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-family: 'Arimo', sans-serif;
+  font-weight: bold;
+  color:#F6EEF8;
+  transition: .3s linear;
+}
+.menu-main a:hover {background: #C4A8DF;}
+@media (max-width: 830px) {
+.menu-main {
+  padding-top: 90px;
+  text-align: center;
+}
+.navbar-logo {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+}
+.menu-main li {
+  float: none;
+  display: inline-block;
+}
+.menu-main a {
+  line-height: normal;
+  padding: 20px 15px;
+  font-size: 16px;
+}
+}
+@media (max-width: 630px) {
+.menu-main li {display: block;}
+}
+
+table {
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+table .login {
+  width: 18em;
+}
+
+table .password {
+  width: 18em;
+}
+
+.autoTable {
+  border: 3px solid #B57FCA;
+  border-radius: 8%;
+  height: 20%;
+  width: 20%;
+  text-align: center;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+  font-size: 18px;
+  color: #B57FCA;
+  font-style: italic;
+  font-weight: bold;
+}
+
+a {
+  color: magenta;
+}
+
+#enterToAccount {
+  display: block;
+  margin: 20px auto;
+  background-color: purple;
+  color: whitesmoke;
+  border-color: purple;
+}

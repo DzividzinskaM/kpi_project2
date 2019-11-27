@@ -11,21 +11,21 @@
 
 </head>
 <body>
-    <div class="title">
-        <img src={% static 'img/3.jpg' %} alt="title" width="100%" height="70%">
-    </div>
-    <nav class="top-menu">
-        <ul class="menu-main">
-            <li class="left-item"><a href={% url 'index' %}>Головна</a></li>
-            <li class="left-item"><a href={% url 'conditions' %}>Умови оренди</a></li>
-            <li class="left-item"><a href={% url 'order' %}>Замовити</a></li>
-            <li class="right-item"><a href="http://localhost:3000/cart.html">Корзина</a></li>
-            <li class="right-item"><a href="">Контакти</a></li>
-            <li class="right-item"><a href="http://localhost:3000/registration.html">Реєстрація</a></li>
-            <li class="right-item"><a href="http://localhost:3000/enterence.html">Вхід в кабінет</a></li>
-        </ul>
-        <a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
-    </nav>
+<div class="title">
+    <img alt="title" width="100%" height="50%" src={% static 'img/3.jpg' %} >
+</div>
+<nav class="top-menu">
+    <ul class="menu-main">
+        <li class="left-item"><a href={% url 'index' %}>Головна</a></li>
+        <li class="left-item"><a href={% url 'conditions' %}>Умови оренди</a></li>
+        <li class="left-item"><a href={% url 'order' %}>Замовити</a></li>
+        <li class="right-item"><a href={% url 'cart' %}>Корзина</a></li>
+        <li class="right-item"><a href="">Контакти</a></li>
+        <li class="right-item"><a href={% url 'register' %}>Реєстрація</a></li>
+        <li class="right-item"><a href={% url 'login' %}>Вхід в кабінет</a></li>
+    </ul>
+    <a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
+</nav>
 {% block body %}{% endblock %}
 </body>
 </html>
