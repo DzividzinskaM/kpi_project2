@@ -92,56 +92,73 @@
 		</ul>
   		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
 	</nav>
-	<div style="align-items:center">
-		<form name="form0" action="">
-		<div id="order">
-			<h3 align="center">Заповніть форму замовлення</h3>
-			<p>
-			ПІБ:
-			</p>
-			<input type="text" name="PIB" placeholder="Іванов Іван Іванович" data-rule="required name">
-			<p>
-			Номер телефону:
-			</p>
-			<input type="text" name="contact" placeholder="" data-rule="required phone">
-			<p>
-			Пошта:
-			</p>
-			<input type="text" name="mail"  placeholder="helloworld@gmail.com" data-rule="required mail">
-			<p>
-			Розмір:
-			</p>
-			<select name="size" data-rule="required">
-  				<option value="Дитячий">Дитячий</option>
-  				<option value="Дорослий">Дорослий</option>
-			</select>
-			<p>
-			Парамети(обхват грудної клітки, талії, таза):
-			</p>
-			<input type="number" name="size1" placeholder="0" data-rule="required number">
-			<input type="number" name="size2" placeholder="0" data-rule="required number">
-			<input type="number" name="size3" placeholder="0" data-rule="required number">
-			<p>
-			Матеріали (не обов'язково):
-			</p>
-			<input type="text" name="materials" data-rule="">
-			<p>
-			На яке число(Не менше як за 10 днів):
-			</p>
-			<input type="date" name="date" data-rule="required time">
-			<p>
-			Помістіть файл з картинкою(не обов'язково):
-			</p>
-			<input type="file" name="picture" value="Тиснути сюди!" data-rule="pic">
-			<p>
-			Опишіть ваше замовлення:
-			</p>
-			<textarea name="description" cols="75" rows="6" data-rule="required"></textarea>
-			<div style="text-align: center; margin-left: 0px;">
-				<a class="buttons" href="#!" onclick="sendform(form0)" data-rule="">Замовити</a>
-			</div>
+	<h3 align="center">Заповніть форму замовлення</h3><br>
+	<div id="order" style="align-items:center">
+		<table id="form0" border="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td>ПІБ:</td>
+					<td><input type="text" name="PIB" placeholder="Іванов Іван Іванович" data-rule="required name"></td>
+				</tr>
+				<tr>
+					<td>Номер телефону:</td>
+					<td><input type="text" name="contact" placeholder="" data-rule="required phone"></td>
+				</tr>
+				<tr>
+					<td>Пошта:</td>
+					<td><input type="text" name="mail"  placeholder="helloworld@gmail.com" data-rule="required mail"></td>
+				</tr>
+				<tr>
+					<td>Розмір:</td>
+					<td>
+						<select name="size" data-rule="required">
+							<option value="S">S</option>
+							<option value="M">M</option>
+							<option value="L">L</option>
+					  </select>
+					</td>
+				</tr>
+				<tr>
+					<td>Довжина</td>
+					<td><input type="number" name="size1" placeholder="0" data-rule="required number" class="inParameters"></td>
+				</tr>
+				<tr>
+					<td>Довжина рукава</td>
+					<td><input type="number" name="size2" placeholder="0" data-rule="required number" class="inParameters"></td>
+				</tr>
+				<tr>
+					<td>Обхват грудної клітки</td>
+					<td><input type="number" name="size3" placeholder="0" data-rule="required number" class="inParameters"></td>
+				</tr>
+				<tr>
+					<td>Обхват талії</td>
+					<td><input type="number" name="size4" placeholder="0" data-rule="required number" class="inParameters"></td>
+				</tr>
+				<tr>
+					<td>Обхват бедер</td>
+					<td><input type="number" name="size5" placeholder="0" data-rule="required number" class="inParameters"></td>
+				</tr>
+				<tr>
+					<td>Дата</td>
+					<td><input type="date" name="date" data-rule="required time"></td>
+				</tr>
+				<tr>
+					<td>Матеріали (не обов'язково):</td>
+					<td><input type="text" name="materials" data-rule=""></td>
+				</tr>
+				<tr>
+					<td>Зображення(не обов'язково):</td>
+					<td><input type="file" name="picture" value="Тиснути сюди!" data-rule="pic"></td>
+				</tr>
+				<tr>
+					<td>Додатковий опис:</td>
+					<td><textarea name="description" cols="75" rows="6" data-rule="required"></textarea></td>
+				</tr>
+			</tbody>
+		</table>
+		<div style="text-align: center; margin-left: 0px;" id="button">
+			<button class="submit"><a href="#!" onclick="sendform(form0)" data-rule="">Замовити</a></button>
 		</div>
-	</form>
-	</div >
+	</div>
 	</body>
 </html>

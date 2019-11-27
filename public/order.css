@@ -1,5 +1,5 @@
 body {
-    background: #d1a7d5;
+    background: #F3EDFB;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Arimo');
@@ -65,83 +65,44 @@ body {
 #enter { width: 100%; margin-left:  0;}
 }
 
-.single-goods {
-  width: 300px;
-  height: 500px;
-  border: 3px solid #B57FCA;
-  border-radius: 10%;
-  margin: 38px;
-  float: left;
-  text-align: center;
+a {
+  color: whitesmoke;
+}
+
+a:hover {
+  color: whitesmoke;
+}
+
+h3 {
+  font-style: italic;
+  font-size: 48px;
+  color: purple;
+}
+
+.inParameters {
+  width: 50px;
+}
+
+#form0 {
+  color: purple;
   position: relative;
-  display: block;
-}
-
-.single-goods button{
-    display: block;
-    margin: 20px auto;
-    background-color: purple;
-    color: whitesmoke;
-    border-color: purple;
-}
-
-
-#order {
-  background: #F3EDFB;
-  width: 70%;
-  margin-left: 15%;
-  padding-top: 3%;
-  opacity: 0.8;
-}
-p {margin-left: 5%;}
-textarea {margin-left: 5%;}
-input {margin-left: 5%;}
-select {margin-left: 5%;}
-#cond {
-  background: #F3EDFB;
-  width: 70%;
-  margin-left: 15%;
-  padding-top: 3%;
-}
-#bod {
-  margin-left: 5%;
-}
-
-#enter {
-  background: #F3EDFB;
-  width: 80%;
-  margin-left: 10%;
-  height: 600px;
-  padding-top: 60px;
-}
-.buttons {
-  text-decoration: none;
-  outline: none;
-  display: inline-block;
-  padding: 15px 30px;
-  margin: 10px 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 40px 40px #F137A6 inset, 0 0 0 0 #F137A6;
-  font-family: 'Montserrat', sans-serif;
+  margin-left: 500px;
   font-weight: bold;
-  letter-spacing: 2px;
-  color: white;
-  transition: .15s ease-in-out;
-}
-.buttons :hover {
-  box-shadow: 0 0 10px 0 #F137A6 inset, 0 0 10px 4px #F137A6;
-  color: #F137A6;
+  font-style: italic;
+  width: 58%;
+
 }
 
-p {
-  margin-bottom: 0;
+#form0 td {
+  padding: 0.6%;
 }
-.AddAtrib {
-  padding:2px;
-  height: 26px;
-  width: 40%;
-}
-.AddAtribn {
-  width: 150px;
-  height: 26px;
+
+.submit {
+  display: block;
+  margin: 20px auto;
+  background-color: purple;
+  color: whitesmoke;
+  border-color: purple;
+  height: 40px;
+  font-size: 18px;
 }
