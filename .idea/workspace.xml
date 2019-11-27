@@ -13,6 +13,7 @@
   </component>
   <component name="ProjectId" id="1UCZcamajPksjffKnmK1tVXSRkA" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RunDashboard">
@@ -64,6 +65,7 @@
       <updated>1574862617722</updated>
       <workItem from="1574862618899" duration="185000" />
       <workItem from="1574862805808" duration="295000" />
+      <workItem from="1574864084913" duration="248000" />
     </task>
     <servers />
   </component>
