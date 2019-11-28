@@ -6,7 +6,8 @@
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,7 +36,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kpi2_front/public/enterence.html" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -101,7 +102,7 @@
       <workItem from="1574862618899" duration="185000" />
       <workItem from="1574862805808" duration="295000" />
       <workItem from="1574864084913" duration="12662000" />
-      <workItem from="1574897263762" duration="12481000" />
+      <workItem from="1574897263762" duration="14764000" />
     </task>
     <servers />
   </component>
