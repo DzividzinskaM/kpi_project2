@@ -36,7 +36,8 @@ def registration(request):
             form.save()
             user = authenticate(request, username=login, password=password)
             auth_login(request, user)
-            return redirect('/')
+            is_auth = request.user.is_authenticated
+            return render(request, 'index.html', {'success': 1, 'is_auth': is_auth})
         else:
             if form:
                 for i in form:
