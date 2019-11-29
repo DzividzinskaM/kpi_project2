@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block cssload %}{% static 'css/index.css' %}{% endblock %}
+{% block head %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+
+    <script>
+        function f(name) {
+            alert(name)
+        }
+    </script>
+{% endblock %}
 {% block body %}
     <div id="mini-cart"></div>
     <div id="goods"></div>
@@ -12,17 +22,25 @@
         <div class="alert alert-success" role="alert">
             Ви успішно ввійшли!
         </div>
+    {% elif costume %}
+        <div class="alert alert-success" role="alert">
+            Ви успішно добавили {{ costume.costume_name }}!
+        </div>
     {% endif %}
     {% for i in costumes %}
-        <form class="single-goods" method="post" action={% url 'add' i.id %}>{% csrf_token %}
+        <form class="single-goods" method="post">{% csrf_token %}
             <h3>{{ i.costume_name }}</h3>
             <p>Ціна: {{ i.costume_price }}</p>
             <img src={{ i.costume_image }}>
-            <button class="add">Oodo</button>
+            <button class="add" name="order" onclick="f('{{ i.costume_name }}')">Oodo</button>
         </form>
     {% endfor %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
+        function f(e, name) {
+            alert(name);
+        }
+
         let cart = {}; //my cart
 
         $('document').ready(function () {

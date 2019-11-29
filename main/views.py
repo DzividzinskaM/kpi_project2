@@ -30,18 +30,24 @@ def add(request, id):
         data = {}
         try:
             obj = Cart.objects.get(user=request.user.username)
+            # print(obj.items)
+            # print(type(obj.items))
+            # data = json.loads(obj.items)
             data = json.loads(obj.items)
-            print('=======' + data)
-            data[cos.costume_name] += 1
-            print(data)
+            print('========')
+            try:
+                data[cos.costume_name] += 1
+            except Exception as e:
+                print(e)
+                data[cos.costume_name] = 1
+            obj.cost += cos.costume_price
             obj.items = json.dumps(data, ensure_ascii=False)
-            print('========' + obj.items)
+            print(obj.items)
             obj.save()
-        except Exception as e:
-            print(e)
-            print('ok')
+        except Cart.DoesNotExist:
             data[cos.costume_name] = 1
-            Cart.objects.create(user=request.user.username, items=json.dumps(data, ensure_ascii=False), cost=cos.costume_price)
+            Cart.objects.create(user=request.user.username, items=json.dumps(data, ensure_ascii=False),
+                                cost=cos.costume_price)
         finally:
             return redirect('/')
 

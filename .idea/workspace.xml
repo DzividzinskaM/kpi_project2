@@ -4,18 +4,7 @@
     <list default="true" id="569bad09-5ffa-4ed4-b7a7-747f9cad1587" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/img/1cost.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/1cost.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/img/2cost.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/2cost.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/img/3cost.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/3cost.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/img/4cost.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/4cost.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/img/5cost.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/5cost.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/img/6cost.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/6cost.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -114,7 +103,7 @@
       <workItem from="1574862618899" duration="185000" />
       <workItem from="1574862805808" duration="295000" />
       <workItem from="1574864084913" duration="12662000" />
-      <workItem from="1574897263762" duration="31698000" />
+      <workItem from="1574897263762" duration="36681000" />
     </task>
     <servers />
   </component>
@@ -133,16 +122,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/kpi_project2/urls.py</url>
-          <line>15</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
