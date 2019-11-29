@@ -10,7 +10,7 @@ class Costume(models.Model):
     costume_about = models.TextField(max_length=300)
     costume_count = models.IntegerField()
     costume_price = models.IntegerField()
-    costume_image = models.ImageField(upload_to='costume_images/')
+    costume_image = models.ImageField(upload_to='static/img/')
 
     def __str__(self):
         return f'Назва: =={self.costume_name}\n==; ' \
@@ -19,5 +19,5 @@ class Costume(models.Model):
 
 class Cart(models.Model):
     user = models.TextField(max_length=30)
-    items = JSONField(models.IntegerField(max_length=100))
+    items = models.TextField()
     cost = models.IntegerField()

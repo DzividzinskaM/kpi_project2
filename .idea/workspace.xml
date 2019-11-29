@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="569bad09-5ffa-4ed4-b7a7-747f9cad1587" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/kpi_project2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kpi_project2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/img/1cost.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/1cost.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/img/2cost.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/2cost.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/img/3cost.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/3cost.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/img/4cost.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/4cost.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/img/5cost.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/5cost.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/static/img/6cost.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/6cost.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +54,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\GIT\kpi2\static\img" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\projects\kpi_project2\main\static\css" />
       <recent name="C:\projects\kpi_project2\main\templates" />
@@ -73,6 +82,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="kpi_project2.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -104,7 +114,7 @@
       <workItem from="1574862618899" duration="185000" />
       <workItem from="1574862805808" duration="295000" />
       <workItem from="1574864084913" duration="12662000" />
-      <workItem from="1574897263762" duration="20716000" />
+      <workItem from="1574897263762" duration="31698000" />
     </task>
     <servers />
   </component>

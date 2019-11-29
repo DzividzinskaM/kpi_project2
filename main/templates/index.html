@@ -13,6 +13,14 @@
             Ви успішно ввійшли!
         </div>
     {% endif %}
+    {% for i in costumes %}
+        <form class="single-goods" method="post" action={% url 'add' i.id %}>{% csrf_token %}
+            <h3>{{ i.costume_name }}</h3>
+            <p>Ціна: {{ i.costume_price }}</p>
+            <img src={{ i.costume_image }}>
+            <button class="add">Oodo</button>
+        </form>
+    {% endfor %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         let cart = {}; //my cart
