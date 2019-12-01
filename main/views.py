@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .models import Costume, Cart
 import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -24,13 +26,14 @@ def cart(request):
     return render(request, 'cart.html')
 
 
-def add(request, id):
-    cos = Costume.objects.get(id=id)
-    if request.POST:
+@csrf_exempt
+def add(request):
+    cos = Costume.objects.get(id=request.POST.get('id'))
+    if request.is_ajax():
         data = {}
         try:
             obj = Cart.objects.get(user=request.user.username)
-            # print(obj.items)
+            print(obj.items)
             # print(type(obj.items))
             # data = json.loads(obj.items)
             data = json.loads(obj.items)
@@ -46,10 +49,23 @@ def add(request, id):
             obj.save()
         except Cart.DoesNotExist:
             data[cos.costume_name] = 1
-            Cart.objects.create(user=request.user.username, items=json.dumps(data, ensure_ascii=False),
-                                cost=cos.costume_price)
+            obj = Cart.objects.create(user=request.user.username, items=json.dumps(data, ensure_ascii=False),
+                                      cost=cos.costume_price)
         finally:
-            return redirect('/')
+            data = {'addedCostume': cos.costume_name}
+            return JsonResponse(data)
+
+
+# @csrf_exempt
+# def add(request):
+#     if request.is_ajax():
+#         i = request.POST.get('id')
+#         data = {
+#             'addedCostume': True
+#         }
+#         return JsonResponse(data)
+#     else:
+#         print('wefowiejfoweijfoweifjoweifjoweifwo')
 
 
 def registration(request):

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="add" data-name="wefwofiwe">wkkwoeifnwief</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".add").on("click", function (event) {
+            event.preventDefault();
+            let text = $(this).attr("data-name");
+            alert(text);
+            $.ajax({
+                type: "POST",
+                url: 'google.com',
+                data: {
+                    'id': text
+                }
+            })
+        });
+        return false
+    });
+</script>
+</body>
+</html>

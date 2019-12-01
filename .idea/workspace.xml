@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="569bad09-5ffa-4ed4-b7a7-747f9cad1587" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -62,7 +65,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.eee.html">
+    <configuration name="eee.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/kpi2/eee.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="kpi_project2" type="Python.DjangoServer" factoryName="Django server">
       <module name="kpi_project2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,6 +93,11 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.eee.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -101,7 +112,7 @@
       <workItem from="1574862618899" duration="185000" />
       <workItem from="1574862805808" duration="295000" />
       <workItem from="1574864084913" duration="12662000" />
-      <workItem from="1574897263762" duration="43115000" />
+      <workItem from="1574897263762" duration="60718000" />
     </task>
     <servers />
   </component>
