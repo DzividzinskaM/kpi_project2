@@ -25,35 +25,35 @@
         <p>Немає аккаунту?! <a href={% url 'register' %}>Створи його!!!</a></p>
     </form>
 
-{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
-{##}
-{#    <script>#}
-{##}
-{#        $('#enterToAccount').on('click', enterAccount)#}
-{##}
-{#        function enterAccount() {#}
-{#            let LPDB = {};#}
-{#            checkData();#}
-{#            let login = $('.login').val();#}
-{#            let password = $('.password').val();#}
-{#            LPDB = JSON.parse(localStorage.getItem('LPDB'));#}
-{#            if (LPDB[login] !== password) {#}
-{#                alert("Неправильний логін або пароль");#}
-{#                return false;#}
-{#            } else {#}
-{#                let currentLogin = {};#}
-{#                currentLogin[login] = true;#}
-{#                localStorage.setItem('currentLogin', JSON.stringify(currentLogin));#}
-{#            }#}
-{#        }#}
-{##}
-{#        function checkData() {#}
-{#            let login = $('.login').val();#}
-{#            let password = $('.password').val();#}
-{#            if (login == '' || password == '') {#}
-{#                alert("Не всі поля заповнені!")#}
-{#                return false;#}
-{#            }#}
-{#        }#}
-{#    </script>#}
+    {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
+    {##}
+    {#    <script>#}
+    {##}
+    {#        $('#enterToAccount').on('click', enterAccount)#}
+    {##}
+    {#        function enterAccount() {#}
+    {#            let LPDB = {};#}
+    {#            checkData();#}
+    {#            let login = $('.login').val();#}
+    {#            let password = $('.password').val();#}
+    {#            LPDB = JSON.parse(localStorage.getItem('LPDB'));#}
+    {#            if (LPDB[login] !== password) {#}
+    {#                alert("Неправильний логін або пароль");#}
+    {#                return false;#}
+    {#            } else {#}
+    {#                let currentLogin = {};#}
+    {#                currentLogin[login] = true;#}
+    {#                localStorage.setItem('currentLogin', JSON.stringify(currentLogin));#}
+    {#            }#}
+    {#        }#}
+    {##}
+    {#        function checkData() {#}
+    {#            let login = $('.login').val();#}
+    {#            let password = $('.password').val();#}
+    {#            if (login == '' || password == '') {#}
+    {#                alert("Не всі поля заповнені!")#}
+    {#                return false;#}
+    {#            }#}
+    {#        }#}
+    {#    </script>#}
 {% endblock %}

@@ -4,12 +4,6 @@
 {% block head %}
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
-
-    <script>
-        function f(name) {
-            alert(name)
-        }
-    </script>
 {% endblock %}
 {% block body %}
     <div id="mini-cart"></div>
@@ -23,39 +17,53 @@
             Ви успішно ввійшли!
         </div>
     {% endif %}
-    <div class="alert alert-success" role="alert" id="order">
+    <div class="cartshow" style="position: absolute; height: 65px">
+
     </div>
-    {% for i in costumes %}
-        <div class="single-goods">
-            <h3 id="name">{{ i.costume_name }}</h3>
-            <p>Ціна: {{ i.costume_price }}</p>
-            <img src={{ i.costume_image }}>
-            <button class="add" type="submit" data-name="{{ i.id }}">
-                Додати в корзину
-            </button>
+    <div class="cont">
+        <div class="grid-list">
+            {% for i in costumes %}
+                <div class="box">
+                    <a href="#">
+                        <img style="position: center" src={{ i.costume_image }}>
+                    </a>
+                    <h4 class="name" style="text-align: center">
+                        <a href="#" class="productname">{{ i.costume_name }}</a>
+                    </h4>
+                    <h6 class="price">Ціна: {{ i.costume_price }}</h6>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            $(".add").on("click", function (event) {
+            $(".productname").on("click", function (event) {
                 event.preventDefault();
-                let text = $(this).attr("data-name");
+                let text = $(this).text();
                 $.ajax({
                     type: "POST",
                     url: '/add',
                     data: {
-                        'id': text
+                        'name': text
                     },
                     success: function (data) {
-                        console.log(data.addedCostume);
-                        $('#order').html(`Ви успішно добавили ${data.addedCostume}`).show("slow").delay(800).hide(800, function () {
-                            $(this).remove("slow")
+                        if (data.Count) {
+                            $('.cartshow').html(`<div class="alert alert-success" role="alert" id="order">Ви успішно добавили ${data.Costume}</div>`).slideDown("slow").delay(1000).slideUp("slow", function () {
+                                $(this).remove("slow")
+                            })
 
-                        })
+                        } else {
+                            $('.cartshow').html(`<div class="alert alert-danger">Товару <strong>{{ data.Costume }}</strong> немає в наявності</div>`).slideDown("slow").delay(1000).slideUp("slow", function () {
+                                $(this).remove("slow")
+                            })
+                        }
                     }
                 })
             });
+
         });
+
     </script>
 {% endblock %}

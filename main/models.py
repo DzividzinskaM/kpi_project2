@@ -21,3 +21,6 @@ class Cart(models.Model):
     user = models.TextField(max_length=30)
     items = models.TextField()
     cost = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.user} {self.items} {self.cost}'

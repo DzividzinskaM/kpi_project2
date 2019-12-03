@@ -2,10 +2,19 @@ body {
     background-color: whitesmoke;
 }
 
+.row{
+  text-align: center;
+}
+.align-center{
+  align-items: center;
+  display: flex;
+  width: 100%;  /* Fallback for browsers do NOT support vh unit */
+}
 @import url('https://fonts.googleapis.com/css?family=Arimo');
 .top-menu {
   position: relative;
   background: #B57FCA;
+  margin-bottom: 40px;
 }
 .menu-main {
   list-style: none;
