@@ -3,7 +3,7 @@
 {% load static %}
 {% block cssload %}{% static 'css/cart.css' %}{% endblock %}
 {% block body %}
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <div class="card">
         <table class="table table-hover shopping-cart-wrap">
             <thead class="text-muted">
@@ -16,24 +16,35 @@
             </thead>
             <tbody>
             {% for i, j in data.items %}
-                <tr>
+                <tr class="item">
                     <td>
                         <figure class="media">
                             <div class="img-wrap"><img src={{ i|image }}></div>
                             <figcaption class="media-body text-center">
-                                <h5 class="title text-truncate">{{ i }}</h5>
-                                <dl class="param param-inline small">
+                                <h5 class="title text-truncate" style="text-align: left; margin-left: 10px">{{ i }}</h5>
+                                <dl class="param param-inline small" style="text-align: left; margin-left: 10px"
+                                    data-count={{ i|count }}>
+                                    {{ i|count }}шт. на складі
                                 </dl>
                             </figcaption>
                         </figure>
                     </td>
                     <td>
-                        <input class="form-control">
+                        <div class="form-group">
+                            <label for="uname">Кількість:</label>
+                            <input type="text" class="form-control" id="count" name="count" value="1" data-id={{ i|id }}
+                                    required>
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback">Немає</div>
+                        </div>
                     </td>
                     <td>
                         <div class="price-wrap">
                             <var class="price"></var>
-                            <small class="text-muted"></small>
+                            <p class="text-muted" style="font-size: 20px; margin-bottom: 0"
+                               id={{ i|id }}>{{ i|price }}<small
+                                    class="text-muted">грн.</small></p>
+                            <small class="text-muted">({{ i|price }}грн. кожен)</small>
                         </div> <!-- price-wrap .// -->
                     </td>
                     <td class="text-right">
@@ -43,5 +54,38 @@
             {% endfor %}
             </tbody>
         </table>
-    </div> <!-- card.// -->
+    </div>
+    <script>
+        $(document).ready(function () {
+            //called when key is pressed in textbox
+            $(".form-control").keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
+                    return false;
+                }
+            });
+
+            $('.form-control').change(function (e) {
+                let choose = parseInt($(this).val());
+                let id = parseInt($(this).attr('data-id'));
+                console.log(id, choose);
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "/dede",
+                    data: {
+                        'id': id,
+                        'userinput': choose
+                    },
+                    success: function (data) {
+                        let available = parseInt(data.count);
+                        if (choose > available) {
+                            alert(`Стільки товару в наявності немає\nДоступна кількість: ${available}`);
+                            $(this).val(available)
+                        }
+                    }
+                });
+            })
+        });
+    </script>
 {% endblock %}

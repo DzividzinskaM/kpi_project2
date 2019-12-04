@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="569bad09-5ffa-4ed4-b7a7-747f9cad1587" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kpi_project2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kpi_project2.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/eee.html" beforeDir="false" afterPath="$PROJECT_DIR$/eee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kpi_project2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kpi_project2/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0002_auto_20191129_0302.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0003_auto_20191129_1224.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/migrations/0004_auto_20191129_1232.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/css/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/css/cart.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/static/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/static/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kpi2_front/public/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/../kpi2_front/public/cart.html" afterDir="false" />
