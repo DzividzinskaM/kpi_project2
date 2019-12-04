@@ -12,8 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def count_match(request):
     userinput = request.POST.get('userinput')
-    print('=========================' + request.POST.get('id'))
-    cos = Costume.objects.get(id=request.POST.get('id'))
+    cos = Cart.objects.get(id=request.POST.get('id'))
     if request.is_ajax():
         data = {'count': cos.count}
         return JsonResponse(data)
@@ -151,3 +150,5 @@ def login(request):
 def logout_view(request):
     logout(request)
     return redirect('/login')
+
+MessageBox.Show("Vova Pidar", "Error", MessageBox.Icon.Error);

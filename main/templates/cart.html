@@ -32,7 +32,7 @@
                     <td>
                         <div class="form-group">
                             <label for="uname">Кількість:</label>
-                            <input type="text" class="form-control" id="count" name="count" value="1" data-id={{ i|id }}
+                            <input type="text" class="form-control" id="count" name="count" value={{ j }} data-id={{ i|id }}
                                     required>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback">Немає</div>
@@ -78,11 +78,10 @@
                         'userinput': choose
                     },
                     success: function (data) {
-                        let available = parseInt(data.count);
-                        if (choose > available) {
-                            alert(`Стільки товару в наявності немає\nДоступна кількість: ${available}`);
-                            $(this).val(available);
-                            $('.param-inline').text(`${available}шт. на складі`)
+                        let available = data.available;
+                        if (available) {
+                            alert(`Стільки товару в наявності немає\nДоступна кількість: ${data.count}`);
+                            $(this).val(data.count);
                         } else {
                             console.log(choose, price);
                             $(`p[id='${id_costume}']`).html(`${choose * price}<small class="text-muted">грн.</small>`)
