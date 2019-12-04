@@ -10,15 +10,21 @@
         <div class="about">
             <p class="name">{{ costume.name }}</p>
             <p class="price">Ціна: {{ costume.price }}</p>
-            {% if costume.count %}
-                <div class="cartcheck">
-                    <button class="add" id={{ costume.id }}>В КОРЗИНУ</button>
+            {% if user.is_authenticated %}
+                {% if costume.count %}
+                    <div class="cartcheck">
+                        <button class="add" id={{ costume.id }}>В КОРЗИНУ</button>
+                    </div>
+                    <p class="avaible">Доступність: <span>{{ costume.count }}</span>шт.</p>
+                {% else %}
+                    <div class="add" style="background-color: darkslategrey; cursor: auto; font-size: 14px">НЕМАЄ В
+                        НАЯВНОСТІ
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="add" style="background-color: darkslategrey; cursor: auto; font-size: 14px">Увійдіть у аккаунт
                 </div>
                 <p class="avaible">Доступність: <span>{{ costume.count }}</span>шт.</p>
-            {% else %}
-                <div class="add" style="background-color: darkslategrey; cursor: auto; font-size: 14px">НЕМАЄ В
-                    НАЯВНОСТІ
-                </div>
             {% endif %}
         </div>
     </div>

@@ -21,9 +21,8 @@ def count_match(request):
 
 @csrf_exempt
 def item_window(request, name):
-    print('111111111111111111111', name, request)
     obj = Costume.objects.get(name=name)
-    return render(request, 'custom.html', {'costume': obj})
+    return render(request, 'custom.html', {'costume': obj, 'user': request.user})
 
 
 def order(request):

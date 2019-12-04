@@ -41,7 +41,7 @@
                     <td>
                         <div class="price-wrap">
                             <var class="price"></var>
-                            <p class="text-muted" style="font-size: 20px; margin-bottom: 0"
+                            <p data-price={{ i|price }} class="text-muted" style="font-size: 20px; margin-bottom: 0"
                                id={{ i|id }}>{{ i|price }}<small
                                     class="text-muted">грн.</small></p>
                             <small class="text-muted">({{ i|price }}грн. кожен)</small>
@@ -67,21 +67,25 @@
 
             $('.form-control').change(function (e) {
                 let choose = parseInt($(this).val());
-                let id = parseInt($(this).attr('data-id'));
-                console.log(id, choose);
+                let id_costume = parseInt($(this).attr('data-id'));
+                let price = parseInt($(`p[id='${id_costume}']`).attr('data-price'));
                 e.preventDefault();
                 $.ajax({
                     type: "POST",
                     url: "/dede",
                     data: {
-                        'id': id,
+                        'id': id_costume,
                         'userinput': choose
                     },
                     success: function (data) {
                         let available = parseInt(data.count);
                         if (choose > available) {
                             alert(`Стільки товару в наявності немає\nДоступна кількість: ${available}`);
-                            $(this).val(available)
+                            $(this).val(available);
+                            $('.param-inline').text(`${available}шт. на складі`)
+                        } else {
+                            console.log(choose, price);
+                            $(`p[id='${id_costume}']`).html(`${choose * price}<small class="text-muted">грн.</small>`)
                         }
                     }
                 });
