@@ -1,28 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<button class="add" data-name="wefwofiwe">wkkwoeifnwief</button>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $(".add").on("click", function (event) {
-            event.preventDefault();
-            let text = $(this).attr("data-name");
-            alert(text);
-            $.ajax({
-                type: "POST",
-                url: 'google.com',
-                data: {
-                    'id': text
-                }
-            })
-        });
-        return false
-    });
-</script>
-</body>
-</html>
+<!--Trigger-->
+<a class="login-trigger" href="#" data-target="#login" data-toggle="modal">Login</a>
+
+<div id="login" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-body">
+        <button data-dismiss="modal" class="close">&times;</button>
+        <h4>Login</h4>
+        <form>
+          <input type="text" name="username" class="username form-control" placeholder="Username"/>
+          <input type="password" name="password" class="password form-control" placeholder="password"/>
+          <input class="btn login" type="submit" value="Login" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

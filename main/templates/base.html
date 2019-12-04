@@ -7,6 +7,13 @@
     <title>Shop</title>
     <link rel="stylesheet" href={% block cssload %}{% endblock %}>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="https://code.jquery.com/color/jquery.color-2.1.2.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+
     {% block head %}{% endblock %}
 
 </head>
@@ -19,7 +26,7 @@
         <li class="left-item"><a href={% url 'index' %}>Головна</a></li>
         <li class="left-item"><a href={% url 'conditions' %}>Умови оренди</a></li>
         <li class="left-item"><a href={% url 'order' %}>Замовити</a></li>
-        <li class="left-item"><a href={% url 'cart' %}>Корзина</a></li>
+        <li class="left-item" id="toggle"><a href={% url 'cart' %}>Корзина</a></li>
         <li class="left-item"><a href="">Контакти</a></li>
         {% if not user.is_authenticated %}
             {{ is_auth }}

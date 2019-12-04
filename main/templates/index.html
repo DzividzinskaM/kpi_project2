@@ -2,14 +2,7 @@
 {% load static %}
 {% block cssload %}{% static 'css/index.css' %}{% endblock %}
 {% block head %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-    <script src="http://malsup.github.com/jquery.form.js"></script>
 
-    <script>
-        function f(name) {
-            alert(name)
-        }
-    </script>
 {% endblock %}
 {% block body %}
     <div id="mini-cart"></div>
@@ -23,39 +16,28 @@
             Ви успішно ввійшли!
         </div>
     {% endif %}
-    <div class="alert alert-success" role="alert" id="order">
-    </div>
-    {% for i in costumes %}
-        <div class="single-goods">
-            <h3 id="name">{{ i.costume_name }}</h3>
-            <p>Ціна: {{ i.costume_price }}</p>
-            <img src={{ i.costume_image }}>
-            <button class="add" type="submit" data-name="{{ i.id }}">
-                Додати в корзину
-            </button>
-        </div>
-    {% endfor %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".add").on("click", function (event) {
-                event.preventDefault();
-                let text = $(this).attr("data-name");
-                $.ajax({
-                    type: "POST",
-                    url: '/add',
-                    data: {
-                        'id': text
-                    },
-                    success: function (data) {
-                        console.log(data.addedCostume);
-                        $('#order').html(`Ви успішно добавили ${data.addedCostume}`).show("slow").delay(800).hide(800, function () {
-                            $(this).remove("slow")
+    <div class="cartshow" style="position: absolute; height: 65px">
 
-                        })
-                    }
-                })
-            });
-        });
+    </div>
+    <div class="cont">
+        <div class="grid-list">
+            {% for i in costumes %}
+                <div class="box">
+                    <a href={% url 'window' i.name %}>
+                        <img style="position: center" src={{ i.image }}>
+                    </a>
+                    <h4 class="name" style="text-align: center">
+                        <a href={% url 'window' i.name %} class="productname">{{ i.name }}</a>
+                    </h4>
+                    <h6 class="price" style="text-align: center">Ціна: {{ i.price }}</h6>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <script>
+
+
     </script>
 {% endblock %}

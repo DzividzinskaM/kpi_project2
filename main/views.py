@@ -8,6 +8,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
+def item_window(request, name):
+    obj = Costume.objects.get(name=name)
+    return render(request, 'custom.html', {'costume': obj})
+
 
 def order(request):
     return render(request, 'order.html')
@@ -23,36 +27,61 @@ def main(request):
 
 
 def cart(request):
-    return render(request, 'cart.html')
+    user_id = request.user.username
+    data = {}
+    costumes_json = {}
+    try:
+        obj = Cart.objects.get(user=user_id)
+        data = json.loads(obj.items)
+        for i, j in data.items():
+            costumes = Costume.objects.get(name=i)
+            costumes_json[costumes.costume_name] = {
+                'count': costumes.count,
+                'price': costumes.price,
+                'image': costumes.image
+            }
+
+        print(costumes_json)
+    except Exception as e:
+        print(e)
+    finally:
+        return render(request, 'cart.html', {'data': data, 'costumes': costumes_json})
 
 
 @csrf_exempt
 def add(request):
     cos = Costume.objects.get(id=request.POST.get('id'))
     if request.is_ajax():
-        data = {}
-        try:
-            obj = Cart.objects.get(user=request.user.username)
-            print(obj.items)
-            # print(type(obj.items))
-            # data = json.loads(obj.items)
-            data = json.loads(obj.items)
-            print('========')
+        if cos.count > 0:
+            data = {}
             try:
-                data[cos.costume_name] += 1
-            except Exception as e:
-                print(e)
-                data[cos.costume_name] = 1
-            obj.cost += cos.costume_price
-            obj.items = json.dumps(data, ensure_ascii=False)
-            print(obj.items)
-            obj.save()
-        except Cart.DoesNotExist:
-            data[cos.costume_name] = 1
-            obj = Cart.objects.create(user=request.user.username, items=json.dumps(data, ensure_ascii=False),
-                                      cost=cos.costume_price)
-        finally:
-            data = {'addedCostume': cos.costume_name}
+                obj = Cart.objects.get(user=request.user.username)
+                print(obj.items)
+                # print(type(obj.items))
+                # data = json.loads(obj.items)
+                data = json.loads(obj.items)
+                print('========')
+                try:
+                    data[cos.name] += 1
+                except Exception as e:
+                    print(e)
+                    data[cos.name] = 1
+                cos.count -= 1
+                obj.cost += cos.price
+                obj.items = json.dumps(data, ensure_ascii=False)
+                print(obj.items)
+                obj.save()
+            except Cart.DoesNotExist:
+                data[cos.name] = 1
+                cos.count -= 1
+                obj = Cart.objects.create(user=request.user.username, items=json.dumps(data, ensure_ascii=False),
+                                          cost=cos.price)
+            finally:
+                cos.save()
+                data = {'Costume': cos.name, 'Count': cos.count}
+                return JsonResponse(data)
+        else:
+            data = {'Costume': cos.name, 'Count': cos.count}
             return JsonResponse(data)
 
 
