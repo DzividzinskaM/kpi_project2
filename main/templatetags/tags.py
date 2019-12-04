@@ -1,0 +1,24 @@
+from django import template
+from ..models import Cart, Costume
+
+register = template.Library()
+
+
+@register.filter
+def about(name):
+    return Costume.objects.get(name=name).about
+
+
+@register.filter
+def count(name):
+    return Costume.objects.get(name=name).count
+
+
+@register.filter
+def price(name):
+    return Costume.objects.get(name=name).price
+
+
+@register.filter
+def image(name):
+    return Costume.objects.get(name=name).image

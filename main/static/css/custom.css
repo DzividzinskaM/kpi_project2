@@ -1,0 +1,125 @@
+body {
+    background-color: #F3EDFB;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+.top-menu {
+    position: relative;
+    background: #B57FCA;
+}
+.menu-main {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.menu-main:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.left-item {float: left;}
+.right-item {float: right;}
+.navbar-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.menu-main a {
+    text-decoration: none;
+    display: block;
+    line-height: 70px;
+    padding: 0 20px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-family: 'Arimo', sans-serif;
+    font-weight: bold;
+    color:#F6EEF8;
+    transition: .3s linear;
+}
+.menu-main a:hover {background: #C4A8DF;}
+@media (max-width: 830px) {
+    .menu-main {
+        padding-top: 90px;
+        text-align: center;
+    }
+    .navbar-logo {
+        position: absolute;
+        left: 50%;
+        top: 10px;
+        transform: translateX(-50%);
+    }
+    .menu-main li {
+        float: none;
+        display: inline-block;
+    }
+    .menu-main a {
+        line-height: normal;
+        padding: 20px 15px;
+        font-size: 16px;
+    }
+}
+@media (max-width: 630px) {
+    .menu-main li {display: block;}
+}
+
+.single-goods {
+    width: 300px;
+    height: 500px;
+    border: 3px solid #B57FCA;
+    border-radius: 10%;
+    margin: 38px;
+    float: left;
+    text-align: center;
+    position: relative;
+    display: block;
+}
+
+.single-goods button{
+    display: block;
+    margin: 20px auto;
+    background-color: purple;
+    color: whitesmoke;
+    border-color: purple;
+}
+.single-good{
+    display: flex;
+    flex-wrap: wrap;
+}
+.image{
+    margin-left: 120px;
+    margin-top: 25px;
+    border: 1px solid gray;
+}
+.about{
+    display: flex;
+    flex-direction: column;
+    margin-left: 120px;
+    margin-top: 25px;
+}
+.price{
+    font-size: 20px;
+    color: red;
+}
+.add{
+    background-color: purple;
+    border:none;
+    color: white;
+    width: 150px;
+    padding:15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+form{
+    margin-bottom: 25px;
+}
+.avaible{
+    margin-top: 25px;
+}
+.name{
+    font-weight: bold;
+    font-size: 30px;
+    color: purple;
+}

@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
+{% load tags %}
 {% load static %}
 {% block cssload %}{% static 'css/cart.css' %}{% endblock %}
 {% block head %}
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% endblock %}
 {% block body %}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
@@ -23,8 +21,7 @@
                 <tr>
                     <td>
                         <figure class="media">
-                            <div class="img-wrap"><img src="http://bootstrap-ecommerce.com/main/images/items/2.jpg"
-                                                       class="img-thumbnail img-sm"></div>
+                            <div class="img-wrap"><img src={{ i|image }}></div>
                             <figcaption class="media-body text-center">
                                 <h5 class="title text-truncate">{{ i }}</h5>
                                 <dl class="param param-inline small">
@@ -38,7 +35,7 @@
                     <td>
                         <div class="price-wrap">
                             <var class="price"></var>
-                            <small class="text-muted">(USD5 each)</small>
+                            <small class="text-muted"></small>
                         </div> <!-- price-wrap .// -->
                     </td>
                     <td class="text-right">

@@ -6,15 +6,14 @@ from django.contrib.postgres.fields import JSONField
 # Create your models here.
 
 class Costume(models.Model):
-    costume_name = models.TextField(max_length=30)
-    costume_about = models.TextField(max_length=300)
-    costume_count = models.IntegerField()
-    costume_price = models.IntegerField()
-    costume_image = models.ImageField(upload_to='static/img/')
+    name = models.TextField(max_length=100)
+    about = models.TextField(max_length=300)
+    count = models.IntegerField()
+    price = models.IntegerField()
+    image = models.ImageField(upload_to='static/img/')
 
     def __str__(self):
-        return f'Назва: =={self.costume_name}\n==; ' \
-               f'Кількість: {self.costume_count}'
+        return f'{self.name} {self.count} {self.price}'
 
 
 class Cart(models.Model):

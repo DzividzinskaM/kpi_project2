@@ -2,7 +2,6 @@
 {% load static %}
 {% block cssload %}{% static 'css/index.css' %}{% endblock %}
 {% block head %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
 {% endblock %}
 {% block body %}
@@ -24,46 +23,21 @@
         <div class="grid-list">
             {% for i in costumes %}
                 <div class="box">
-                    <a href="#">
-                        <img style="position: center" src={{ i.costume_image }}>
+                    <a href={% url 'window' i.name %}>
+                        <img style="position: center" src={{ i.image }}>
                     </a>
                     <h4 class="name" style="text-align: center">
-                        <a href="#" class="productname">{{ i.costume_name }}</a>
+                        <a href={% url 'window' i.name %} class="productname">{{ i.name }}</a>
                     </h4>
-                    <h6 class="price">Ціна: {{ i.costume_price }}</h6>
+                    <h6 class="price" style="text-align: center">Ціна: {{ i.price }}</h6>
                 </div>
             {% endfor %}
         </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <script>
-        $(document).ready(function () {
-            $(".productname").on("click", function (event) {
-                event.preventDefault();
-                let text = $(this).text();
-                $.ajax({
-                    type: "POST",
-                    url: '/add',
-                    data: {
-                        'name': text
-                    },
-                    success: function (data) {
-                        if (data.Count) {
-                            $('.cartshow').html(`<div class="alert alert-success" role="alert" id="order">Ви успішно добавили ${data.Costume}</div>`).slideDown("slow").delay(1000).slideUp("slow", function () {
-                                $(this).remove("slow")
-                            })
 
-                        } else {
-                            $('.cartshow').html(`<div class="alert alert-danger">Товару <strong>{{ data.Costume }}</strong> немає в наявності</div>`).slideDown("slow").delay(1000).slideUp("slow", function () {
-                                $(this).remove("slow")
-                            })
-                        }
-                    }
-                })
-            });
-
-        });
 
     </script>
 {% endblock %}
