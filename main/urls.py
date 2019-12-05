@@ -11,5 +11,6 @@ urlpatterns = [
     path('logout', views.logout_view, name='logout'),
     path('create', views.create, name='create'),
     path('dede', views.count_match),
+    path('cart_update', views.cart_update, name='cart_update'),
     path('<str:name>', views.item_window, name='window'),
 ]

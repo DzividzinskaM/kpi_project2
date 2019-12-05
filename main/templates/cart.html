@@ -40,15 +40,17 @@
                                 <div class="input-group">
                                       <span class="input-group-btn">
                                           <button type="button" class="btn btn-light btn-number" disabled="disabled"
-                                                  data-type="minus" data-field={{ i|id }}>
+                                                  data-name="{{ i }}"
+                                                          data-type="minus" data-field={{ i|id }}>
                                               <i class="fa fa-minus"></i>
                                           </button>
                                       </span>
                                     <input type="text" class="form-control input-number" value={{ j }}
-                                            min="1" max={{ i|count }} name={{ i|id }} disabled>
+                                            min="1" data-name={{ i }} max={{ i|count }} name={{ i|id }} disabled>
                                     <span class="input-group-btn">
                                           <button type="button" class="btn btn-light btn-number" data-type="plus"
-                                                  data-field={{ i|id }}>
+                                                  data-name="{{ i }}"
+                                                          data-field={{ i|id }}>
                                               <i class="fa fa-plus"></i>
                                           </button>
                                       </span>
@@ -82,6 +84,7 @@
                 let choose = parseInt($(this).val());
                 let id_costume = parseInt($(this).attr('name'));
                 let price = parseInt($(`p[id='${id_costume}']`).attr('data-price'));
+
                 e.preventDefault();
                 $.ajax({
                     type: "POST",
@@ -105,7 +108,7 @@
             // plus minus input box
             $('.btn-number').click(function (e) {
                 e.preventDefault();
-
+                let name = $(this).attr('data-name');
                 let fieldName = $(this).attr('data-field');
                 let type = $(this).attr('data-type');
                 let input = $("input[name='" + fieldName + "']");
@@ -115,6 +118,14 @@
 
                         if (currentVal > input.attr('min')) {
                             input.val(currentVal - 1).change();
+                            $.ajax({
+                                type: 'POST',
+                                url: '/cart_update',
+                                data: {
+                                    'name': name,
+                                    'count': input.val()
+                                }
+                            })
                         }
                         if (parseInt(input.val()) === input.attr('min')) {
                             $(this).attr('disabled', true);
@@ -124,6 +135,14 @@
 
                         if (currentVal < input.attr('max')) {
                             input.val(currentVal + 1).change();
+                            $.ajax({
+                                type: 'POST',
+                                url: '/cart_update',
+                                data: {
+                                    'name': name,
+                                    'count': input.val()
+                                }
+                            })
                         }
                         if (parseInt(input.val()) === input.attr('max')) {
                             $(this).attr('disabled', true);
@@ -139,10 +158,10 @@
             });
             $('.input-number').change(function () {
 
-                minValue = parseInt($(this).attr('min'));
-                maxValue = parseInt($(this).attr('max'));
-                valueCurrent = parseInt($(this).val());
-                name = $(this).attr('name');
+                let minValue = parseInt($(this).attr('min'));
+                let maxValue = parseInt($(this).attr('max'));
+                let valueCurrent = parseInt($(this).val());
+                let name = $(this).attr('name');
                 if (valueCurrent >= minValue) {
                     $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
                 } else {

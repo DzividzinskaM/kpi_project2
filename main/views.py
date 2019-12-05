@@ -19,10 +19,30 @@ def count_match(request):
 
 
 @csrf_exempt
+def cart_update(request):
+    if request.is_ajax():
+        cart = Cart.objects.get(user=request.user.username)
+        items = cart.items
+        count = request.POST.get('count')
+        name = request.POST.get('name')
+        items[name] = count
+        data = {'success': 1}
+        cart.save()
+    else:
+        data = {'success': 0}
+    return JsonResponse(data)
+
+
+@csrf_exempt
 def item_window(request, name):
+    print('akmfmowofinweoef')
+    print(name)
     obj = Costume.objects.get(name=name)
-    cart = Cart.objects.get(user=request.user.username)
-    return render(request, 'custom.html', {'costume': obj, 'user': request.user, 'cart': cart.items})
+    try:
+        cart = Cart.objects.get(user=request.user.username).items
+    except Cart.DoesNotExist:
+        cart = {}
+    return render(request, 'custom.html', {'costume': obj, 'user': request.user, 'cart': cart})
 
 
 def order(request):
@@ -47,6 +67,7 @@ def cart(request):
     try:
         obj = Cart.objects.get(user=user_id)
         data = obj.items
+        print(data)
         for i, j in data.items():
             costumes = Costume.objects.get(name=i)
             costumes_json[costumes.name] = {
