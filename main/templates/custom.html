@@ -11,11 +11,14 @@
             <p class="name">{{ costume.name }}</p>
             <p class="price">Ціна: {{ costume.price }}</p>
             {% if user.is_authenticated %}
-                {% if costume.count %}
+                {% if costume.count and costume.name not in cart%}
                     <div class="cartcheck">
                         <button class="add" id={{ costume.id }}>В КОРЗИНУ</button>
                     </div>
                     <p class="avaible">Доступність: <span>{{ costume.count }}</span>шт.</p>
+                {% elif costume.name in cart %}
+                    <div class="add" style="background-color: darkslategrey; cursor: auto; font-size: 14px">ТОВАР В КОРЗИНІ
+                    </div>
                 {% else %}
                     <div class="add" style="background-color: darkslategrey; cursor: auto; font-size: 14px">НЕМАЄ В
                         НАЯВНОСТІ
@@ -38,7 +41,7 @@
                 let count = $(".avaible span").text();
                 $.ajax({
                     type: "POST",
-                    url: '/add',
+                    url: '/create',
                     data: {
                         'id': id
                     },

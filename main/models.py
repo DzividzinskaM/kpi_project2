@@ -18,7 +18,7 @@ class Costume(models.Model):
 
 class Cart(models.Model):
     user = models.TextField(max_length=30)
-    items = models.TextField()
+    items = JSONField(default=dict)
     cost = models.IntegerField()
 
     def __str__(self):

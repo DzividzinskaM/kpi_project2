@@ -9,7 +9,7 @@
             <thead class="text-muted">
             <tr>
                 <th scope="col">Product</th>
-                <th scope="col" width="120">Quantity</th>
+                <th scope="col" width="150">Quantity</th>
                 <th scope="col" width="120">Price</th>
                 <th scope="col" width="200" class="text-right">Action</th>
             </tr>
@@ -32,10 +32,28 @@
                     <td>
                         <div class="form-group">
                             <label for="uname">Кількість:</label>
-                            <input type="text" class="form-control" id="count" name="count" value={{ j }} data-id={{ i|id }}
-                                    required>
-                            <div class="valid-feedback"></div>
-                            <div class="invalid-feedback">Немає</div>
+                            {#                            <input type="text" class="form-control" id="count" name="count" value={{ j }} data-id={{ i|id }}#}
+                            {#                                    required>#}
+                            {#                            <div class="valid-feedback"></div>#}
+                            {#                            <div class="invalid-feedback">Немає</div>#}
+                            <div class="center">
+                                <div class="input-group">
+                                      <span class="input-group-btn">
+                                          <button type="button" class="btn btn-light btn-number" disabled="disabled"
+                                                  data-type="minus" data-field={{ i|id }}>
+                                              <i class="fa fa-minus"></i>
+                                          </button>
+                                      </span>
+                                    <input type="text" class="form-control input-number" value={{ j }}
+                                            min="1" max={{ i|count }} name={{ i|id }} disabled>
+                                    <span class="input-group-btn">
+                                          <button type="button" class="btn btn-light btn-number" data-type="plus"
+                                                  data-field={{ i|id }}>
+                                              <i class="fa fa-plus"></i>
+                                          </button>
+                                      </span>
+                                </div>
+                            </div>
                         </div>
                     </td>
                     <td>
@@ -51,23 +69,18 @@
                         <a href="" class="btn btn-outline-danger"> × Remove</a>
                     </td>
                 </tr>
+
             {% endfor %}
             </tbody>
         </table>
+        <button type="button" class="btn btn-success" style="margin-left: 90%; margin-top: 10px">Замовити</button>
     </div>
+
     <script>
         $(document).ready(function () {
-            //called when key is pressed in textbox
-            $(".form-control").keypress(function (e) {
-                //if the letter is not digit then display error and don't type anything
-                if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
-                    return false;
-                }
-            });
-
             $('.form-control').change(function (e) {
                 let choose = parseInt($(this).val());
-                let id_costume = parseInt($(this).attr('data-id'));
+                let id_costume = parseInt($(this).attr('name'));
                 let price = parseInt($(`p[id='${id_costume}']`).attr('data-price'));
                 e.preventDefault();
                 $.ajax({
@@ -88,7 +101,63 @@
                         }
                     }
                 });
-            })
+            });
+            // plus minus input box
+            $('.btn-number').click(function (e) {
+                e.preventDefault();
+
+                let fieldName = $(this).attr('data-field');
+                let type = $(this).attr('data-type');
+                let input = $("input[name='" + fieldName + "']");
+                let currentVal = parseInt(input.val());
+                if (!isNaN(currentVal)) {
+                    if (type === 'minus') {
+
+                        if (currentVal > input.attr('min')) {
+                            input.val(currentVal - 1).change();
+                        }
+                        if (parseInt(input.val()) === input.attr('min')) {
+                            $(this).attr('disabled', true);
+                        }
+
+                    } else if (type === 'plus') {
+
+                        if (currentVal < input.attr('max')) {
+                            input.val(currentVal + 1).change();
+                        }
+                        if (parseInt(input.val()) === input.attr('max')) {
+                            $(this).attr('disabled', true);
+                        }
+
+                    }
+                } else {
+                    input.val(0);
+                }
+            });
+            $('.input-number').focusin(function () {
+                $(this).data('oldValue', $(this).val());
+            });
+            $('.input-number').change(function () {
+
+                minValue = parseInt($(this).attr('min'));
+                maxValue = parseInt($(this).attr('max'));
+                valueCurrent = parseInt($(this).val());
+                name = $(this).attr('name');
+                if (valueCurrent >= minValue) {
+                    $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+                } else {
+                    alert('Sorry, the minimum value was reached');
+                    $(this).val($(this).data('oldValue'));
+                }
+                if (valueCurrent <= maxValue) {
+                    $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+                } else {
+                    alert('Sorry, the maximum value was reached');
+                    $(this).val($(this).data('oldValue'));
+                }
+
+
+            });
         });
     </script>
 {% endblock %}

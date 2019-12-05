@@ -12,16 +12,17 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def count_match(request):
     userinput = request.POST.get('userinput')
-    cos = Cart.objects.get(id=request.POST.get('id'))
+    cart = Cart.objects.get(user=request.user.username)
     if request.is_ajax():
-        data = {'count': cos.count}
+        data = {'items': cart.items}
         return JsonResponse(data)
 
 
 @csrf_exempt
 def item_window(request, name):
     obj = Costume.objects.get(name=name)
-    return render(request, 'custom.html', {'costume': obj, 'user': request.user})
+    cart = Cart.objects.get(user=request.user.username)
+    return render(request, 'custom.html', {'costume': obj, 'user': request.user, 'cart': cart.items})
 
 
 def order(request):
@@ -40,14 +41,15 @@ def main(request):
 @csrf_exempt
 def cart(request):
     user_id = request.user.username
+    print(user_id)
     data = {}
     costumes_json = {}
     try:
         obj = Cart.objects.get(user=user_id)
-        data = json.loads(obj.items)
+        data = obj.items
         for i, j in data.items():
             costumes = Costume.objects.get(name=i)
-            costumes_json[costumes.costume_name] = {
+            costumes_json[costumes.name] = {
                 'count': costumes.count,
                 'price': costumes.price,
                 'image': costumes.image
@@ -61,32 +63,23 @@ def cart(request):
 
 
 @csrf_exempt
-def add(request):
+def create(request):
     cos = Costume.objects.get(id=request.POST.get('id'))
     if request.is_ajax():
         if cos.count > 0:
             data = {}
             try:
                 obj = Cart.objects.get(user=request.user.username)
-                print(obj.items)
-                # print(type(obj.items))
-                # data = json.loads(obj.items)
-                data = json.loads(obj.items)
-                print('========')
-                try:
-                    data[cos.name] += 1
-                except Exception as e:
-                    print(e)
-                    data[cos.name] = 1
-                cos.count -= 1
-                obj.cost += cos.price
-                obj.items = json.dumps(data, ensure_ascii=False)
-                print(obj.items)
-                obj.save()
-            except Cart.DoesNotExist:
+                data = obj.items
                 data[cos.name] = 1
                 cos.count -= 1
-                obj = Cart.objects.create(user=request.user.username, items=json.dumps(data, ensure_ascii=False),
+                obj.items = data
+                obj.save()
+            except Cart.DoesNotExist:
+                print('=========')
+                data[cos.name] = 1
+                cos.count -= 1
+                obj = Cart.objects.create(user=request.user.username, items=data,
                                           cost=cos.price)
             finally:
                 cos.save()
@@ -150,5 +143,3 @@ def login(request):
 def logout_view(request):
     logout(request)
     return redirect('/login')
-
-MessageBox.Show("Vova Pidar", "Error", MessageBox.Icon.Error);
