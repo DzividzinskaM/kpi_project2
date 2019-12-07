@@ -16,7 +16,7 @@
             </thead>
             <tbody>
             {% for i, j in data.items %}
-                <tr class="item">
+                <tr class="item" data-id="{{ i|id }}">
                     <td>
                         <figure class="media">
                             <div class="img-wrap"><img src={{ i|image }}></div>
@@ -40,7 +40,7 @@
                                       <span class="input-group-btn">
                                           <button type="button" class="btn btn-light btn-number"
                                                   data-name="{{ i }}"
-                                                          data-type="minus" data-field={{ i|id }}>
+                                                  data-type="minus" data-field={{ i|id }}>
                                               <i class="fa fa-minus"></i>
                                           </button>
                                       </span>
@@ -49,7 +49,7 @@
                                     <span class="input-group-btn">
                                           <button type="button" class="btn btn-light btn-number" data-type="plus"
                                                   data-name="{{ i }}"
-                                                          data-field={{ i|id }}>
+                                                  data-field={{ i|id }}>
                                               <i class="fa fa-plus"></i>
                                           </button>
                                       </span>
@@ -67,14 +67,16 @@
                         </div> <!-- price-wrap .// -->
                     </td>
                     <td class="text-right">
-                        <a href="" class="btn btn-outline-danger"> × Remove</a>
+                        <a href="" class="btn btn-outline-danger" data-id="{{ i|id }}"> × Remove</a>
                     </td>
                 </tr>
 
             {% endfor %}
             </tbody>
         </table>
-        <button type="button" class="btn btn-success" style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">Замовити</button>
+        <button type="button" class="btn btn-success" style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">
+            Замовити
+        </button>
     </div>
 
     <script>
@@ -104,78 +106,97 @@
                     }
                 });
             });
-            // plus minus input box
-            $('.btn-number').click(function (e) {
+            // remove button
+            $('.btn-outline-danger').click(function (e) {
                 e.preventDefault();
-                let name = $(this).attr('data-name');
-                let fieldName = $(this).attr('data-field');
-                let type = $(this).attr('data-type');
-                let input = $("input[name='" + fieldName + "']");
-                let currentVal = parseInt(input.val());
-                if (!isNaN(currentVal)) {
-                    if (type === 'minus') {
-
-                        if (currentVal > input.attr('min')) {
-                            input.val(currentVal - 1).change();
-                            $.ajax({
-                                type: 'POST',
-                                url: '/cart_update',
-                                data: {
-                                    'name': name,
-                                    'count': input.val()
-                                }
-                            })
-                        }
-                        if (parseInt(input.val()) === input.attr('min')) {
-                            $(this).attr('disabled', true);
-                        }
-
-                    } else if (type === 'plus') {
-
-                        if (currentVal < input.attr('max')) {
-                            input.val(currentVal + 1).change();
-                            $.ajax({
-                                type: 'POST',
-                                url: '/cart_update',
-                                data: {
-                                    'name': name,
-                                    'count': input.val()
-                                }
-                            })
-                        }
-                        if (parseInt(input.val()) === input.attr('max')) {
-                            $(this).attr('disabled', true);
-                        }
-
+                let id = $(this).attr('data-id');
+                $.ajax({
+                    type: 'POST',
+                    url: '/remove',
+                    data: {
+                        'id': id
+                    },
+                    success: function (data) {
+                        $(`tr[data-id=${name}]`).fadeOut(300, function () {
+                            $(this).remove()
+                        })
                     }
-                } else {
-                    input.val(0);
-                }
-            });
-            $('.input-number').focusin(function () {
-                $(this).data('oldValue', $(this).val());
-            });
-            $('.input-number').change(function () {
-
-                let minValue = parseInt($(this).attr('min'));
-                let maxValue = parseInt($(this).attr('max'));
-                let valueCurrent = parseInt($(this).val());
-                let name = $(this).attr('name');
-                if (valueCurrent >= minValue) {
-                    $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
-                } else {
-                    alert('Sorry, the minimum value was reached');
-                    $(this).val($(this).data('oldValue'));
-                }
-                if (valueCurrent <= maxValue) {
-                    $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
-                } else {
-                    alert('Sorry, the maximum value was reached');
-                    $(this).val($(this).data('oldValue'));
-                }
-
-
-            });
+                });
+            })
         });
+        // plus minus input box
+        $('.btn-number').click(function (e) {
+            e.preventDefault();
+            let name = $(this).attr('data-name');
+            let fieldName = $(this).attr('data-field');
+            let type = $(this).attr('data-type');
+            let input = $("input[name='" + fieldName + "']");
+            let currentVal = parseInt(input.val());
+            if (!isNaN(currentVal)) {
+                if (type === 'minus') {
+
+                    if (currentVal > input.attr('min')) {
+                        input.val(currentVal - 1).change();
+                        $.ajax({
+                            type: 'POST',
+                            url: '/cart_update',
+                            data: {
+                                'name': name,
+                                'count': input.val()
+                            }
+                        })
+                    }
+                    if (parseInt(input.val()) === input.attr('min')) {
+                        $(this).attr('disabled', true);
+                    }
+
+                } else if (type === 'plus') {
+
+                    if (currentVal < input.attr('max')) {
+                        input.val(currentVal + 1).change();
+                        $.ajax({
+                            type: 'POST',
+                            url: '/cart_update',
+                            data: {
+                                'name': name,
+                                'count': input.val()
+                            }
+                        })
+                    }
+                    if (parseInt(input.val()) === input.attr('max')) {
+                        $(this).attr('disabled', true);
+                    }
+
+                }
+            } else {
+                input.val(0);
+            }
+        });
+        $('.input-number').focusin(function () {
+            $(this).data('oldValue', $(this).val());
+        });
+        $('.input-number').change(function () {
+
+            let minValue = parseInt($(this).attr('min'));
+            let maxValue = parseInt($(this).attr('max'));
+            let valueCurrent = parseInt($(this).val());
+            let name = $(this).attr('name');
+            if (valueCurrent >= minValue) {
+                $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                alert('Sorry, the minimum value was reached');
+                $(this).val($(this).data('oldValue'));
+            }
+            if (valueCurrent <= maxValue) {
+                $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                alert('Sorry, the maximum value was reached');
+                $(this).val($(this).data('oldValue'));
+            }
+
+
+        });
+        })
+        ;
     </script>
 {% endblock %}

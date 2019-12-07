@@ -8,6 +8,17 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
+@csrf_exempt
+def remove(request):
+    if request.is_ajax():
+        id = request.POST.get('id')
+        print(id)
+        cos = Costume.objects.get(id=id)
+        cart = Cart.objects.get(user=request.user.username)
+        print(cart.items)
+        del cart.items[cos.name]
+        print(cart.items)
+
 
 @csrf_exempt
 def count_match(request):
@@ -34,8 +45,7 @@ def cart_update(request):
 
 
 @csrf_exempt
-def item_window(request, name):
-    print('akmfmowofinweoef')
+def item_window(requestr=):
     print(name)
     obj = Costume.objects.get(name=name)
     try:
