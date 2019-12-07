@@ -12,12 +12,16 @@ from django.views.decorators.csrf import csrf_exempt
 def remove(request):
     if request.is_ajax():
         id = request.POST.get('id')
-        print(id)
+        val = request.POST.get('val')
         cos = Costume.objects.get(id=id)
         cart = Cart.objects.get(user=request.user.username)
-        print(cart.items)
         del cart.items[cos.name]
-        print(cart.items)
+        cart.save()
+        cos.count += 1
+        cos.save()
+        return JsonResponse({'success': 1})
+    else:
+        return HttpResponse('404')
 
 
 @csrf_exempt
@@ -45,7 +49,7 @@ def cart_update(request):
 
 
 @csrf_exempt
-def item_window(requestr=):
+def item_window(request, name):
     print(name)
     obj = Costume.objects.get(name=name)
     try:

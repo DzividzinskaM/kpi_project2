@@ -5,38 +5,40 @@
 {% block body %}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <div class="card">
-        <table class="table table-hover shopping-cart-wrap">
-            <thead class="text-muted">
-            <tr>
-                <th scope="col">Костюм</th>
-                <th scope="col" width="150">Кількість</th>
-                <th scope="col" width="120">Ціна</th>
-                <th scope="col" width="200" class="text-right">Дії</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for i, j in data.items %}
-                <tr class="item" data-id="{{ i|id }}">
-                    <td>
-                        <figure class="media">
-                            <div class="img-wrap"><img src={{ i|image }}></div>
-                            <figcaption class="media-body text-center">
-                                <h5 class="title text-truncate" style="text-align: left; margin-left: 10px">{{ i }}</h5>
-                                <dl class="param param-inline small" style="text-align: left; margin-left: 10px"
-                                    data-count={{ i|count }}>
-                                    {{ i|count }}шт. на складі
-                                </dl>
-                            </figcaption>
-                        </figure>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            {#                            <input type="text" class="form-control" id="count" name="count" value={{ j }} data-id={{ i|id }}#}
-                            {#                                    required>#}
-                            {#                            <div class="valid-feedback"></div>#}
-                            {#                            <div class="invalid-feedback">Немає</div>#}
-                            <div class="center">
-                                <div class="input-group">
+        {% if data.items %}
+            <table class="table table-hover shopping-cart-wrap">
+                <thead class="text-muted">
+                <tr>
+                    <th scope="col">Костюм</th>
+                    <th scope="col" width="150">Кількість</th>
+                    <th scope="col" width="120">Ціна</th>
+                    <th scope="col" width="200" class="text-right">Дії</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i, j in data.items %}
+                    <tr class="item" data-id="{{ i|id }}">
+                        <td>
+                            <figure class="media">
+                                <div class="img-wrap"><img src={{ i|image }}></div>
+                                <figcaption class="media-body text-center">
+                                    <h5 class="title text-truncate"
+                                        style="text-align: left; margin-left: 10px">{{ i }}</h5>
+                                    <dl class="param param-inline small" style="text-align: left; margin-left: 10px"
+                                        data-count={{ i|count }}>
+                                        {{ i|count }}шт. на складі
+                                    </dl>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                {#                            <input type="text" class="form-control" id="count" name="count" value={{ j }} data-id={{ i|id }}#}
+                                {#                                    required>#}
+                                {#                            <div class="valid-feedback"></div>#}
+                                {#                            <div class="invalid-feedback">Немає</div>#}
+                                <div class="center">
+                                    <div class="input-group">
                                       <span class="input-group-btn">
                                           <button type="button" class="btn btn-light btn-number"
                                                   data-name="{{ i }}"
@@ -44,40 +46,45 @@
                                               <i class="fa fa-minus"></i>
                                           </button>
                                       </span>
-                                    <input type="text" class="form-control input-number" value={{ j }}
-                                            min="1" data-name={{ i }} max={{ i|count }} name={{ i|id }} disabled>
-                                    <span class="input-group-btn">
+                                        <input type="text" class="form-control input-number" value={{ j }}
+                                                min="1" data-name={{ i }} max={{ i|count }} name={{ i|id }} disabled>
+                                        <span class="input-group-btn">
                                           <button type="button" class="btn btn-light btn-number" data-type="plus"
                                                   data-name="{{ i }}"
                                                   data-field={{ i|id }}>
                                               <i class="fa fa-plus"></i>
                                           </button>
                                       </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="price-wrap">
-                            <var class="price"></var>
-                            <p data-price={{ i|price }} class="text-muted" style="font-size: 20px; margin-bottom: 0"
-                               id={{ i|id }}>{{ i|price }}<small
-                                    class="text-muted">грн.</small></p>
-                            <small class="text-muted">({{ i|price }}грн. кожен)</small>
-                        </div> <!-- price-wrap .// -->
-                    </td>
-                    <td class="text-right">
-                        <a href="" class="btn btn-outline-danger" data-id="{{ i|id }}"> × Remove</a>
-                    </td>
-                </tr>
+                        </td>
+                        <td>
+                            <div class="price-wrap">
+                                <var class="price"></var>
+                                <p data-price={{ i|price }} class="text-muted" style="font-size: 20px; margin-bottom: 0"
+                                   id={{ i|id }}>{{ i|price }}<small
+                                        class="text-muted">грн.</small></p>
+                                <small class="text-muted">({{ i|price }}грн. кожен)</small>
+                            </div> <!-- price-wrap .// -->
+                        </td>
+                        <td class="text-right">
+                            <a href="" class="btn btn-outline-danger" data-id="{{ i|id }}"> × Remove</a>
+                        </td>
+                    </tr>
 
-            {% endfor %}
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-success" style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">
-            Замовити
-        </button>
+                {% endfor %}
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-success"
+                    style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">
+                Замовити
+            </button>
+        {% else %}
+            <h1 style="text-align: center">КОРЗИНА ПОРОЖНЯ</h1>
+        {% endif %}
     </div>
+
 
     <script>
         $(document).ready(function () {
@@ -101,7 +108,8 @@
                             $(this).val(data.count);
                         } else {
                             console.log(choose, price);
-                            $(`p[id='${id_costume}']`).html(`${choose * price}<small class="text-muted">грн.</small>`)
+                            $(`p[id='${id_costume}']`).html(`${choose * price}<small class="text-muted">грн.</small>`);
+
                         }
                     }
                 });
@@ -110,18 +118,28 @@
             $('.btn-outline-danger').click(function (e) {
                 e.preventDefault();
                 let id = $(this).attr('data-id');
+                let val = $(`input[name=${id}]`).attr('value');
                 $.ajax({
                     type: 'POST',
                     url: '/remove',
                     data: {
-                        'id': id
+                        'id': id,
+                        'val': val
                     },
                     success: function (data) {
-                        $(`tr[data-id=${name}]`).fadeOut(300, function () {
-                            $(this).remove()
-                        })
+                        if (data) {
+                            $(`tr[data-id=${id}]`).fadeOut(300, function () {
+                                $(this).remove()
+                            });
+                            // i don't know why -1 there. This working fine, ok?
+                            if (!($('.item').length - 1)) {
+                                $('.card').fadeIn(300, function () {
+                                    $(this).html('<h1 style:"background-color: grey">КОРЗИНА ПОРОЖНЯ</h1>').css({'text-align': 'center'})
+                                })
+                            }
+                        }
                     }
-                });
+                })
             })
         });
         // plus minus input box
@@ -195,8 +213,6 @@
             }
 
 
-        });
         })
-        ;
     </script>
 {% endblock %}
