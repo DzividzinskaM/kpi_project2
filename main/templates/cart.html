@@ -8,10 +8,10 @@
         <table class="table table-hover shopping-cart-wrap">
             <thead class="text-muted">
             <tr>
-                <th scope="col">Product</th>
-                <th scope="col" width="150">Quantity</th>
-                <th scope="col" width="120">Price</th>
-                <th scope="col" width="200" class="text-right">Action</th>
+                <th scope="col">Костюм</th>
+                <th scope="col" width="150">Кількість</th>
+                <th scope="col" width="120">Ціна</th>
+                <th scope="col" width="200" class="text-right">Дії</th>
             </tr>
             </thead>
             <tbody>
@@ -31,7 +31,6 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            <label for="uname">Кількість:</label>
                             {#                            <input type="text" class="form-control" id="count" name="count" value={{ j }} data-id={{ i|id }}#}
                             {#                                    required>#}
                             {#                            <div class="valid-feedback"></div>#}
@@ -39,7 +38,7 @@
                             <div class="center">
                                 <div class="input-group">
                                       <span class="input-group-btn">
-                                          <button type="button" class="btn btn-light btn-number" disabled="disabled"
+                                          <button type="button" class="btn btn-light btn-number"
                                                   data-name="{{ i }}"
                                                           data-type="minus" data-field={{ i|id }}>
                                               <i class="fa fa-minus"></i>
@@ -75,7 +74,7 @@
             {% endfor %}
             </tbody>
         </table>
-        <button type="button" class="btn btn-success" style="margin-left: 90%; margin-top: 10px">Замовити</button>
+        <button type="button" class="btn btn-success" style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">Замовити</button>
     </div>
 
     <script>
