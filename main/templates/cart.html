@@ -78,10 +78,10 @@
             </table>
             <p class="total" style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">Загальна
                 вартіcть: {{ totalcartcost }}</p>
-            <button type="button" class="btn btn-success"
-                    style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">
+            <a href="{% url 'cart_order' %}" class="btn btn-success"
+               style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">
                 Замовити
-            </button>
+            </a>
         {% else %}
             <h1 style="text-align: center">КОРЗИНА ПОРОЖНЯ</h1>
         {% endif %}

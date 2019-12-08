@@ -7,9 +7,10 @@
         <div class="image">
             <img src={{ costume.image }}>
         </div>
-        <div class="about">
+        <div class="item" style="margin-left: 20px">
             <p class="name">{{ costume.name }}</p>
             <p class="price">Ціна: {{ costume.price }}</p>
+            <p class="about" style="width: 500px; height: 200px; margin: 0">{{ costume.about }}</p>
             {% if user.is_authenticated %}
                 {% if costume.count and costume.name not in cart%}
                     <div class="cartcheck">

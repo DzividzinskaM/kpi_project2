@@ -37,6 +37,16 @@ def remove(request):
 #
 #         return JsonResponse(data)
 
+@csrf_exempt
+def cart_order(request):
+    cart = Cart.objects.get(user=request.user.username)
+    for i, j in cart.items.items():
+        cos = Costume.objects.get(name=i)
+        cos.count -= int(j)
+        cos.save()
+    cart.delete()
+    return redirect('/cart')
+
 
 @csrf_exempt
 def cart_update(request):
@@ -98,10 +108,11 @@ def cart(request):
             }
 
         print(costumes_json)
+        return render(request, 'cart.html', {'data': data, 'costumes': costumes_json, 'totalcartcost': obj.cost})
     except Exception as e:
         print(e)
-    finally:
-        return render(request, 'cart.html', {'data': data, 'costumes': costumes_json, 'totalcartcost': obj.cost})
+        return render(request, 'cart.html', {'data': data})
+
 
 
 @csrf_exempt
