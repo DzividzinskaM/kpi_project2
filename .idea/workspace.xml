@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="569bad09-5ffa-4ed4-b7a7-747f9cad1587" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/templates/custom.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/custom.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templatetags/tags.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/templatetags/tags.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kpi2_front/public/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/../kpi2_front/public/cart.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kpi2_front/public/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/../kpi2_front/public/cart.html" afterDir="false" />
@@ -116,7 +119,7 @@
       <workItem from="1574864084913" duration="12662000" />
       <workItem from="1574897263762" duration="60718000" />
       <workItem from="1575713274014" duration="3622000" />
-      <workItem from="1575755865540" duration="3591000" />
+      <workItem from="1575755865540" duration="8032000" />
     </task>
     <servers />
   </component>
@@ -165,6 +168,16 @@
         <option value="1" />
       </set>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/templatetags/tags.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/kpi2$main_bot.coverage" NAME="main_bot Coverage Results" MODIFIED="1575323771145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../kpz_bot" />

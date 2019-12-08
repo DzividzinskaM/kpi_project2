@@ -27,3 +27,9 @@ def price(name):
 @register.filter
 def image(name):
     return Costume.objects.get(name=name).image
+
+
+@register.filter
+def cost_count(name, quantity):
+    price = Costume.objects.get(name=name).price
+    return int(quantity) * int(price)

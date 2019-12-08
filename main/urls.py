@@ -13,5 +13,5 @@ urlpatterns = [
     path('dede', views.count_match),
     path('cart_update', views.cart_update, name='cart_update'),
     path('remove', views.remove, name='remove'),
-    path('<name>', views.item_window, name='window'),
+    path('<int:id>', views.item_window, name='window')
 ]

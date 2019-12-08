@@ -16,6 +16,7 @@ def remove(request):
         cos = Costume.objects.get(id=id)
         cart = Cart.objects.get(user=request.user.username)
         del cart.items[cos.name]
+        cart.cost = 0
         cart.save()
         cos.count += 1
         cos.save()
@@ -36,11 +37,13 @@ def count_match(request):
 @csrf_exempt
 def cart_update(request):
     if request.is_ajax():
-        cart = Cart.objects.get(user=request.user.username)
-        items = cart.items
         count = request.POST.get('count')
         name = request.POST.get('name')
+        cart = Cart.objects.get(user=request.user.username)
+        cos = Costume.objects.get(name=name)
+        items = cart.items
         items[name] = count
+        cart.cost += int(count) * cos.price
         data = {'success': 1}
         cart.save()
     else:
@@ -49,14 +52,14 @@ def cart_update(request):
 
 
 @csrf_exempt
-def item_window(request, name):
-    print(name)
-    obj = Costume.objects.get(name=name)
-    try:
-        cart = Cart.objects.get(user=request.user.username).items
-    except Cart.DoesNotExist:
-        cart = {}
-    return render(request, 'custom.html', {'costume': obj, 'user': request.user, 'cart': cart})
+def item_window(request, id):
+    if request:
+        obj = Costume.objects.get(id=id)
+        try:
+            cart = Cart.objects.get(user=request.user.username).items
+        except Cart.DoesNotExist:
+            cart = {}
+        return render(request, 'custom.html', {'costume': obj, 'user': request.user, 'cart': cart})
 
 
 def order(request):
@@ -87,7 +90,8 @@ def cart(request):
             costumes_json[costumes.name] = {
                 'count': costumes.count,
                 'price': costumes.price,
-                'image': costumes.image
+                'image': costumes.image,
+                'cost_display': costumes.count * costumes.price
             }
 
         print(costumes_json)
@@ -108,6 +112,7 @@ def create(request):
                 data = obj.items
                 data[cos.name] = 1
                 cos.count -= 1
+                obj.cost += cos.price
                 obj.items = data
                 obj.save()
             except Cart.DoesNotExist:
