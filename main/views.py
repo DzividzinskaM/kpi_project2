@@ -40,11 +40,10 @@ def cart_update(request):
         count = request.POST.get('count')
         name = request.POST.get('name')
         cart = Cart.objects.get(user=request.user.username)
-        cos = Costume.objects.get(name=name)
         items = cart.items
         items[name] = count
-        cart.cost += int(count) * cos.price
         data = {'success': 1}
+        cart.cost = cart_cost(cart.items)
         cart.save()
     else:
         data = {'success': 0}
@@ -183,3 +182,12 @@ def login(request):
 def logout_view(request):
     logout(request)
     return redirect('/login')
+
+
+# price of whole cart
+def cart_cost(cart_item):
+    cost = 0
+    for i, j in cart_item.items():
+        obj = Costume.objects.get(name=i)
+        cost += obj.price * int(j)
+    return cost
