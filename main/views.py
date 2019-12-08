@@ -16,22 +16,26 @@ def remove(request):
         cos = Costume.objects.get(id=id)
         cart = Cart.objects.get(user=request.user.username)
         del cart.items[cos.name]
-        cart.cost = 0
+        cart.cost = cart_cost(cart.items)
+        x = cart.cost
         cart.save()
         cos.count += 1
         cos.save()
-        return JsonResponse({'success': 1})
+        return JsonResponse({'success': 1, 'total': x})
     else:
         return HttpResponse('404')
 
 
-@csrf_exempt
-def count_match(request):
-    userinput = request.POST.get('userinput')
-    cart = Cart.objects.get(user=request.user.username)
-    if request.is_ajax():
-        data = {'items': cart.items}
-        return JsonResponse(data)
+# @csrf_exempt
+# def count_match(request):
+#     userinput = request.POST.get('userinput')
+#     cart = Cart.objects.get(user=request.user.username)
+#     x = cart.cost
+#     print(cart.cost)
+#     cart.save()
+#     if request.is_ajax():
+#
+#         return JsonResponse(data)
 
 
 @csrf_exempt
@@ -42,12 +46,12 @@ def cart_update(request):
         cart = Cart.objects.get(user=request.user.username)
         items = cart.items
         items[name] = count
-        data = {'success': 1}
-        cart.cost = cart_cost(cart.items)
+        cost = cart_cost(cart.items)
+        print(items)
+        data = {'items': items, 'total': cost}
+        cart.cost = cost
         cart.save()
-    else:
-        data = {'success': 0}
-    return JsonResponse(data)
+        return JsonResponse(data)
 
 
 @csrf_exempt
@@ -97,7 +101,7 @@ def cart(request):
     except Exception as e:
         print(e)
     finally:
-        return render(request, 'cart.html', {'data': data, 'costumes': costumes_json})
+        return render(request, 'cart.html', {'data': data, 'costumes': costumes_json, 'totalcartcost': obj.cost})
 
 
 @csrf_exempt

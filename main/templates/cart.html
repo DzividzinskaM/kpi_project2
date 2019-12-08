@@ -76,6 +76,8 @@
                 {% endfor %}
                 </tbody>
             </table>
+            <p class="total" style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">Загальна
+                вартіcть: {{ totalcartcost }}</p>
             <button type="button" class="btn btn-success"
                     style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">
                 Замовити
@@ -88,32 +90,6 @@
 
     <script>
         $(document).ready(function () {
-            $('.form-control').change(function (e) {
-                let choose = parseInt($(this).val());
-                let id_costume = parseInt($(this).attr('name'));
-                let price = parseInt($(`p[id='${id_costume}']`).attr('data-price'));
-
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "/dede",
-                    data: {
-                        'id': id_costume,
-                        'userinput': choose
-                    },
-                    success: function (data) {
-                        let available = data.available;
-                        if (available) {
-                            alert(`Стільки товару в наявності немає\nДоступна кількість: ${data.count}`);
-                            $(this).val(data.count);
-                        } else {
-                            console.log(choose, price);
-                            $(`p[id='${id_costume}']`).html(`${choose * price}<small class="text-muted">грн.</small>`);
-
-                        }
-                    }
-                });
-            });
             // remove button
             $('.btn-outline-danger').click(function (e) {
                 e.preventDefault();
@@ -129,7 +105,8 @@
                     success: function (data) {
                         if (data) {
                             $(`tr[data-id=${id}]`).fadeOut(300, function () {
-                                $(this).remove()
+                                $(this).remove();
+                                $('.total').text(`Загальна вартіcть: ${data.total}`)
                             });
                             // i don't know why -1 there. This working fine, ok?
                             if (!($('.item').length - 1)) {
@@ -150,17 +127,23 @@
             let type = $(this).attr('data-type');
             let input = $("input[name='" + fieldName + "']");
             let currentVal = parseInt(input.val());
+            let price = parseInt($(`p[id=${input.attr('name')}]`).attr('data-price'));
             if (!isNaN(currentVal)) {
                 if (type === 'minus') {
 
                     if (currentVal > input.attr('min')) {
                         input.val(currentVal - 1).change();
+                        currentVal--;
                         $.ajax({
                             type: 'POST',
                             url: '/cart_update',
                             data: {
                                 'name': name,
                                 'count': input.val()
+                            },
+                            success: function (data) {
+                                $(`p[id=${input.attr('name')}]`).html(`${currentVal * price}<small class="text-muted">грн.</small>`);
+                                $('.total').text(`Загальна вартіcть: ${data.total}`)
                             }
                         })
                     }
@@ -172,12 +155,17 @@
 
                     if (currentVal < input.attr('max')) {
                         input.val(currentVal + 1).change();
+                        currentVal++;
                         $.ajax({
                             type: 'POST',
                             url: '/cart_update',
                             data: {
                                 'name': name,
                                 'count': input.val()
+                            },
+                            success: function (data) {
+                                $(`p[id=${input.attr('name')}]`).html(`${currentVal * price}<small class="text-muted">грн.</small>`);
+                                $('.total').text(`Загальна вартіcть: ${data.total}`)
                             }
                         })
                     }

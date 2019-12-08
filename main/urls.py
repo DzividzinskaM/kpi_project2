@@ -10,7 +10,6 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('logout', views.logout_view, name='logout'),
     path('create', views.create, name='create'),
-    path('dede', views.count_match),
     path('cart_update', views.cart_update, name='cart_update'),
     path('remove', views.remove, name='remove'),
     path('<int:id>', views.item_window, name='window')

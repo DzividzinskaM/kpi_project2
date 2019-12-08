@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="569bad09-5ffa-4ed4-b7a7-747f9cad1587" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/main/templates/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kpi2_front/public/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/../kpi2_front/public/cart.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kpi2_front/public/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/../kpi2_front/public/cart.html" afterDir="false" />
@@ -112,7 +115,7 @@
       <workItem from="1574864084913" duration="12662000" />
       <workItem from="1574897263762" duration="60718000" />
       <workItem from="1575713274014" duration="3622000" />
-      <workItem from="1575755865540" duration="8527000" />
+      <workItem from="1575755865540" duration="11774000" />
     </task>
     <servers />
   </component>
