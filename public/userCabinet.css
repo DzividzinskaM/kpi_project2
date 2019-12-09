@@ -1,0 +1,141 @@
+body {
+    background: #F3EDFB;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+.top-menu {
+  position: relative;
+  background: #B57FCA;
+}
+.menu-main {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu-main:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.left-item {float: left;}
+.right-item {float: right;}
+.navbar-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.menu-main a {
+  text-decoration: none;
+  display: block;
+  line-height: 70px;
+  padding: 0 20px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-family: 'Arimo', sans-serif;
+  font-weight: bold;
+  color:#F6EEF8;
+  transition: .3s linear;
+}
+.menu-main a:hover {background: #C4A8DF;}
+@media (max-width: 830px) {
+.menu-main {
+  padding-top: 90px;
+  text-align: center;
+  
+}
+.navbar-logo {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+}
+.menu-main li {
+  float: none;
+  display: inline-block;
+}
+.menu-main a {
+  line-height: normal;
+  padding: 20px 15px;
+  font-size: 16px;
+}
+}
+@media (max-width: 630px) {
+.menu-main li {display: block;}
+#enter { width: 100%; margin-left:  0;}
+}
+
+h1 {
+    color: purple;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+h2 {
+    color: #BA55D3;
+    font-size: 25px;
+}
+
+#currentOrders {
+    background-color: white;
+    border: 3px solid purple;
+    border-radius: 6%;
+    border-color: magena;
+    width: 40%; 
+    height: 300px;
+}
+
+#oneOrder {
+    font-size: 18px;
+    color: purple; 
+    font-weight: bold; 
+    padding-top: 7%;
+    margin-left: 5%;
+}
+
+#Order {
+    position: inherit;
+    border-color: #BA55D3;
+    width: 95%;
+    height: 100%;
+}
+
+#extraInfo {
+    text-align: right;
+    margin-top: 10%;
+    margin-right: 8%;
+}
+
+#nameHistory {
+    display: block;
+    text-align: right;
+    margin-top: -400px;
+    margin-right: 20%;
+}
+
+#orderHistory {
+    background-color:white;
+    width: 50%;
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    font-size: 18px;
+}
+
+#tableHistory {
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    color: purple;
+    border: 3px solid #BA55D3;
+    font-weight: bold;
+}
+
+#additionalInformation {
+    margin-top: -10px;
+    font-size: 20px;
+    color: purple;
+    font-style: italic;
+    font-weight: bold;
+}
