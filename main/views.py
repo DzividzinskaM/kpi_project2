@@ -114,7 +114,6 @@ def cart(request):
         return render(request, 'cart.html', {'data': data})
 
 
-
 @csrf_exempt
 def create(request):
     cos = Costume.objects.get(id=request.POST.get('id'))
