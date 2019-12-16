@@ -17,7 +17,7 @@
     		<li class="right-item"><a href="http://localhost:3000/cart.html">Корзина</a></li>
 		    <li class="right-item"><a href="">Контакти</a></li>
 		    <li class="right-item"><a href="http://localhost:3000/registration.html">Реєстрація</a></li>
-		    <li class="right-item"><a href="http://localhost:3000/enterence.html">Вхід в кабінет</a></li>
+		    <li class="right-item"><a href="http://localhost:3000/enterence.html">Вихід</a></li>
 		</ul>
   		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
     </nav>
@@ -36,7 +36,6 @@
     </div>
 
     <div id="additionalInformation">
-        <h4>Ваші бонуси: ____</h4>
     </div>
 
 
@@ -63,7 +62,7 @@
         function openHistory(){
 
             let out = "";
-
+            let bonus ="";
             out += '<tr>';
             out +='<td>Дата</td>';
             out +='<td>Номер накладної</td>';
@@ -88,6 +87,7 @@
             let order = [];
             let startData = "";
             let lastData = "";
+            let generalSum = 0;
             for(let key in ordersHistory){
                 number = key;
                 order=ordersHistory[key].split('*');
@@ -115,10 +115,12 @@
                         //console.log(sum);
                         //console.log(sum);
                     }
+                    generalSum +=Number(sum);
                 }
                 
                 let dataForForm = startData + "-" + lastData;
-
+                //generalSum = generalSum/10;
+                //let 
                 out += '<tr>';
                 out +='<td>'+dataForForm+'</td>';
                 out +='<td>'+key+'</td>';
@@ -126,10 +128,12 @@
                 out +='<td>'+sum+'</td>';
                 out += '</tr>';
             }
-
+           // 
             $('#History').html(out);
+            bonus = '<h2>Ваші бонуси: ' + generalSum/10 + '</h2>';
+            $('#additionalInformation').html(bonus);
         }
-
+            
         });
     
 
