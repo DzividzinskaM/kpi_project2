@@ -63,67 +63,7 @@
     <div id="orderHistory">
         
             <table border=1 border-radius=6% cellspacing=0 cellpadding=8 id="tableHistory">
-                <tbody>
-                    <tr>
-                        <td>Дата</td>
-                        <td>Номер замовлення</td>
-                        <td>Накладна</td>
-                        <td>Ціна</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                <tbody id="History">
                 </tbody>
             </table>
         
@@ -133,4 +73,96 @@
         <h4>Ваші бонуси: ____</h4>
         <h4>Знижка: ___</h4>
     </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $.getJSON('goods.json', function(data){
+            let goods = data;   //all products in arr
+
+            openHistory();
+        function openHistory(){
+
+            let out = "";
+
+            out += '<tr>';
+            out +='<td>Дата</td>';
+            out +='<td>Номер накладної</td>';
+            out +='<td>Замовлення</td>';
+            out +='<td>Ціна</td>';
+            out += '</tr>';
+            
+            let user = {}
+            let login = "";
+            if (localStorage.getItem("currentLogin") != null){
+                    user = JSON.parse (localStorage.getItem("currentLogin"));
+                }
+            for(let key in user){
+                login = key;
+            }
+            
+            let ordersHistory = {};
+            if (localStorage.getItem(login) != null){
+                    ordersHistory = JSON.parse (localStorage.getItem(login));
+                }
+            console.log(ordersHistory);
+            let order = [];
+            let startData = "";
+            let lastData = "";
+            for(let key in ordersHistory){
+                number = key;
+                order=ordersHistory[key].split('*');
+                //console.log(order);
+                let arr = order[0].split('__');
+                startData = arr[0];
+                //console.log("element");
+                //console.log(order[arr.length-])
+                arr = order[order.length-2].split('__');
+                lastData = arr[0]
+                //console.log("order");
+                //console.log(order);
+                let sum=0;
+                let strProduct = "";
+                for(let i=0; i<order.length-2; i++){
+                    arr = order[i].split('__');
+                    if(arr[0]==startData){
+                        let product = arr[1].split('#');
+                        let nameProduct=product[0];
+                        let numberProduct=product[1];
+                        //console.log(nameProduct);
+                        //console.log(numberProduct);
+                        sum =sum + Number(goods[nameProduct]["cost"]*Number(numberProduct));
+                        strProduct += goods[nameProduct]["name"]+" - "+  numberProduct + "; " + '\n';
+                        //console.log(sum);
+                        //console.log(sum);
+                    }
+                }
+                
+                let dataForForm = startData + "-" + lastData;
+                /*console.log("start data");
+                console.log(startData);
+                console.log("last data");
+                console.log(lastData);
+                console.log("number order");
+                console.log(key);
+                console.log("products");
+                console.log(strProduct);
+                console.log("sum");
+                console.log(sum);*/
+
+                out += '<tr>';
+                out +='<td>'+dataForForm+'</td>';
+                out +='<td>'+key+'</td>';
+                out +='<td>'+strProduct+'</td>';
+                out +='<td>'+sum+'</td>';
+                out += '</tr>';
+            }
+
+            $('#History').html(out);
+        }
+
+        });
+    
+
+    </script>
 </body>
