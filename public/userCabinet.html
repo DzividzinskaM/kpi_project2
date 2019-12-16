@@ -22,42 +22,8 @@
   		<a class="navbar-logo" href=""><img src="https://html5book.ru/wp-content/uploads/2017/04/lily-logo.png"></a>
     </nav>
 
-    <div>
-        <h1>Вітаємо, user!</h1>
+    <div class = "addUserName">
     </div>
-
-        <h2>Ваше поточне замовлення</h2>
-    <div id="currentOrders">
-            <div id="oneOrder">
-                <table border=3 cellpadding=8 cellspacing=0 id="Order">
-                    <tbody>
-                        <tr>
-                            <td>Зображення</td>
-                            <td>Назва</td>
-                            <td>Ціна</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div id="extraInfo">
-                    <h4>Дата 01.01.2020</h4>
-                    <h4>Загальна сума ____</h4>
-                </div>
-            </div>
     </div>
     <h2 id="nameHistory">Історія замовлень</h2>
     <div id="orderHistory">
@@ -71,12 +37,25 @@
 
     <div id="additionalInformation">
         <h4>Ваші бонуси: ____</h4>
-        <h4>Знижка: ___</h4>
     </div>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
+
+        showName();  
+        function showName() {
+            let user = {}
+            let login = "";
+            if (localStorage.getItem("currentLogin") != null){
+                    user = JSON.parse (localStorage.getItem("currentLogin"));
+                }
+            for(let key in user){
+               login = key;
+            }
+            let out = "Вітаємо, " + login + "!";
+            $('.addUserName').html(out);
+        }
         $.getJSON('goods.json', function(data){
             let goods = data;   //all products in arr
 
@@ -139,16 +118,6 @@
                 }
                 
                 let dataForForm = startData + "-" + lastData;
-                /*console.log("start data");
-                console.log(startData);
-                console.log("last data");
-                console.log(lastData);
-                console.log("number order");
-                console.log(key);
-                console.log("products");
-                console.log(strProduct);
-                console.log("sum");
-                console.log(sum);*/
 
                 out += '<tr>';
                 out +='<td>'+dataForForm+'</td>';

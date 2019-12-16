@@ -65,7 +65,7 @@ body {
 #enter { width: 100%; margin-left:  0;}
 }
 
-h1 {
+.addUserName {
     color: purple;
     font-style: italic;
     font-weight: bold;
@@ -110,7 +110,7 @@ h2 {
 #nameHistory {
     display: block;
     text-align: right;
-    margin-top: -400px;
+    margin-top: -10px;
     margin-right: 20%;
 }
 
@@ -126,15 +126,16 @@ h2 {
 #tableHistory {
     position: inherit;
     width: 100%;
-    height: 100%;
+    height: 80%;
     color: purple;
     border: 3px solid #BA55D3;
     font-weight: bold;
 }
 
 #additionalInformation {
-    margin-top: -10px;
-    font-size: 20px;
+    margin-top: -400px;
+    margin-left: 80px;
+    font-size: 22px;
     color: purple;
     font-style: italic;
     font-weight: bold;
