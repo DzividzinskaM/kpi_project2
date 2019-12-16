@@ -23,7 +23,7 @@
 </div>
 <nav class="top-menu">
     <ul class="menu-main">
-        <li class="left-item"><a href={% url 'index' %}>Мій кабінет</a></li>
+        <li class="left-item"><a href={% url 'index' %}>Головна</a></li>
         <li class="left-item"><a href={% url 'conditions' %}>Умови купівлі</a></li>
         <li class="left-item"><a href={% url 'order' %}>Замовити</a></li>
         <li class="left-item"><a href="">Контакти</a></li>
@@ -33,7 +33,7 @@
         {% else %}
             <li class="left-item" id="toggle"><a href={% url 'cart' %}>Корзина</a></li>
             <li class="right-item"><a href={% url 'logout' %}>Вихід</a></li>
-            <li class="right-item"><a>{{ user.username }}</a></li>
+            <li class="right-item"><a href={% url 'cabinet' %}>{{ user.username }}</a></li>
         {% endif %}
 
     </ul>

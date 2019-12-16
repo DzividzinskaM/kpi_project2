@@ -193,7 +193,6 @@ def login(request):
         return render(request, 'index.html', {'login_success': 1})
     return render(request, 'login.html', {'login_success': 0})
 
-
 def logout_view(request):
     logout(request)
     return redirect('/login')
@@ -206,3 +205,26 @@ def cart_cost(cart_item):
         obj = Costume.objects.get(name=i)
         cost += obj.price * int(j)
     return cost
+def cabinet(request):
+    user_id = request.user.username
+    print(user_id)
+    data = {}
+    costumes_json = {}
+    try:
+        obj = Cart.objects.get(user=user_id)
+        data = obj.items
+        print(data)
+        for i, j in data.items():
+            costumes = Costume.objects.get(name=i)
+            costumes_json[costumes.name] = {
+                'count': costumes.count,
+                'price': costumes.price,
+                'image': costumes.image,
+                'cost_display': costumes.count * costumes.price
+            }
+
+        print(costumes_json)
+        return render(request, 'cabinet.html', {'data': data, 'costumes': costumes_json, 'totalcartcost': obj.cost})
+    except Exception as e:
+        print(e)
+        return render(request, 'cabinet.html', {'data': data})

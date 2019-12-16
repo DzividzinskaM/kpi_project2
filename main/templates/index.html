@@ -7,126 +7,19 @@
 {% block body %}
     <div id="mini-cart"></div>
     <div id="goods"></div>
-    {% if not user.is_authenticated %}
-            <div class="alert alert-primary" role="alert">
-            Вам треба ввійти на свій аккаунт, щоб мати змогу переглядати кабінет користувача!
-            </div>
-    {% else %}
+    {% if success %}
+        <div class="alert alert-success" role="alert">
+            Реєстрація пройшла успішно!
+        </div>
+    {% elif login_success %}
         <div class="alert alert-success" role="alert">
             Ви успішно ввійшли!
         </div>
-        <h2>Ваше поточне замовлення</h2>
-    <div id="currentOrders">
-            <div id="oneOrder">
-                <table border=3 cellpadding=8 cellspacing=0 id="Order">
-                    <tbody>
-                        <tr>
-                            <td>Зображення</td>
-                            <td>Назва</td>
-                            <td>Ціна</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div id="extraInfo">
-                    <h4><p><script> document.write(new Date().toLocaleDateString());</script></p></h4>
-                    <h4>Загальна сума ____</h4>
-                </div>
-            </div>
-    </div>
-    <h2 id="nameHistory">Історія замовлень</h2>
-    <div id="orderHistory">
-
-            <table border=1 border-radius=6% cellspacing=0 cellpadding=8 id="tableHistory">
-                <tbody>
-                    <tr>
-                        <td>Дата</td>
-                        <td>Номер замовлення</td>
-                        <td>Накладна</td>
-                        <td>Ціна</td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-
-    </div>
-
-    <div id="additionalInformation">
-        <h4>Ваші бонуси: ____</h4>
-        <h4>Знижка: ___</h4>
-    </div>
     {% endif %}
     <div class="cartshow" style="position: absolute; height: 65px">
 
     </div>
-    <!--<div class="cont">
+    <div class="cont">
         <div class="grid-list">
             {% for i in costumes %}
                 <div class="box">
@@ -140,7 +33,7 @@
                 </div>
             {% endfor %}
         </div>
-    </div>-->
+    </div>
 
 
     <script>
