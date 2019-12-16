@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="http://localhost:3000/enterence.css">
+</head>
+<body>
+  <div class="title">
+		<img src="http://localhost:3000/images/3.jpg" alt="title" width="100%" height="70%">
+  </div>
+
+  <div>
+        
+    <table border=1 border-radius=6% cellspacing=0 cellpadding=8>
+        <tbody id="Order">
+        </tbody>
+    </table>
+   </div>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+   <script>
+        $.getJSON('goods.json', function(data){
+            let goods = data;   //all products in arr
+
+            showOrder();
+
+            function showOrder(){
+                    let out = "";
+                    out += '<tr>';
+                    out +='<td>№ замовлення</td>';
+                    out +='<td>ПІБ</td>';
+                    out +='<td>Номер телефону</td>';
+                    out +='<td>E-mail</td>';
+                    out +='<td>Замовлення</td>';
+                    out +='<td>Дата</td>';
+                    out += '</tr>';
+                    let all = {}
+                    if (localStorage.getItem('orderAll') != null){
+                        all = JSON.parse (localStorage.getItem('orderAll'));
+                    }
+
+                    
+                    for(let key in all){
+                        let phoneNumber;
+                        let name = "";
+                        let data ="";
+                        let order = {};
+                        let strProduct = "";
+                        let Data = "";
+                        let mail = "";
+                        if (localStorage.getItem(key) != null){
+                            order = JSON.parse (localStorage.getItem(key));
+                        }
+                        console.log(order); 
+                        phoneNumber = order["phoneNumber"];
+                        name = order["name"];
+                        mail = order["mail"];
+
+                        let pr = order["products"].split('*');
+                       // console.log(pr);
+                        let arr = pr[0].split('__');
+                        let startData = arr[0];
+                        arr = pr[pr.length-2].split('__');
+                        let lastData = arr[0];
+                        Data = startData + '-' + lastData;
+
+                       //let strProduct = "";
+                        for(let i=0; i<pr.length-2; i++){
+                            arr = pr[i].split('__');
+                            if(arr[0]==startData){
+                                product = arr[1].split('#');
+                                let nameProduct=product[0];
+                                let numberProduct=product[1];
+                                //console.log(goods[nameProduct]["name"]);
+                                //console.log(numberProduct);
+                                strProduct += goods[nameProduct]["name"]+" - "+  numberProduct + "; " + '\n';
+                                //console.log(sum);
+                                //console.log(sum);
+                            }
+                            console.log(strProduct);
+                        }
+
+                        let numberOrder=key.split('#');
+                        out += '<tr>';
+                        out +='<td>'+numberOrder[1]+'</td>';
+                        out +='<td>'+name+'</td>';
+                        out +='<td>'+phoneNumber+'</td>';
+                        out +='<td>'+mail+'</td>';
+                        out +='<td>'+strProduct+'</td>';
+                        out +='<td>'+Data+'</td>';
+                        out += '</tr>';
+
+                    }
+
+                    $('#Order').html(out);
+            }
+        });
+
+
+
+   </script>
+</body>

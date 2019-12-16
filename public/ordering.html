@@ -171,6 +171,13 @@
 
                     console.log(orders);
                     alert("Замовлення прийнято");
+
+                    let allOrder = {};
+                    if (localStorage.getItem('orderAll') != null){
+                        allOrder = JSON.parse (localStorage.getItem('orderAll'));
+                    }
+                    allOrder[ordersName]=ordersName;
+                    localStorage.setItem("orderAll", JSON.stringify(allOrder));
                 }   
             }
         });
