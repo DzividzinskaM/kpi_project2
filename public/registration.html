@@ -15,7 +15,6 @@
        <li class="left-item"><a href="http://localhost:3000/conditions.html">Умови оренди</a></li>
        <li class="left-item"><a href="http://localhost:3000/order.html">Замовити</a></li>
        <li class="right-item"><a href="http://localhost:3000/cart.html">Корзина</a></li>
-       <li class="right-item"><a href="">Контакти</a></li>
        <li class="right-item"><a href="http://localhost:3000/registration.html">Реєстрація</a></li>
        <li class="right-item"><a href="http://localhost:3000/enterence.html">Вхід в кабінет</a></li>
 		</ul>
@@ -103,18 +102,23 @@
       }
 
       function writeData() {
+        let DB = {};
+        if (localStorage.getItem("LPDB") != null){
+                        DB = JSON.parse (localStorage.getItem("LPDB"));
+                }
         form["name"] = $('.name').val();
         form["login"] = $('.login').val();
         form["password"] = $('.password').val();
         form["phoneNumber"] = $('.phoneNumber').val();
         form["mail"] = $('.mail').val();
 
+        let login = $('.login').val();
+        let pass = $('.password').val();
+        DB[login]= pass;
+      //  let nameLS = form["login"];
 
-        LPDB[($('.login').val())]= $('.password').val();
-        let nameLS = form["login"];
-
-        localStorage.setItem(nameLS, JSON.stringify(form));
-        localStorage.setItem("LPDB", JSON.stringify(LPDB));
+        //localStorage.setItem(nameLS, JSON.stringify(form));
+        localStorage.setItem("LPDB", JSON.stringify(DB));
         alert("Реєстрація виконано успішно!")
       }
 
