@@ -23,13 +23,13 @@
 </div>
 <nav class="top-menu">
     <ul class="menu-main">
-        <li class="left-item"><a href={% url 'index' %}>Головна</a></li>
-        <li class="left-item"><a href={% url 'conditions' %}>Умови оренди</a></li>
+        <li class="left-item"><a href={% url 'index' %}>Мій кабінет</a></li>
+        <li class="left-item"><a href={% url 'conditions' %}>Умови купівлі</a></li>
         <li class="left-item"><a href={% url 'order' %}>Замовити</a></li>
         <li class="left-item"><a href="">Контакти</a></li>
         {% if not user.is_authenticated %}
             <li class="right-item"><a href={% url 'register' %}>Реєстрація</a></li>
-            <li class="right-item"><a href={% url 'login' %}>Вхід в кабінет</a></li>
+            <li class="right-item"><a href={% url 'login' %}>Вхід</a></li>
         {% else %}
             <li class="left-item" id="toggle"><a href={% url 'cart' %}>Корзина</a></li>
             <li class="right-item"><a href={% url 'logout' %}>Вихід</a></li>
