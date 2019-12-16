@@ -3,17 +3,17 @@
 <head>
 	<meta charset="UTF-8">
   <title>Document</title>
-  <link rel="stylesheet" href="http://localhost:3000/enterence.css">
+  <link rel="stylesheet" href="http://localhost:3000/manager.css">
 </head>
 <body>
   <div class="title">
 		<img src="http://localhost:3000/images/3.jpg" alt="title" width="100%" height="70%">
   </div>
 
-  <div>
+  <div id="orderAll">
         
-    <table border=1 border-radius=6% cellspacing=0 cellpadding=8>
-        <tbody id="Order">
+    <table border=1 border-radius=6% cellspacing=0 cellpadding=8 id="orderTable">
+        <tbody class="Order">
         </tbody>
     </table>
    </div>
@@ -94,7 +94,7 @@
 
                     }
 
-                    $('#Order').html(out);
+                    $('.Order').html(out);
             }
         });
 

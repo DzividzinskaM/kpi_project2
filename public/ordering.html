@@ -97,6 +97,8 @@
                         alert("Замовлення прийнято");
                         $('.login').val('');
                         $('.password').val('');
+                        let cart = {};
+                        localStorage.setItem("cart", JSON.stringify(cart));
                     }
                 }
             
@@ -178,6 +180,8 @@
                     }
                     allOrder[ordersName]=ordersName;
                     localStorage.setItem("orderAll", JSON.stringify(allOrder));
+                    let cart = {};
+                    localStorage.setItem("cart", JSON.stringify(cart));
                 }   
             }
         });

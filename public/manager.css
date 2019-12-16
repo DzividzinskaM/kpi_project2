@@ -1,0 +1,18 @@
+#orderAll {
+    background-color:white;
+    width: 50%;
+    height: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+}
+
+#orderTable {
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    color: purple;
+    border: 3px solid #BA55D3;
+    font-weight: bold;
+}
