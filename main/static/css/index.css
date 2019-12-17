@@ -233,13 +233,14 @@ h4 {
     background: #FAB87F;
     color: #fff;
 }
-#currentOrders {
-    background-color: white;
-    border: 3px solid purple;
-    border-radius: 6%;
+#description {
+    padding: 0;
     border-color: magena;
-    width: 40%; 
-    height: 300px;
+    width: 48%; 
+    color: purple;
+    height: 200px;
+    margin-top: 3%;
+    margin-left: 1%;
 }
 
 #oneOrder {
@@ -271,15 +272,17 @@ h4 {
 }
 
 #orderHistory {
-    background-color:white;
-    width: 50%;
+    background-color:lavender;
+    width: 55%;
     height: 400px;
     display: block;
+    margin-top: -80px;
     margin-left: auto;
     font-size: 18px;
 }
 
 #tableHistory {
+    background-color:lavender;
     position: inherit;
     width: 100%;
     height: 100%;

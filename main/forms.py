@@ -4,5 +4,5 @@ from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
     class Meta:
-        model = Use
-        fields = ('first_name', 'last_name', 'email')
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'phone')

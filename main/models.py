@@ -54,3 +54,32 @@ class Cart(models.Model):
         return self.cost
 
     item_cost.short_description = 'Загальна ціна'
+
+
+from collections import namedtuple
+
+Order = namedtuple('Order', ['user', 'costume'])
+
+class FinishedOrders:
+    orders = []
+#     user = models.TextField(max_length=30)
+#     items = JSONField(default=dict)
+#     cost = models.IntegerField()
+
+#     def __str__(self):
+#         return f'{self.user} {self.items} {self.cost}'
+
+#     def item_name(self):
+#         return self.user
+
+#     item_name.short_description = 'Клієнт'
+
+#     def item_items(self):
+#         return self.items
+
+#     item_items.short_description = 'Произведенные заказы'
+
+#     def item_cost(self):
+#         return self.cost
+
+#     item_cost.short_description = 'Загальна ціна'

@@ -6,53 +6,26 @@
 {% endblock %}
 {% block body %}
     <div id="mini-cart"></div>
-    <div id="goods"></div>
-        <h2>Ваше поточне замовлення</h2>
-    <div id="currentOrders">
-            <div id="oneOrder">
-                <table border=3 cellpadding=8 cellspacing=0 id="Order">
-                    <tbody>
-                        <tr>
-                            <td>Зображення</td>
-                            <td>Назва</td>
-                            <td>Ціна</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div id="extraInfo">
-                    <h4><p><script> document.write(new Date().toLocaleDateString());</script></p></h4>
-                    <h4>Загальна сума ____</h4>
-                </div>
-            </div>
+    <div id="description">
+        <h3>Дякуємо, {{user.username}}, що обрали нас! На цій сторінці ви можете переглянути історію своїх попередніх замовлень</h3>
     </div>
-    <h2 id="nameHistory">Історія замовлень</h2>
+    <h4 id="nameHistory">Історія замовлень</h4>
     <div id="orderHistory">
-
             <table border=1 border-radius=6% cellspacing=0 cellpadding=8 id="tableHistory">
                 <tbody>
                     <tr>
                         <td>Дата</td>
-                        <td>Номер замовлення</td>
-                        <td>Накладна</td>
+                        <td>Список товарів</td>
                         <td>Ціна</td>
                     </tr>
+                    {% for order in finished_orders %}
+                        <tr>
+                            <td><script> document.write(new Date().toLocaleDateString());</script></td>
+                            <td>{{ order.name }}</td>
+                            <td>{{ order.price }}</td>
+                        </tr>
+                    {% endfor %}
                     <tr>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -61,46 +34,8 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -109,16 +44,6 @@
             </table>
 
     </div>
-
-    <div id="additionalInformation">
-        <h4>Ваші бонуси: ____</h4>
-        <h4>Знижка: ___</h4>
-    </div>
-    <div class="cartshow" style="position: absolute; height: 65px">
-
-    </div>
     <script>
-
-
     </script>
 {% endblock %}
