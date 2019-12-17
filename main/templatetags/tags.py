@@ -1,5 +1,5 @@
 from django import template
-from ..models import Cart, Costume
+from ..models import Cart, Costume, FinishedOrders
 
 register = template.Library()
 
@@ -33,3 +33,7 @@ def image(name):
 def cost_count(name, quantity):
     price = Costume.objects.get(name=name).price
     return int(quantity) * int(price)
+
+@register.filter
+def date(name):
+    obj = FinishedOrders

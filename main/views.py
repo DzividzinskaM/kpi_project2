@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.forms import UserCreationForm
-from .models import Costume, Cart, FinishedOrders, Order
+from .models import Costume, Cart, FinishedOrders
 import json
+import datetime
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -41,37 +42,13 @@ def remove(request):
 def cart_order(request):
     user = request.user.username
     cart = Cart.objects.get(user=user)
-    bought_costumes = []
     for i, j in cart.items.items():
         cos = Costume.objects.get(name=i)
-        FinishedOrders.orders.append(Order(user, cos))
-        bought_costumes.append(cos)
         cos.count -= int(j)
         cos.save()
+    FinishedOrders.objects.create(user=user, items=cart.items, cost=cart.cost, date=datetime.datetime.now())
     cart.delete()
-
-    user_id = request.user.username
-    print(user_id)
-    data = {}
-    costumes_json = {}
-    try:
-        obj = Cart.objects.get(user=user_id)
-        data = obj.items
-        print(data)
-        for i, j in data.items():
-            costumes = Costume.objects.get(name=i)
-            costumes_json[costumes.name] = {
-                'count': costumes.count,
-                'price': costumes.price,
-                'image': costumes.image,
-                'cost_display': costumes.count * costumes.price
-            }
-
-        print(costumes_json)
-        return render(request, 'cart_order.html', {'data': data, 'costumes': costumes_json, 'totalcartcost': obj.cost, 'bought_costumes': bought_costumes})
-    except Exception as e:
-        print(e)
-        return render(request, 'cart_order.html', {'data': data, 'bought_costumes': bought_costumes})
+    return redirect('/cart')
 
 
 @csrf_exempt
@@ -140,7 +117,6 @@ def cart(request):
         return render(request, 'cart.html', {'data': data})
 
 
-
 @csrf_exempt
 def create(request):
     cos = Costume.objects.get(id=request.POST.get('id'))
@@ -196,7 +172,6 @@ def registration(request):
         if form.is_valid():
             form.save()
             user = authenticate(request, username=login, password=password)
-            auth_login(request, user)
             user = request.user
             return render(request, 'index.html', {'success': 1, 'is_auth': user})
         else:
@@ -212,14 +187,15 @@ def registration(request):
 def login(request):
     username = request.POST.get('username')
     password = request.POST.get('password')
-    email=request.POST.get('email')
-    phone=request.POST.get('phone')
+    email = request.POST.get('email')
+    phone = request.POST.get('phone')
     print(username, password)
     user = authenticate(request, username=username, password=password, email=email, phone=phone)
     if user is not None:
         auth_login(request, user)
         return render(request, 'index.html', {'login_success': 1})
     return render(request, 'login.html', {'login_success': 0})
+
 
 def logout_view(request):
     logout(request)
@@ -233,29 +209,11 @@ def cart_cost(cart_item):
         obj = Costume.objects.get(name=i)
         cost += obj.price * int(j)
     return cost
+
+
 def cabinet(request):
-    user_id = request.user.username
-    print(user_id)
-    data = {}
-    costumes_json = {}
-
-    this_user_finished_orders = [order.costume for order in FinishedOrders.orders if order.user == user_id]
-
-    try:
-        obj = Cart.objects.get(user=user_id)
-        data = obj.items
-        print(data)
-        for i, j in data.items():
-            costumes = Costume.objects.get(name=i)
-            costumes_json[costumes.name] = {
-                'count': costumes.count,
-                'price': costumes.price,
-                'image': costumes.image,
-                'cost_display': costumes.count * costumes.price
-            }
-
-        print(costumes_json)
-        return render(request, 'cabinet.html', {'data': data, 'costumes': costumes_json, 'totalcartcost': obj.cost, 'finished_orders': this_user_finished_orders})
-    except Exception as e:
-        print(e)
-        return render(request, 'cabinet.html', {'data': data, 'finished_orders': this_user_finished_orders})
+    user = request.user.username
+    orders = FinishedOrders.objects.filter(user=user)
+    for i in orders:
+        print(i.date)
+    return render(request, 'cabinet.html', {'orders': orders, 'user': request.user})

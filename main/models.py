@@ -56,30 +56,35 @@ class Cart(models.Model):
     item_cost.short_description = 'Загальна ціна'
 
 
-from collections import namedtuple
+class FinishedOrders(models.Model):
+    user = models.TextField(max_length=30)
+    items = JSONField()
+    cost = models.IntegerField()
+    date = models.DateField()
 
-Order = namedtuple('Order', ['user', 'costume'])
+    def __str__(self):
+        return f'{self.user} {self.items} {self.cost}'
 
-class FinishedOrders:
-    orders = []
-#     user = models.TextField(max_length=30)
-#     items = JSONField(default=dict)
-#     cost = models.IntegerField()
+    def item_name(self):
+        return self.user
 
-#     def __str__(self):
-#         return f'{self.user} {self.items} {self.cost}'
+    item_name.short_description = 'Клієнт'
 
-#     def item_name(self):
-#         return self.user
+    def item_items(self):
+        string = ''
+        json = self.items
+        for i, j in json.items():
+            string += f'{i}: {j};'
+        print(string)
+        return string
+    item_items.short_description = 'Произведенные заказы'
 
-#     item_name.short_description = 'Клієнт'
+    def item_cost(self):
+        return self.cost
 
-#     def item_items(self):
-#         return self.items
+    item_cost.short_description = 'Загальна ціна'
 
-#     item_items.short_description = 'Произведенные заказы'
+    def item_date(self):
+        return self.date
 
-#     def item_cost(self):
-#         return self.cost
-
-#     item_cost.short_description = 'Загальна ціна'
+    item_date.short_description = 'Дата'

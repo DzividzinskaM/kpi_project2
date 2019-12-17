@@ -26,8 +26,8 @@
                     <a href={% url 'window' i.id %}>
                         <img style="position: center" src={{ i.image }}>
                     </a>
-                    <h4 class="name" style="text-align: center">
-                        <a href={% url 'window' i.id %} class="productname">{{ i.name }}</a>
+                    <h4 class="name" style="text-align: center; font-size: 17px">
+                        <a href="{% url 'window' i.id %}" class="productname">{{ i.name }}</a>
                     </h4>
                     <h6 class="price" style="text-align: center">Ціна: {{ i.price }}</h6>
                 </div>

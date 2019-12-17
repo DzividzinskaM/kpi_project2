@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load tags %}
 {% block cssload %}{% static 'css/index.css' %}{% endblock %}
 {% block head %}
 
@@ -17,28 +18,17 @@
                         <td>Список товарів</td>
                         <td>Ціна</td>
                     </tr>
-                    {% for order in finished_orders %}
+                    {% for order in orders %}
                         <tr>
-                            <td><script> document.write(new Date().toLocaleDateString());</script></td>
-                            <td>{{ order.name }}</td>
-                            <td>{{ order.price }}</td>
+                            <td>{{ order.date }}</td>
+                            <td>
+                                {% for name, q in order.items.items %}
+                                    <li style="font-size: 15px">{{ name }}: {{ q }}</li>
+                                {% endfor %}
+                            </td>
+                            <td>{{ order.cost }}грн.</td>
                         </tr>
                     {% endfor %}
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
                 </tbody>
             </table>
 
