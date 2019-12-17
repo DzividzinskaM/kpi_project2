@@ -263,20 +263,12 @@ h4 {
     margin-top: 10%;
     margin-right: 8%;
 }
-
-#nameHistory {
-    display: block;
-    text-align: right;
-    margin-top: -400px;
-    margin-right: 20%;
-}
-
 #orderHistory {
     background-color:lavender;
     width: 55%;
     height: 400px;
     display: block;
-    margin-top: -80px;
+    margin-top: -20%;
     margin-left: auto;
     font-size: 18px;
 }
