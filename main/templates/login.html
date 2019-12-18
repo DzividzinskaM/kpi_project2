@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cssload %}{% static 'css/login.css' %}{% endblock %}
+
+{% block body %}
+    <form class="autoTable" method="post" action={% url 'login' %}>{% csrf_token %}
+        <table placeholder="0" cellspacing="0" class="table">
+            <tbody>
+            <tr>
+                <td>Логін</td>
+            </tr>
+            <tr>
+                <td><input type="text" name="username" class="login" id="login" required></td>
+            </tr>
+            <tr>
+                <td>Пароль</td>
+            </tr>
+
+            <tr>
+                <td><input type="password" name="password" class="password" id="password" required></td>
+            </tr>
+            </tbody>
+        </table>
+        <button id="enterToAccount">Ввійти</button>
+        <p>Немає аккаунту?! <a href={% url 'register' %}>Створи його!!!</a></p>
+    </form>
+
+    {#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
+    {##}
+    {#    <script>#}
+    {##}
+    {#        $('#enterToAccount').on('click', enterAccount)#}
+    {##}
+    {#        function enterAccount() {#}
+    {#            let LPDB = {};#}
+    {#            checkData();#}
+    {#            let login = $('.login').val();#}
+    {#            let password = $('.password').val();#}
+    {#            LPDB = JSON.parse(localStorage.getItem('LPDB'));#}
+    {#            if (LPDB[login] !== password) {#}
+    {#                alert("Неправильний логін або пароль");#}
+    {#                return false;#}
+    {#            } else {#}
+    {#                let currentLogin = {};#}
+    {#                currentLogin[login] = true;#}
+    {#                localStorage.setItem('currentLogin', JSON.stringify(currentLogin));#}
+    {#            }#}
+    {#        }#}
+    {##}
+    {#        function checkData() {#}
+    {#            let login = $('.login').val();#}
+    {#            let password = $('.password').val();#}
+    {#            if (login == '' || password == '') {#}
+    {#                alert("Не всі поля заповнені!")#}
+    {#                return false;#}
+    {#            }#}
+    {#        }#}
+    {#    </script>#}
+{% endblock %}

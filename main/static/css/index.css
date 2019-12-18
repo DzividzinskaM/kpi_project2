@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+
+body {
+    background-color: #F3EDFB;
+
+}
+
+/* Item selector */
+.cont {
+    display: flex;
+    justify-content: center;
+}
+
+.grid-list {
+    display: grid;
+    grid-template-rows: 500px 500px 500px;
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-gap: 100px;
+    margin-top: 30px;
+}
+
+.box {
+    align-items: center;
+    display: grid;
+    grid-template-rows: 400px 30px;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid palevioletred;
+}
+
+.box:hover{
+    border-color: darkred;
+}
+
+.productname{
+    text-decoration: none;
+    color: #2e3133;
+}
+
+.productname:hover{
+    text-decoration: none;
+    color: #2e3133;
+}
+
+
+.top-menu {
+    position: relative;
+    background: #B57FCA;
+
+}
+
+.menu-main {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-main:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.left-item {
+    float: left;
+}
+
+.right-item {
+    float: right;
+}
+
+.navbar-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menu-main .left-item a {
+    text-decoration: none;
+    display: block;
+    line-height: 70px;
+    padding: 0 20px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-family: 'Arimo', sans-serif;
+    font-weight: bold;
+    color: #F6EEF8;
+    transition: .3s linear;
+}
+
+.menu-main .right-item a {
+    text-decoration: none;
+    display: block;
+    line-height: 70px;
+    padding: 0 20px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-family: 'Arimo', sans-serif;
+    font-weight: bold;
+    color: #F6EEF8;
+    transition: .3s linear;
+}
+
+.menu-main a:hover {
+    background: #C4A8DF;
+}
+
+@media (max-width: 830px) {
+    .menu-main {
+        padding-top: 90px;
+        text-align: center;
+    }
+
+    .navbar-logo {
+        position: absolute;
+        left: 50%;
+        top: 10px;
+        transform: translateX(-50%);
+    }
+
+    .menu-main li {
+        float: none;
+        display: inline-block;
+    }
+
+    .menu-main a {
+        line-height: normal;
+        padding: 20px 15px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 630px) {
+    .menu-main li {
+        display: block;
+    }
+}
+
+.single-goods {
+    width: 300px;
+    height: 500px;
+    border: 3px solid #B57FCA;
+    border-radius: 10%;
+    margin: 38px;
+    float: left;
+    text-align: center;
+    position: relative;
+    display: block;
+}
+
+.single-goods button {
+    display: block;
+    margin: 20px auto;
+    background-color: purple;
+    color: whitesmoke;
+    border-color: purple;
+}
+
+
+body {
+    height: 100vh;
+    text-align: center;
+}
+
+/*Trigger Button*/
+.login-trigger {
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(to bottom right, #B05574, #F87E7B);
+    padding: 15px 30px;
+    border-radius: 30px;
+    position: relative;
+    top: 50%;
+}
+
+/*Modal*/
+h4 {
+    font-weight: bold;
+    color: #fff;
+}
+
+.close {
+    color: #fff;
+    transform: scale(1.2)
+}
+
+.modal-content {
+    font-weight: bold;
+    background: linear-gradient(to bottom right, #F87E7B, #B05574);
+}
+
+.form-control {
+    margin: 1em 0;
+}
+
+.form-control:hover, .form-control:focus {
+    box-shadow: none;
+    border-color: #fff;
+}
+
+.username, .password {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 2px solid #eee;
+    padding-left: 0;
+    font-weight: normal;
+    background: transparent;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #eee;
+}
+
+.form-control:focus::-webkit-input-placeholder {
+    font-weight: bold;
+    color: #fff;
+}
+
+.login {
+    padding: 6px 20px;
+    border-radius: 20px;
+    background: none;
+    border: 2px solid #FAB87F;
+    color: #FAB87F;
+    font-weight: bold;
+    transition: all .5s;
+    margin-top: 1em;
+}
+
+.login:hover {
+    background: #FAB87F;
+    color: #fff;
+<<<<<<< HEAD
+=======
+}
+#description {
+    padding: 0;
+    border-color: magena;
+    width: 48%; 
+    color: purple;
+    height: 200px;
+    margin-top: 3%;
+    margin-left: 1%;
+}
+
+#oneOrder {
+    font-size: 18px;
+    color: purple; 
+    font-weight: bold; 
+    padding-top: 7%;
+    margin-left: 5%;
+}
+
+#Order {
+    position: inherit;
+    border-color: #BA55D3;
+    width: 95%;
+    height: 100%;
+}
+
+#extraInfo {
+    text-align: right;
+    margin-top: 10%;
+    margin-right: 8%;
+}
+#orderHistory {
+    background-color:lavender;
+    width: 55%;
+    height: 400px;
+    display: block;
+    margin-top: -20%;
+    margin-left: auto;
+    font-size: 18px;
+}
+
+#tableHistory {
+    background-color:lavender;
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    color: purple;
+    border: 3px solid #BA55D3;
+    font-weight: bold;
+}
+
+#additionalInformation {
+    margin-top: -10px;
+    font-size: 20px;
+    color: purple;
+    font-style: italic;
+    font-weight: bold;
+>>>>>>> backend
+}

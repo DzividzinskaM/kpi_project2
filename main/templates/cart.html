@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% load tags %}
+{% load static %}
+{% block cssload %}{% static 'css/cart.css' %}{% endblock %}
+{% block head %}
+{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <div class="card">
+<<<<<<< HEAD
+        <table class="table table-hover shopping-cart-wrap">
+            <thead class="text-muted">
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col" width="120">Quantity</th>
+                <th scope="col" width="120">Price</th>
+                <th scope="col" width="200" class="text-right">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i, j in data.items %}
+                <tr>
+                    <td>
+                        <figure class="media">
+                            <div class="img-wrap"><img src={{ i|image }}></div>
+                            <figcaption class="media-body text-center">
+                                <h5 class="title text-truncate">{{ i }}</h5>
+                                <dl class="param param-inline small">
+                                </dl>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <input class="form-control">
+                    </td>
+                    <td>
+                        <div class="price-wrap">
+                            <var class="price"></var>
+                            <small class="text-muted"></small>
+                        </div> <!-- price-wrap .// -->
+                    </td>
+                    <td class="text-right">
+                        <a href="" class="btn btn-outline-danger"> × Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div> <!-- card.// -->
+=======
+        {% if data.items %}
+            <table class="table table-hover shopping-cart-wrap">
+                <thead class="text-muted">
+                <tr>
+                    <th scope="col">Костюм</th>
+                    <th scope="col" width="150">Кількість</th>
+                    <th scope="col" width="120">Ціна</th>
+                    <th scope="col" width="200" class="text-right">Дії</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i, j in data.items %}
+                    <tr class="item" data-id="{{ i|id }}">
+                        <td>
+                            <figure class="media">
+                                <div class="img-wrap"><img src={{ i|image }}></div>
+                                <figcaption class="media-body text-center">
+                                    <h5 class="title text-truncate"
+                                        style="text-align: left; margin-left: 10px">{{ i }}</h5>
+                                    <dl class="param param-inline small" style="text-align: left; margin-left: 10px"
+                                        data-count={{ i|count }}>
+                                        {{ i|count }}шт. на складі
+                                    </dl>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                {#                            <input type="text" class="form-control" id="count" name="count" value={{ j }} data-id={{ i|id }}#}
+                                {#                                    required>#}
+                                {#                            <div class="valid-feedback"></div>#}
+                                {#                            <div class="invalid-feedback">Немає</div>#}
+                                <div class="center">
+                                    <div class="input-group">
+                                      <span class="input-group-btn">
+                                          <button type="button" class="btn btn-light btn-number"
+                                                  data-name="{{ i }}"
+                                                  data-type="minus" data-field={{ i|id }}>
+                                              <i class="fa fa-minus"></i>
+                                          </button>
+                                      </span>
+                                        <input type="text" class="form-control input-number" value={{ j }}
+                                                min="1" data-name={{ i }} max={{ i|count }} name={{ i|id }} disabled>
+                                        <span class="input-group-btn">
+                                          <button type="button" class="btn btn-light btn-number" data-type="plus"
+                                                  data-name="{{ i }}"
+                                                  data-field={{ i|id }}>
+                                              <i class="fa fa-plus"></i>
+                                          </button>
+                                      </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="price-wrap">
+                                <var class="price"></var>
+                                <p data-price={{ i|price }} class="text-muted" style="font-size: 20px; margin-bottom: 0"
+                                   id={{ i|id }}>{{ i|cost_count:j }}<small
+                                        class="text-muted">грн.</small></p>
+                                <small class="text-muted">({{ i|price }}грн. кожен)</small>
+                            </div> <!-- price-wrap .// -->
+                        </td>
+                        <td class="text-right">
+                            <a href="" class="btn btn-outline-danger" data-id="{{ i|id }}"> × Remove</a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+            <p class="total" style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">Загальна
+                вартіcть: {{ totalcartcost }}</p>
+            <a href="{% url 'cart_order' %}" class="btn btn-success"
+               style="margin-left: 90%; margin-top: 10px; margin-bottom: 20px">
+                Замовити
+            </a>
+        {% else %}
+            <h1 style="text-align: center">КОРЗИНА ПОРОЖНЯ</h1>
+        {% endif %}
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            // remove button
+            $('.btn-outline-danger').click(function (e) {
+                e.preventDefault();
+                let id = $(this).attr('data-id');
+                let val = $(`input[name=${id}]`).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url: '/remove',
+                    data: {
+                        'id': id,
+                        'val': val
+                    },
+                    success: function (data) {
+                        if (data) {
+                            $(`tr[data-id=${id}]`).fadeOut(300, function () {
+                                $(this).remove();
+                                $('.total').text(`Загальна вартіcть: ${data.total}`)
+                            });
+                            // i don't know why -1 there. This working fine, ok?
+                            if (!($('.item').length - 1)) {
+                                $('.card').fadeIn(300, function () {
+                                    $(this).html('<h1 style:"background-color: grey">КОРЗИНА ПОРОЖНЯ</h1>').css({'text-align': 'center'})
+                                })
+                            }
+                        }
+                    }
+                })
+            })
+        });
+        // plus minus input box
+        $('.btn-number').click(function (e) {
+            e.preventDefault();
+            let name = $(this).attr('data-name');
+            let fieldName = $(this).attr('data-field');
+            let type = $(this).attr('data-type');
+            let input = $("input[name='" + fieldName + "']");
+            let currentVal = parseInt(input.val());
+            let price = parseInt($(`p[id=${input.attr('name')}]`).attr('data-price'));
+            if (!isNaN(currentVal)) {
+                if (type === 'minus') {
+
+                    if (currentVal > input.attr('min')) {
+                        input.val(currentVal - 1).change();
+                        currentVal--;
+                        $.ajax({
+                            type: 'POST',
+                            url: '/cart_update',
+                            data: {
+                                'name': name,
+                                'count': input.val()
+                            },
+                            success: function (data) {
+                                $(`p[id=${input.attr('name')}]`).html(`${currentVal * price}<small class="text-muted">грн.</small>`);
+                                $('.total').text(`Загальна вартіcть: ${data.total}`)
+                            }
+                        })
+                    }
+                    if (parseInt(input.val()) === input.attr('min')) {
+                        $(this).attr('disabled', true);
+                    }
+
+                } else if (type === 'plus') {
+
+                    if (currentVal < input.attr('max')) {
+                        input.val(currentVal + 1).change();
+                        currentVal++;
+                        $.ajax({
+                            type: 'POST',
+                            url: '/cart_update',
+                            data: {
+                                'name': name,
+                                'count': input.val()
+                            },
+                            success: function (data) {
+                                $(`p[id=${input.attr('name')}]`).html(`${currentVal * price}<small class="text-muted">грн.</small>`);
+                                $('.total').text(`Загальна вартіcть: ${data.total}`)
+                            }
+                        })
+                    }
+                    if (parseInt(input.val()) === input.attr('max')) {
+                        $(this).attr('disabled', true);
+                    }
+
+                }
+            } else {
+                input.val(0);
+            }
+        });
+        $('.input-number').focusin(function () {
+            $(this).data('oldValue', $(this).val());
+        });
+        $('.input-number').change(function () {
+
+            let minValue = parseInt($(this).attr('min'));
+            let maxValue = parseInt($(this).attr('max'));
+            let valueCurrent = parseInt($(this).val());
+            let name = $(this).attr('name');
+            if (valueCurrent >= minValue) {
+                $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                alert('Sorry, the minimum value was reached');
+                $(this).val($(this).data('oldValue'));
+            }
+            if (valueCurrent <= maxValue) {
+                $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                alert('Sorry, the maximum value was reached');
+                $(this).val($(this).data('oldValue'));
+            }
+
+
+        })
+    </script>
+>>>>>>> backend
+{% endblock %}

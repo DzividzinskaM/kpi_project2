@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cssload %}{% static 'css/custom.css' %}{% endblock %}
+{% block body %}
+    <div class="cartshow" style="position: absolute"></div>
+    <div class="single-good">
+        <div class="image">
+            <img src={{ costume.image }}>
+        </div>
+<<<<<<< HEAD
+        <div class="about">
+            <p class="name">{{ costume.name }}</p>
+            <p class="price">880 грн.</p>
+            {% if costume.costume_count %}
+                <div class="cartcheck">
+                    <button class="add" id={{ costume.id }}>В КОРЗИНУ</button>
+                </div>
+                <p class="avaible">Доступність: <span>{{ costume.count }}</span>шт.</p>
+            {% else %}
+                <div class="add" style="background-color: darkslategrey; cursor: auto; font-size: 14px">НЕМАЄ В
+                    НАЯВНОСТІ
+                </div>
+=======
+        <div class="item" style="margin-left: 20px">
+            <p class="name">{{ costume.name }}</p>
+            <p class="price">Ціна: {{ costume.price }}</p>
+            <p class="about" style="width: 500px; height: 200px; margin: 0">{{ costume.about }}</p>
+            {% if user.is_authenticated %}
+                {% if costume.count and costume.name not in cart%}
+                    <div class="cartcheck">
+                        <button class="add" id={{ costume.id }}>В КОРЗИНУ</button>
+                    </div>
+                    <p class="avaible">Доступність: <span>{{ costume.count }}</span>шт.</p>
+                {% elif costume.name in cart %}
+                    <div class="add" style="background-color: darkslategrey; cursor: auto; font-size: 14px">ТОВАР В КОРЗИНІ
+                    </div>
+                {% else %}
+                    <div class="add" style="background-color: darkslategrey; cursor: auto; font-size: 14px">НЕМАЄ В
+                        НАЯВНОСТІ
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="add" style="background-color: darkslategrey; cursor: auto; font-size: 14px">Увійдіть у аккаунт
+                </div>
+                <p class="avaible">Доступність: <span>{{ costume.count }}</span>шт.</p>
+>>>>>>> backend
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".add").on("click", function (event) {
+                event.preventDefault();
+                let id = $(this).attr('id');
+                let count = $(".avaible span").text();
+                $.ajax({
+                    type: "POST",
+<<<<<<< HEAD
+                    url: '/add',
+=======
+                    url: '/create',
+>>>>>>> backend
+                    data: {
+                        'id': id
+                    },
+                    success: function (data) {
+                        if (data) {
+                            $(".avaible span").text(--count);
+                            $(".cartcheck").html('<div class="add" style="background-color: grey; cursor: auto; font-size: 16px">Товар в корзині</div>');
+<<<<<<< HEAD
+                            $("#toggle").animate({backgroundColor: '#E3A3F9'}, 'slow', function () {
+=======
+                            $("li #toggle").animate({backgroundColor: '#E3A3F9'}, 'slow', function () {
+>>>>>>> backend
+                                $(this).animate({backgroundColor: '#B57FCA'}, 'slow');
+                            })
+
+                        }
+                    }
+                })
+            });
+
+        });
+    </script>
+{% endblock %}

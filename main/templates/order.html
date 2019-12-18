@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cssload %}{% static 'css/order.css' %}{% endblock %}
+{% block head %}
+    <script type="text/javascript">
+
+        var rules = {
+            required: function (el) {
+                if (el.value) return true;
+                else return false;
+            },
+            phone: function (el) {
+                return true;
+            },
+            mail: function (el) {
+                var reg = /^\w{1,}@\w{1,}\.\w{1,}$/;
+                return reg.test(el.value);
+            },
+            time: function (el) {
+                let now = new Date();
+                let date = new Date(el.value);
+                now.setDate(now.getDate() + 10);
+                return now.getTime() < date.getTime();
+            },
+            pic: function (el) {
+
+                var rag = el.value;
+                if (rag === '') return true;
+                rag = rag.split('.');
+                if (rag[rag.length - 1] !== 'jpeg' && rag[rag.length - 1] !== 'jpg' && rag[rag.length - 1] !== 'png' && rag[rag.length - 1] !== 'bmp' && rag[rag.length - 1] !== 'ico') return false;
+                return true;
+            },
+            number: function (el) {
+                var reg = /[0-9]/;
+                return reg.test(el.value);
+            }
+        }
+
+        function validator(obj) {
+            var errors = [];
+            var elements = obj.elements;
+            for (i = 0; i < elements.length; i++) {
+                if (elements[i].tagName !== 'BUTTON') {
+                    var rulelist = elements[i].dataset.rule;
+                    rulelist = rulelist.split(' ');
+                    for (var j = 0; j < rulelist.length; j++) {
+                        if (rulelist[j] in rules) {
+                            if (!rules[rulelist[j]](elements[i])) {
+                                errors.push(rulelist[j] + ' : ' + elements[i].value);
+                            }
+                        }
+                    }
+                }
+            }
+            if (errors.length > 0) {
+                alert('Невірно заповнена форма! Будь-ласка перевірте поля!' + errors);
+                return false;
+            }
+            return true;
+        }
+
+        function sendform(obj) {
+            if (validator(obj)) {
+                let newOrder;
+                let client;
+                pib = obj.PIB.value;
+                contact = obj.contact.value;
+                newOrder = "Розмір:" + obj.size.value + " ; Параметри: " + obj.size1.value + "/" + obj.size2.value + "/" + obj.size3.value + " ; Матеріали:" + obj.materials.value + " ; Опис: " + obj.description.value + " ; На " + obj.date.value;
+                alert("Ваше замовлення: " + newOrder + ". Відправлено на обробку");
+            }
+        }
+    </script>
+{% endblock %}
+{% block body %}
+    <h3 align="center">Заповніть форму замовлення</h3><br>
+    <div id="order" style="align-items:center">
+        <table id="form0" border="0" cellpadding="0">
+            <tbody>
+            <tr>
+                <td>ПІБ:</td>
+                <td><input type="text" name="PIB" placeholder="Іванов Іван Іванович" data-rule="required name"></td>
+            </tr>
+            <tr>
+                <td>Номер телефону:</td>
+                <td><input type="text" name="contact" placeholder="" data-rule="required phone"></td>
+            </tr>
+            <tr>
+                <td>Пошта:</td>
+                <td><input type="text" name="mail" placeholder="helloworld@gmail.com" data-rule="required mail"></td>
+            </tr>
+            <tr>
+                <td>Розмір:</td>
+                <td>
+                    <select name="size" data-rule="required">
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Довжина</td>
+                <td><input type="number" name="size1" placeholder="0" data-rule="required number" class="inParameters">
+                </td>
+            </tr>
+            <tr>
+                <td>Довжина рукава</td>
+                <td><input type="number" name="size2" placeholder="0" data-rule="required number" class="inParameters">
+                </td>
+            </tr>
+            <tr>
+                <td>Обхват грудної клітки</td>
+                <td><input type="number" name="size3" placeholder="0" data-rule="required number" class="inParameters">
+                </td>
+            </tr>
+            <tr>
+                <td>Обхват талії</td>
+                <td><input type="number" name="size4" placeholder="0" data-rule="required number" class="inParameters">
+                </td>
+            </tr>
+            <tr>
+                <td>Обхват бедер</td>
+                <td><input type="number" name="size5" placeholder="0" data-rule="required number" class="inParameters">
+                </td>
+            </tr>
+            <tr>
+                <td>Дата</td>
+                <td><input type="date" name="date" data-rule="required time"></td>
+            </tr>
+            <tr>
+                <td>Матеріали (не обов'язково):</td>
+                <td><input type="text" name="materials" data-rule=""></td>
+            </tr>
+            <tr>
+                <td>Зображення(не обов'язково):</td>
+                <td><input type="file" name="picture" value="Тиснути сюди!" data-rule="pic"></td>
+            </tr>
+            <tr>
+                <td>Додатковий опис:</td>
+                <td><textarea name="description" cols="75" rows="6" data-rule="required"></textarea></td>
+            </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center; margin-left: 0px;" id="button">
+            <button class="submit"><a href="#!" onclick="sendform(form0)" data-rule="">Замовити</a></button>
+        </div>
+    </div>
+{% endblock %}

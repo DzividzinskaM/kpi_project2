@@ -1,0 +1,144 @@
+body {
+    background-color: whitesmoke;
+}
+
+.row{
+  text-align: center;
+}
+.align-center{
+  align-items: center;
+  display: flex;
+  width: 100%;  /* Fallback for browsers do NOT support vh unit */
+}
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+.top-menu {
+  position: relative;
+  background: #B57FCA;
+  margin-bottom: 40px;
+}
+.menu-main {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu-main:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.left-item {float: left;}
+.right-item {float: right;}
+.navbar-logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+.menu-main a {
+  text-decoration: none;
+  display: block;
+  line-height: 70px;
+  padding: 0 20px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-family: 'Arimo', sans-serif;
+  font-weight: bold;
+  color:#F6EEF8;
+  transition: .3s linear;
+}
+.menu-main a:hover {background: #C4A8DF;}
+@media (max-width: 830px) {
+.menu-main {
+  padding-top: 90px;
+  text-align: center;
+}
+.navbar-logo {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+}
+.menu-main li {
+  float: none;
+  display: inline-block;
+}
+.menu-main a {
+  line-height: normal;
+  padding: 20px 15px;
+  font-size: 16px;
+}
+}
+@media (max-width: 630px) {
+.menu-main li {display: block;}
+}
+
+td {
+  padding: 5%;
+}
+
+#my-cart td {
+  width: 13%;
+}
+
+.single-goods {
+  width: 300px;
+  height: 500px;
+  border: 3px solid #B57FCA;
+  border-radius: 10%;
+  margin: 38px;
+  float: left;
+  text-align: center;
+  position: relative;
+  display: block;
+}
+
+.single-goods button{
+    display: block;
+    margin: 20px auto;
+    background-color: purple;
+    color: whitesmoke;
+    border-color: purple;
+}
+
+.delete {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.d_cart {
+  background-color: #f6e8fc;
+  border: 3px solid #e8c9f5;
+  text-align: center;
+  position: relative;
+  margin-top: 30px;
+  margin-left: auto;
+  font-size: 18px;
+  color: purple;
+  right: 300px;
+  height: 100%;
+  width: 49%;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+  background-color: purple;
+  color: whitesmoke;
+  border-color: purple;
+}
+
+a {
+  color: magenta;
+}
+
+#forChooseDate{
+  position: absolute;
+  bottom: 200px;
+  width: 5%;
+  left: 50px;
+  color: purple;
+  font-weight: bold;
+  height: 10%;
+}
+
