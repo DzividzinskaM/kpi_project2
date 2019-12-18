@@ -2,7 +2,11 @@
 {% load static %}
 {% block cssload %}{% static 'css/index.css' %}{% endblock %}
 {% block head %}
+<<<<<<< HEAD
     <script src="http://malsup.github.com/jquery.form.js"></script>
+=======
+
+>>>>>>> backend
 {% endblock %}
 {% block body %}
     <div id="mini-cart"></div>
@@ -23,11 +27,19 @@
         <div class="grid-list">
             {% for i in costumes %}
                 <div class="box">
+<<<<<<< HEAD
                     <a href={% url 'window' i.name %}>
                         <img style="position: center" src={{ i.image }}>
                     </a>
                     <h4 class="name" style="text-align: center">
                         <a href={% url 'window' i.name %} class="productname">{{ i.name }}</a>
+=======
+                    <a href={% url 'window' i.id %}>
+                        <img style="position: center" src={{ i.image }}>
+                    </a>
+                    <h4 class="name" style="text-align: center; font-size: 17px">
+                        <a href="{% url 'window' i.id %}" class="productname">{{ i.name }}</a>
+>>>>>>> backend
                     </h4>
                     <h6 class="price" style="text-align: center">Ціна: {{ i.price }}</h6>
                 </div>

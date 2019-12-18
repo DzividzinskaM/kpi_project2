@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tags %}
+{% block cssload %}{% static 'css/index.css' %}{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block body %}
+    <div id="mini-cart"></div>
+    <div id="description">
+        <h3>Дякуємо, {{user.username}}, що обрали нас! На цій сторінці ви можете переглянути історію своїх попередніх замовлень</h3>
+    </div>
+    <div id="orderHistory">
+            <table border=1 border-radius=6% cellspacing=0 cellpadding=8 id="tableHistory">
+                <tbody>
+                    <tr>
+                        <td>Дата</td>
+                        <td>Список товарів</td>
+                        <td>Ціна</td>
+                    </tr>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.date }}</td>
+                            <td>
+                                {% for name, q in order.items.items %}
+                                    <li style="font-size: 15px">{{ name }}: {{ q }}</li>
+                                {% endfor %}
+                            </td>
+                            <td>{{ order.cost }}грн.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+    </div>
+    <script>
+    </script>
+{% endblock %}
